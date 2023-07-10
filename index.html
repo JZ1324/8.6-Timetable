@@ -1,59 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Timetable</title>
   <style>
-    .timetable {
+    body {
+      background-color: #F5F5F5;
       font-family: Arial, sans-serif;
-      font-size: 14px;
-      color: #333;
+      margin: 0;
+      padding: 0;
     }
-
+    
+    h1 {
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 30px;
+      padding: 20px;
+      text-shadow: 2px 2px #000000;
+    }
+    
+    .week {
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 24px;
+      padding: 10px;
+      text-shadow: 2px 2px #000000;
+    }
+    
+    .timetable {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
     .day {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
-
+    
     .day-heading {
+      color: #333333;
+      font-size: 20px;
       font-weight: bold;
       margin-bottom: 10px;
     }
-
+    
     .period {
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
-
+    
     .period-time {
-      width: 100px;
+      color: #666666;
+      font-size: 16px;
+      font-weight: bold;
     }
-
+    
     .period-subject {
-      flex-grow: 1;
-      margin-left: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
     }
-
+    
     .period-location {
-      font-size: 12px;
-      color: #666;
+      font-size: 16px;
+      color: #666666;
     }
   </style>
 </head>
 <body>
-  <div class="timetable"></div>
-
+  <h1>Timetable</h1>
+  <div class="week"></div>
+  <div class="timetable">
+    <!-- Add your timetable HTML structure here -->
+  </div>
   <script>
-    // Helper function to get the current week
-    function getWeek() {
-      var today = new Date();
-      var startOfYear = new Date(today.getFullYear(), 0, 0);
-      var diff = today - startOfYear;
-      var oneWeek = 1000 * 60 * 60 * 24 * 7;
-      var week = Math.floor(diff / oneWeek);
-      return week % 2 === 0 ? 'A' : 'B';
-    }
+    // Get current week
+    var d = new Date();
+    var currentWeek = d.getWeek() % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
 
-    var currentWeek = getWeek();
-   // Generate the timetable HTML
+    // Display the current week in the timetable
+    document.querySelector('.week').textContent = 'Week ' + currentWeek;
+
+    // Generate the timetable HTML
     var timetableData = [
       {
         week: 'Week A',
@@ -177,60 +206,27 @@
       }
     ];
 
-    function createTimetable() {
-      var timetableElement = document.querySelector('.timetable');
+    var timetableHTML = '';
 
-      // Clear any existing timetable
-      timetableElement.innerHTML = '';
-
-      // Filter timetable data for the current week
-      var filteredData = timetableData.filter(function(item) {
-        return item.week === currentWeek;
-      });
-
-      // Iterate through each day of the week
-      filteredData.forEach(function(dayData) {
-        var dayElement = document.createElement('div');
-        dayElement.className = 'day';
-
-        // Add day heading
-        var dayHeadingElement = document.createElement('h2');
-        dayHeadingElement.className = 'day-heading';
-        dayHeadingElement.textContent = 'Day ' + dayData.day;
-        dayElement.appendChild(dayHeadingElement);
-
-        // Add schedule periods for the day
-        dayData.schedule.forEach(function(period) {
-          var periodElement = document.createElement('div');
-          periodElement.className = 'period';
-
-          // Period time
-          var timeElement = document.createElement('div');
-          timeElement.className = 'period-time';
-          timeElement.textContent = period.time;
-          periodElement.appendChild(timeElement);
-
-          // Period subject
-          var subjectElement = document.createElement('div');
-          subjectElement.className = 'period-subject';
-          subjectElement.textContent = period.subject;
-          periodElement.appendChild(subjectElement);
-
-          // Period location
-          var locationElement = document.createElement('div');
-          locationElement.className = 'period-location';
-          locationElement.textContent = 'Location: ' + period.location;
-          periodElement.appendChild(locationElement);
-
-          dayElement.appendChild(periodElement);
-        });
-
-        timetableElement.appendChild(dayElement);
-      });
+    for (var i = 0; i < timetableData.length; i++) {
+      var weekData = timetableData[i];
+      if (weekData.week === 'Week ' + currentWeek) {
+        timetableHTML += '<div class="day">';
+        timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+        for (var j = 0; j < weekData.schedule.length; j++) {
+          var periodData = weekData.schedule[j];
+          timetableHTML += '<div class="period">';
+          timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
+          timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
+          timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
+          timetableHTML += '</div>';
+        }
+        timetableHTML += '</div>';
+      }
     }
 
-    // Call the createTimetable function to generate the timetable
-    createTimetable();
+    // Insert the generated timetable HTML into the .timetable div
+    document.querySelector('.timetable').innerHTML = timetableHTML;
   </script>
 </body>
 </html>
