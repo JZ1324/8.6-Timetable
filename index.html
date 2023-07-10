@@ -71,8 +71,26 @@
 <body>
   <h1>Timetable</h1>
   <div class="week"></div>
-  <div class="timetable">
-    // Generate the timetable HTML
+  <div class="timetable"></div>
+  <script>
+    // Get current week
+    var d = new Date();
+    var currentWeek = getWeekNumber(d) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
+
+    // Display the current week in the timetable
+    document.querySelector('.week').textContent = 'Week ' + currentWeek;
+
+    // Function to get the week number
+    function getWeekNumber(date) {
+      var d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      var yearStart = new Date(d.getFullYear(), 0, 1);
+      var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+      return weekNo;
+    }
+
+    // Timetable data
     var timetableData = [
       {
         week: 'Week A',
@@ -195,27 +213,26 @@
         ]
       }
     ];
-  </div>
-  <script>
-    // Get current week
-    var d = new Date();
-    var currentWeek = getWeekNumber(d) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
 
-    // Display the current week in the timetable
-    document.querySelector('.week').textContent = 'Week ' + currentWeek;
-
-    // Function to get the week number
-    function getWeekNumber(date) {
-      var d = new Date(date);
-      d.setHours(0, 0, 0, 0);
-      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-      var yearStart = new Date(d.getFullYear(), 0, 1);
-      var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-      return weekNo;
-    }
-    
     // Generate the timetable HTML
     var timetableHTML = '';
+
+    for (var i = 0; i < timetableData.length; i++) {
+      var weekData = timetableData[i];
+      if (weekData.week === 'Week ' + currentWeek) {
+        timetableHTML += '<div class="day">';
+        timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+        for (var j = 0; j < weekData.schedule.length; j++) {
+          var periodData = weekData.schedule[j];
+          timetableHTML += '<div class="period">';
+          timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
+          timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
+          timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
+          timetableHTML += '</div>';
+        }
+        timetableHTML += '</div>';
+      }
+    }
 
     // Insert the generated timetable HTML into the .timetable div
     document.querySelector('.timetable').innerHTML = timetableHTML;
