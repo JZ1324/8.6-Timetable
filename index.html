@@ -1,253 +1,232 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workday Timetable</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <title>Timetable</title>
+  <style>
+    body {
+      background-color: #F5F5F5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 30px;
+      padding: 20px;
+      text-shadow: 2px 2px #000000;
+    }
+    
+    .week {
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 24px;
+      padding: 10px;
+      text-shadow: 2px 2px #000000;
+    }
+    
+    .timetable {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .day {
+      margin-bottom: 30px;
+    }
+    
+    .day-heading {
+      color: #333333;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .period {
+      margin-bottom: 10px;
+    }
+    
+    .period-time {
+      color: #666666;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .period-subject {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
+    }
+    
+    .period-location {
+      font-size: 16px;
+      color: #666666;
+    }
+  </style>
 </head>
 <body>
-    <h1>Workday Timetable <span id="currentDateTime"></span></h1>
-    <table id="timetable">
-        <thead>
-            <tr>
-                <th>Day</th>
-                <th>Week</th>
-                <th>Timings</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Placeholder rows -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+  <h1>Timetable</h1>
+  <div class="week"></div>
+  <div class="timetable">
+    <!-- Add your timetable HTML structure here -->
+  </div>
+  <script>
+    // Get current week
+    var d = new Date();
+    var currentWeek = d.getWeek() % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
 
-    <script>
-           // Array of timetable details
-               const timetableDetails = [
-            {
-                week: 'Week A',
-                day: 1,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'Your Location' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Esteam', location: 'FO4' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO8' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports', location: 'Sport Complex' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'MO5' }
-                ]
-            },
-            {
-                week: 'Week A',
-                day: 2,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'MO5' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport', location: '' }
-                ]
-            },
-            {
-                week: 'Week A',
-                day: 3,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO3' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'MO6' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'SO5' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'LO6' }
-                ]
-            },
-            {
-                week: 'Week A',
-                day: 4,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
-                ]
-            },
-            {
-                week: 'Week A',
-                day: 5,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport', location: 'Sport Complex' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'LO6' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'PO2' }
-                ]
-            },
-            {
-                week: 'Week B',
-                day: 1,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports', location: 'Sport Complex' },
-                { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Esteam', location: 'FO4' },
-                { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'LO6' },
-                { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'LO6' }
-                    ]
-            },
-            {
-                week: 'Week B',
-                day: 2,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'LO6' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'SO2' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Music', location: 'PO1' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports', location: 'Your own location' }
-                ]
-            },
-            {
-                week: 'Week B',
-                day: 3,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'Your own location' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'MO6' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO1' }
-                ]
-            },
-            {
-                week: 'Week B',
-                day: 4,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'LO6' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'LO6' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Plus+', location: 'LO6' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO2' }
-                ]
-            },
-            {
-                week: 'Week B',
-                day: 5,
-                schedule: [
-                    { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-                    { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'LO9' },
-                    { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'FO3' },
-                    { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
-                    { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
-                    { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
-                ]
-            }
-        ];
-        // Function to generate timetable
-        function generateTimetable() {
-            const tableBody = document.querySelector('#timetable tbody');
-            tableBody.innerHTML = '';
+    // Display the current week in the timetable
+    document.querySelector('.week').textContent = 'Week ' + currentWeek;
 
-            // Get the current date and time in AEST (Australian Eastern Standard Time)
-            const options = { timeZone: 'Australia/Sydney' };
-            const currentDate = new Date().toLocaleString('en-AU', options);
-            const currentHour = new Date(currentDate).getHours();
-            const currentDay = new Date(currentDate).getDay();
+    // Generate the timetable HTML
+    var timetableData = [
+      {
+        week: 'Week A',
+        day: 1,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'Your Location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Esteam', location: 'FO4' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO8' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports', location: 'Sport Complex' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'MO5' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 2,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'MO5' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport', location: '' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 3,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO3' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'MO6' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'SO5' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'LO6' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 4,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 5,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport', location: 'Sport Complex' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'PO2' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 1,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports', location: 'Sport Complex' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Esteam', location: 'FO4' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'LO6' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 2,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'LO6' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'SO2' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Music', location: 'PO1' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports', location: 'Your own location' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 3,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'Your own location' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'MO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO1' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 4,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'LO6' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'LO6' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Plus+', location: 'LO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO2' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day:5,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'LO9' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'FO3' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
+        ]
+      }
+    ];
 
-            // Determine the current week (Week A or Week B)
-            let currentWeek = (currentDay >= 1 && currentDay <= 5) ? 'Week A' : 'Week B';
+    var timetableHTML = '';
 
-            if ((currentDay === 0 && currentHour >= 18) || currentDay === 1) {
-                currentWeek = 'Week B';
-            }
-
-            // Determine the current day within the week
-            let currentDayOfWeek = (currentDay === 0 ? 7 : currentDay);
-
-            if (currentDay === 0 || currentDay === 6) {
-                // Weekend (Sunday or Saturday)
-                const row = document.createElement('tr');
-                const noSchoolCell = document.createElement('td');
-                noSchoolCell.setAttribute('colspan', '3');
-                noSchoolCell.textContent = 'Yay, no school today!';
-                row.appendChild(noSchoolCell);
-                tableBody.appendChild(row);
-            } else {
-                const timetable = timetableDetails.find(t => t.week === currentWeek && t.day === currentDayOfWeek);
-                if (timetable) {
-                    const row = document.createElement('tr');
-
-                    const dayCell = document.createElement('td');
-                    dayCell.textContent = currentDayOfWeek;
-                    row.appendChild(dayCell);
-
-                    const weekCell = document.createElement('td');
-                    weekCell.textContent = currentWeek;
-                    row.appendChild(weekCell);
-
-                    const timeCell = document.createElement('td');
-
-                    if (timetable.schedule.length > 0) {
-                        timetable.schedule.forEach(entry => {
-                            const entryText = `${entry.period}: ${entry.subject} at ${entry.location}`;
-                            const entryElement = document.createElement('p');
-                            entryElement.textContent = entryText;
-                            timeCell.appendChild(entryElement);
-                        });
-                    } else {
-                        const noScheduleElement = document.createElement('p');
-                        noScheduleElement.textContent = 'No schedule for this day';
-                        timeCell.appendChild(noScheduleElement);
-                    }
-                    row.appendChild(timeCell);
-
-                    tableBody.appendChild(row);
-                } else {
-                    const row = document.createElement('tr');
-                    const noScheduleCell = document.createElement('td');
-                    noScheduleCell.setAttribute('colspan', '3');
-                    noScheduleCell.textContent = 'No schedule available';
-                    row.appendChild(noScheduleCell);
-                    tableBody.appendChild(row);
-                }
-            }
+    for (var i = 0; i < timetableData.length; i++) {
+      var weekData = timetableData[i];
+      if (weekData.week === 'Week ' + currentWeek) {
+        timetableHTML += '<div class="day">';
+        timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+        for (var j = 0; j < weekData.schedule.length; j++) {
+          var periodData = weekData.schedule[j];
+          timetableHTML += '<div class="period">';
+          timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
+          timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
+          timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
+          timetableHTML += '</div>';
         }
+        timetableHTML += '</div>';
+      }
+    }
 
-        // Function to update the current date and time
-        function updateDateTime() {
-            const options = { timeZone: 'Australia/Sydney' };
-            const currentDateTime = new Date().toLocaleString('en-AU', options);
-            const dateTimeElement = document.getElementById('currentDateTime');
-            dateTimeElement.textContent = currentDateTime;
-        }
-
-        // Refresh the timetable every 1 minute
-        setInterval(generateTimetable, 60000);
-        generateTimetable(); // Generate timetable immediately on page load
-
-        // Update the current date and time every second
-        setInterval(updateDateTime, 1000);
-        updateDateTime(); // Update immediately on page load
-    </script>
+    // Insert the generated timetable HTML into the .timetable div
+    document.querySelector('.timetable').innerHTML = timetableHTML;
+  </script>
 </body>
 </html>
