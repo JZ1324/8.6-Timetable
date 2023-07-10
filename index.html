@@ -133,19 +133,12 @@
                        ~~~~``````''''~~~
       </div>
       <div class="quote-text">
-        Roses are red, Violets are blue,<br>
-        honey is sweet, and so are you.
+        The rose is red, the violet is blue,<br>
+        the honey is sweet, and so are you.
       </div>
     </div>
   </div>
   <script>
-    // Get current week
-    var d = new Date();
-    var currentWeek = getWeekNumber(d) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
-
-    // Display the current week in the timetable
-    document.querySelector('.week').textContent = 'Week ' + currentWeek;
-
     // Function to get the week number
     function getWeekNumber(date) {
       var d = new Date(date);
@@ -155,6 +148,26 @@
       var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
       return weekNo;
     }
+
+    // Function to get the current day of the week (0-6, Sunday-Saturday)
+    function getCurrentDay() {
+      var d = new Date();
+      return d.getDay();
+    }
+
+    // Function to get the current time in HH:MM format
+    function getCurrentTime() {
+      var d = new Date();
+      var hours = d.getHours();
+      var minutes = d.getMinutes();
+      return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+    }
+
+    // Function to update the timetable based on the current day and week
+    function updateTimetable() {
+      var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
+      var currentDay = getCurrentDay();
+      var currentTime = getCurrentTime();
 
  // Generate the timetable HTML
     var timetableData = [
@@ -280,28 +293,43 @@
       }
     ];
 
-    // Generate the timetable HTML
-    var timetableHTML = '';
+      var timetableHTML = '';
 
-    for (var i = 0; i < timetableData.length; i++) {
-      var weekData = timetableData[i];
-      if (weekData.week === 'Week ' + currentWeek) {
-        timetableHTML += '<div class="day">';
-        timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
-        for (var j = 0; j < weekData.schedule.length; j++) {
-         var periodData = weekData.schedule[j];
-          timetableHTML += '<div class="period">';
-          timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
-          timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
-          timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
+      for (var i = 0; i < timetableData.length; i++) {
+        var weekData = timetableData[i];
+        if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
+          timetableHTML += '<div class="day">';
+          timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+          for (var j = 0; j < weekData.schedule.length; j++) {
+           var periodData = weekData.schedule[j];
+            timetableHTML += '<div class="period">';
+            timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
+            timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
+            timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
+            timetableHTML += '</div>';
+          }
           timetableHTML += '</div>';
+          break;
         }
-        timetableHTML += '</div>';
       }
+
+      // Insert the generated timetable HTML into the .timetable div
+      document.querySelector('.timetable').innerHTML = timetableHTML;
     }
 
-    // Insert the generated timetable HTML into the .timetable div
-    document.querySelector('.timetable').innerHTML = timetableHTML;
+    // Update the timetable initially
+    updateTimetable();
+
+    // Schedule the timetable update for tomorrow at 6pm
+    var tomorrowUpdate = new Date();
+    tomorrowUpdate.setDate(tomorrowUpdate.getDate() + 1);
+    tomorrowUpdate.setHours(18, 0, 0, 0);
+
+    var timeUntilTomorrowUpdate = tomorrowUpdate - new Date();
+
+    setTimeout(function() {
+      updateTimetable();
+    }, timeUntilTomorrowUpdate);
   </script>
 </body>
 </html>
