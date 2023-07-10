@@ -66,12 +66,41 @@
       font-size: 16px;
       color: #666666;
     }
+
+    .rose {
+      font-family: monospace;
+      color: #FF69B4;
+      font-size: 24px;
+      white-space: pre;
+    }
+
+    .rose-background {
+      background-color: #FFE4E1;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Timetable</h1>
   <div class="week"></div>
   <div class="timetable"></div>
+  <div class="rose-background">
+    <pre class="rose">
+   //\\
+  ////\\  __
+ ////\\\\//-'
+   ||\\//-
+   ||||
+   ||||     Roses are red,
+   ||||     Violets are blue,
+   ||||     Here's an ASCII rose
+   ||||     Just for you!
+   ||||
+   ||||
+   ||||       </pre>
+  </div>
   <script>
     // Get current week
     var d = new Date();
@@ -90,7 +119,7 @@
       return weekNo;
     }
 
-    // Timetable data
+ // Generate the timetable HTML
     var timetableData = [
       {
         week: 'Week A',
