@@ -106,7 +106,7 @@
   <div class="rose-background">
     <div class="quote">
       <div class="rose">
-       :                       ..,,..    ...,,..
+        :                       ..,,..    ...,,..
       ,%,                .. ,#########::#########:,
       :#%%,           ,,:',####%%%%%%##:`::%%%%####,
      ,##%%%%,      ,##%% ,##%%%:::::''%' `::::%%####,
@@ -132,10 +132,7 @@
         ;#####;;'..;;:::#########::%%#########:"'
                        ~~~~``````''''~~~
       </div>
-      <div class="quote-text">
-        The rose is red, the violet is blue,<br>
-        the honey is sweet, and so are you.
-      </div>
+      <div class="quote-text"></div>
     </div>
   </div>
   <script>
@@ -169,6 +166,7 @@
       var currentDay = getCurrentDay();
       var currentTime = getCurrentTime();
 
+      // Generate the timetable HTML
  // Generate the timetable HTML
     var timetableData = [
       {
@@ -299,9 +297,10 @@
         var weekData = timetableData[i];
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
+          timetableHTML += '<div class="day-heading">
           timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
           for (var j = 0; j < weekData.schedule.length; j++) {
-           var periodData = weekData.schedule[j];
+            var periodData = weekData.schedule[j];
             timetableHTML += '<div class="period">';
             timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
             timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
@@ -309,6 +308,33 @@
             timetableHTML += '</div>';
           }
           timetableHTML += '</div>';
+
+          // Set the poem based on the current day
+          var poem = '';
+          switch (currentDay) {
+            case 1:
+              poem = 'Roses are red, Violets are blue, Like a celestial fire, Your radiance shines through.';
+              break;
+            case 2:
+              poem = 'Roses are red, Violets are blue, In the night sky\'s embrace, You outshine each constellation, it\'s true.';
+              break;
+            case 3:
+              poem = 'Roses are red, Violets are blue, With every twinkle, every gleam, You illuminate my world, like stars do.';
+              break;
+            case 4:
+              poem = 'Roses are red, Violets are blue, Amidst the cosmos\' grandeur, Your brilliance outshines them too.';
+              break;
+            case 5:
+              poem = 'Roses are red, Violets are blue, As the stars paint the night, Your glow paints my heart anew.';
+              break;
+            default:
+              poem = 'The rose is red, the violet is blue, the honey is sweet, and so are you.';
+              break;
+          }
+
+          // Insert the poem into the .quote-text div
+          document.querySelector('.quote-text').textContent = poem;
+
           break;
         }
       }
