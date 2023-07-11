@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <title>8.6's Timetable</title>
@@ -128,6 +128,7 @@
      #####%:,#%:'#######  %%:'%  %'  `%% %% %%,.     '::%%#######,
      `####%,#%:',####### ::' %   ' ,%%%%%%, ::%%.    . '::%%######
       `###'##%: ######## ,.   %%  %%,   ':: `:%%%  :  . .:::%%###'
+      ,,::,###  %%%%%### ::  % %% '%%%,.::: .:%%%   #.  . ::%%%#'
 ,,,:::%%##:;#   `%%%%%## :% ,%, %   ':%%:'  #%%%' ,.:##.  ::%#'
 ::%%#####% %%:::  :::%%% `%%,'%%     ..,,%####' :%# `::##, ''
 ###%%::'###%::: .   `:::, `::,,%%%######%%'',::%##' ,:::%##
@@ -171,11 +172,12 @@
 
     // Function to update the timetable based on the current day and week
     function updateTimetable() {
-      var currentWeek = 'B';
-      var currentDay = 3;
+      var currentWeek = getWeekNumber(new Date()) % 3 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
+      var currentDay = (getCurrentDay() + 1) % 7; // Get the next day
       var currentTime = getCurrentTime();
 
- // Generate the timetable HTML
+      // Generate the timetable HTML
+       // Generate the timetable HTML
     var timetableData = [
       {
         week: 'Week A',
@@ -267,7 +269,7 @@
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
           { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'Your own location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Language', location: 'Your own location' },
           { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
           { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'MO6' },
           { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO1' }
@@ -304,8 +306,8 @@
         var weekData = timetableData[i];
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
+          timetableHTML += '<div class="day-heading">';
           timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
-
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
             timetableHTML += '<div class="period">';
@@ -314,8 +316,34 @@
             timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
             timetableHTML += '</div>';
           }
-
           timetableHTML += '</div>';
+
+          // Set the poem based on the current day
+          var poem = '';
+          switch (currentDay) {
+            case 1:
+              poem = 'Roses are red, Violets are blue, Like a celestial fire, Your radiance shines through.';
+              break;
+            case 2:
+              poem = 'Roses are red, Violets are blue, In the night sky\'s embrace, You outshine each constellation, it\'s true.';
+              break;
+            case 3:
+              poem = 'Roses are red, Violets are blue, With every twinkle, every gleam, You illuminate my world, like stars do.';
+              break;
+            case 4:
+              poem = 'Roses are red, Violets are blue, Amidst the cosmos\' grandeur, Your brilliance outshines them too.';
+              break;
+            case 5:
+              poem = 'Roses are red, Violets are blue, As the stars paint the night, Your glow paints my heart anew.';
+              break;
+            default:
+              poem = 'The rose is red, the violet is blue, the honey is sweet, and so are you.';
+              break;
+          }
+
+          // Insert the poem into the .quote-text div
+          document.querySelector('.quote-text').textContent = poem;
+
           break;
         }
       }
@@ -340,3 +368,5 @@
   </script>
 </body>
 </html>
+
+3 / 3
