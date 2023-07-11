@@ -307,7 +307,11 @@
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
           timetableHTML += '<div class="day-heading">';
+         if currentWeek == 'A'{
           timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+         }else{
+          timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 7) + '</div>';
+        }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
             timetableHTML += '<div class="period">';
