@@ -70,9 +70,17 @@
 
     .rose {
       font-family: monospace;
-      color: #FF69B4;
       font-size: 12px;
       white-space: pre;
+      animation: rose-color-animation 5s infinite;
+    }
+
+    @keyframes rose-color-animation {
+      0% { color: #FF69B4; }
+      25% { color: #FF1493; }
+      50% { color: #800080; }
+      75% { color: #DA70D6; }
+      100% { color: #FF69B4; }
     }
 
     .quote {
