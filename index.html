@@ -137,7 +137,7 @@
       <div class="quote-text"></div>
     </div>
   </div>
-  <script>
+ <script>
     // Function to get the week number
     function getWeekNumber(date) {
       var d = new Date(date);
@@ -165,11 +165,11 @@
     // Function to update the timetable based on the current day and week
     function updateTimetable() {
       var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
-      var currentDay = getCurrentDay();
+      var currentDay = (getCurrentDay() + 1) % 7; // Get the next day
       var currentTime = getCurrentTime();
 
       // Generate the timetable HTML
- // Generate the timetable HTML
+       // Generate the timetable HTML
     var timetableData = [
       {
         week: 'Week A',
@@ -292,7 +292,6 @@
         ]
       }
     ];
-
       var timetableHTML = '';
 
       for (var i = 0; i < timetableData.length; i++) {
@@ -348,10 +347,10 @@
     // Update the timetable initially
     updateTimetable();
 
-    // Schedule the timetable update for tomorrow at 6pm
+    // Schedule the timetable update for the next day at 6 PM AEST
     var tomorrowUpdate = new Date();
     tomorrowUpdate.setDate(tomorrowUpdate.getDate() + 1);
-    tomorrowUpdate.setHours(18, 0, 0, 0);
+    tomorrowUpdate.setUTCHours(8, 0, 0, 0); // Set the update time to 6 PM AEST (8 AM UTC)
 
     var timeUntilTomorrowUpdate = tomorrowUpdate - new Date();
 
