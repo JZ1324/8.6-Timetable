@@ -285,7 +285,7 @@
     // Function to update the timetable based on the current day and week
     function updateTimetable() {
      var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
-     var currentDay = (getCurrentDay()+1) % 7; // Get the next day
+     var currentDay = (getCurrentDay()) % 7; // Get the next day
      var currentTime = getCurrentTime();
 
       // Generate the timetable HTML
