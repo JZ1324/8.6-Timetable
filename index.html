@@ -283,10 +283,11 @@
     }
 
     // Function to update the timetable based on the current day and week
-    function updateTimetable() {
+    function updateTimetable(a) {
      var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
-     var currentDay = (getCurrentDay())  % 7; // Get the next day
+     var currentDay = (getCurrentDay()) +a % 7; // Get the next day
      var currentTime = getCurrentTime();
+     
 
       // Generate the timetable HTML
        // Generate the timetable HTML
@@ -476,14 +477,20 @@
 
     // Schedule the timetable update for the next day at 6 PM AEST
     var tomorrowUpdate = new Date();
+   var tomorrowUpdate2 = new Date2();
     tomorrowUpdate.setDate(tomorrowUpdate.getDate());
-    tomorrowUpdate.setUTCHours(8, 0, 0, 0); // Set the update time to 6 PM AEST (8 AM UTC)
-
+  tomorrowUpdate2.setDate(tomorrowUpdate2.getDate());
+    tomorrowUpdate.setUTCHours(6, 0, 0, 0); // Set the update time to 4 PM AEST (6 AM UTC)
+    tomorrowUpdate2.setUTCHours(14, 0, 3, 0); // Set the update time to 12 am AEST (2 pm UTC)
     var timeUntilTomorrowUpdate = tomorrowUpdate - new Date();
+    var timeUntilTomorrowUpdate2 = tomorrowUpdate2 - new Date2();
 
     setTimeout(function() {
-      updateTimetable();
+      updateTimetable(1);
     }, timeUntilTomorrowUpdate);
+  setTimeout(function() {
+      updateTimetable(0);
+    }, timeUntilTomorrowUpdate2);
   </script>
 </body>
 </html>
