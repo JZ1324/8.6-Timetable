@@ -110,7 +110,6 @@
 </head>
 <body>
   <h1>Timetable</h1>
-  <span id="currentDateTime"></span></h1>
   <div class="week"></div>
   <div class="timetable"></div>
   <div class="rose-background">
@@ -229,7 +228,7 @@
     </div>
   </div>
  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScpTBnXeKbXfzg5m1Z5PEOpfJEcKBitQGLtbhlbcUrIksYuuw/viewform?embedded=true" width="640" height="836" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PzSMA6Oih-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
  <script>
     // Function to get the week number
     function getWeekNumber(date) {
@@ -410,13 +409,6 @@
           }
           timetableHTML += '</div>';
 
-           // Get the current date and time in AEST (Australian Eastern Standard Time)
-            const options = { timeZone: 'Australia/Sydney' };
-            const currentDate = new Date().toLocaleString('en-AU', options);
-            const currentHour = new Date(currentDate).getHours();
-            const currentDay = new Date(currentDate).getDay();
-
-
           // Set the poem based on the current day
           var poem = '';
           switch (currentDay) {
@@ -445,12 +437,6 @@
 
           break;
         }
-               // Function to update the current date and time
-        function updateDateTime() {
-            const options = { timeZone: 'Australia/Sydney' };
-            const currentDateTime = new Date().toLocaleString('en-AU', options);
-            const dateTimeElement = document.getElementById('currentDateTime');
-            dateTimeElement.textContent = currentDateTime;
       }
 
       // Insert the generated timetable HTML into the .timetable div
