@@ -494,7 +494,7 @@
   
   function getCurrentAESTTime() {
       const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
       return currentTime.toLocaleTimeString('en-AU', options);
     }
 
