@@ -432,7 +432,8 @@
     ];
       var timetableHTML = '';
       
-  function periodupdate(timetableHTML){
+   function periodupdate(timetableHTML){
+     var timetableHTML = timetableHTML;
       var perioditisnow = 0;
     if (getCurrentTime() > '8:50'){
       if (getCurrentTime() < '9:50'){
@@ -536,7 +537,7 @@
 
     // Update the time every second
     setInterval(displayCurrentTime(), 1000);
-    setInterval(periodupdate(timetableHTML), 1000);
+    setInterval(periodupdate(), 1000);
    setInterval(undateTimetable(), 1000);
   
   </script>
