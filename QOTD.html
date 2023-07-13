@@ -192,6 +192,7 @@
 
     </div>
   </div>
+  <div id="timeElement"></div>
   <script>
     function getCurrentAESTTime() {
       const currentTime = new Date();
@@ -200,12 +201,12 @@
     }
 
     function displayCurrentTime() {
-      const timeElement = document.createElement('div');
+      const timeElement = document.getElementById('timeElement');
       timeElement.innerHTML = `Current AEST Time: ${getCurrentAESTTime()}`;
-      document.body.appendChild(timeElement);
     }
 
-    displayCurrentTime();
+    // Update the time every second
+    setInterval(displayCurrentTime, 1000);
   </script>
 </body>
 </html>
