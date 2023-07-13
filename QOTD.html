@@ -66,6 +66,21 @@
       white-space: pre;
     }
   </style>
+   <script>
+    function getCurrentAESTTime() {
+      const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);
+    }
+    
+    function displayCurrentTime() {
+      const timeElement = document.createElement('div');
+      timeElement.innerHTML = `Current AEST Time: ${getCurrentAESTTime()}`;
+      document.body.appendChild(timeElement);
+    }
+    
+    displayCurrentTime();
+  </script>
 </head>
 <body>
   <div style="display: flex; justify-content:left; align-items: left;">
