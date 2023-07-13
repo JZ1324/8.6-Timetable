@@ -41,6 +41,8 @@
       font-size: 1px;
       white-space: pre;
       animation: rose-color-animation 3s infinite;
+      position: absolute;
+      cursor: move;
     }
 
     @keyframes rose-color-animation {
@@ -69,6 +71,35 @@
       white-space: pre;
     }
   </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const rose = document.querySelector('.rose');
+
+      let offsetX = 0;
+      let offsetY = 0;
+      let isDragging = false;
+
+      rose.addEventListener('mousedown', (event) => {
+        offsetX = event.clientX - rose.offsetLeft;
+        offsetY = event.clientY - rose.offsetTop;
+        isDragging = true;
+      });
+
+      document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+          event.preventDefault();
+          const x = event.clientX - offsetX;
+          const y = event.clientY - offsetY;
+          rose.style.left = x + 'px';
+          rose.style.top = y + 'px';
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  </script>
 </head>
 <body>
   <h1>Welcome to secret stuff</h1>
@@ -77,9 +108,9 @@
  <b>JZ likes ur mum</b></a>
   <div></div>
   </h3>
-    <div class="rose-background">
     <div class="rose">
       <!-- ASCII art of the rose -->
+
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
@@ -235,10 +266,9 @@
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
+           
                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                   ..  .      . ...                                                                                         
-      </a>
+                                                                                                                                                                                                                                                                
     </div>
-  </div>
 </body>
 </html>
