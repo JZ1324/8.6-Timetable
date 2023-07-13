@@ -63,6 +63,13 @@
     .period {
       margin-bottom: 10px;
     }
+    .period-now{
+      margin-bottom: 10px;
+      background-color: rgba(180, 180, 255, 0.8);
+      padding: 20px;
+      border-radius: 2;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
     
     .period-time {
       color: #666666;
@@ -424,7 +431,32 @@
       }
     ];
       var timetableHTML = '';
-
+    var perioditisnow = 0;
+    if (getCurrentTime() > '8:50'){
+      if (getCurrentTime() < '9:50'){
+            var perioditisnow = 1;
+      }
+    }
+    if (getCurrentTime() > '9:55'){
+      if (getCurrentTime() < '10:55'){
+            var perioditisnow = 2;
+      }
+    }
+    if (getCurrentTime() > '11:25'){
+      if (getCurrentTime() < '12:25'){
+            var perioditisnow = 3;
+      }
+    }
+    if (getCurrentTime() > '12:30'){
+      if (getCurrentTime() < '13:30'){
+            var perioditisnow = 4;
+      }
+    }
+    if (getCurrentTime() > '14:25'){
+      if (getCurrentTime() < '15:30'){
+            var perioditisnow = 5;
+      }
+    }
       for (var i = 0; i < timetableData.length; i++) {
         var weekData = timetableData[i];
         var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A';
@@ -440,7 +472,11 @@
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
-            timetableHTML += '<div class="period">';
+            if (j === perioditisnow){
+              timetableHTML += '<div class="period-now">';
+            }else{
+              timetableHTML += '<div class="period">';
+            }
             timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
             timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
             timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
