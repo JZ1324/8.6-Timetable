@@ -75,10 +75,11 @@
     <h2><a href="index.html"><b>Back</b></a></h2>
   </div>
   <h1>Past QOTD Responses</h1>
-  <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLScpTBnXeKbXfzg5m1Z5PEOpfJEcKBitQGLtbhlbcUrIksYuuw/viewanalytics" target="_blank"><b>What is this? ☕️</b></a></h3>
-  <div></div>div>
+  <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLScpTBnXeKbXfzg5m1Z5PEOpfJEcKBitQGLtbhlbcUrIksYuuw/viewanalytics" target="_blank"><b>What is this? ☕️</b></a>
+  <div></div>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd32STJDcfFtSf3uXGuoR2Usg8E7wZHBuBhXKzh5UGoXn-Heg/viewanalytics" target="_blank"><b>Whose Time Table is Better?</b></a>
-  <div class="rose-background">
+  </h3>
+    <div class="rose-background">
     <div class="rose">
       <!-- ASCII art of the rose -->
                                                                                                .====----:..                                                                                                                                                                                                       
@@ -191,21 +192,5 @@
 
     </div>
   </div>
-  <div id="timeElement"></div>
-  <script>
-    function getCurrentAESTTime() {
-      const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      return currentTime.toLocaleTimeString('en-AU', options);
-    }
-
-    function displayCurrentTime() {
-      const timeElement = document.getElementById('timeElement');
-      timeElement.innerHTML = `Current AEST Time: ${getCurrentAESTTime()}`;
-    }
-
-    // Update the time every second
-    setInterval(displayCurrentTime, 1000);
-  </script>
 </body>
 </html>
