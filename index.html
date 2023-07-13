@@ -122,6 +122,7 @@
   </style>
 </head>
 <body>
+ <div id="timeElement"></div>
   <h1>Timetable</h1>
    <div class="week"></div>
   <div class="timetable"></div>
@@ -490,6 +491,21 @@
       var a = 1;
     }, timeUntilTomorrowUpdate2);
   updateTimetable(a);
+  
+  function getCurrentAESTTime() {
+      const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);
+    }
+
+    function displayCurrentTime() {
+      const timeElement = document.getElementById('timeElement');
+      timeElement.innerHTML = `${getCurrentAESTTime()}`;
+    }
+
+    // Update the time every second
+    setInterval(displayCurrentTime, 1000);
+
   </script>
 </body>
 </html>
