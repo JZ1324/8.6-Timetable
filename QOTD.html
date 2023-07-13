@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Previous QOTD's</title>
+  <title>Previous QOTD's<span id="currentDateTime"></span></title>
   <link rel="icon" type="image/png" href="https://i.imgur.com/rJtWReo.png">
    <style>
     body {
@@ -192,5 +192,21 @@
       </div>
     </div>
   </div>
+  <script>
+    
+    const options = { timeZone: 'Australia/Sydney' };
+            const currentDate = new Date().toLocaleString('en-AU', options);
+            const currentHour = new Date(currentDate).getHours();
+            const currentDay = new Date(currentDate).getDay();
+
+    function updateDateTime() {
+            const options = { timeZone: 'Australia/Sydney' };
+            const currentDateTime = new Date().toLocaleString('en-AU', options);
+            const dateTimeElement = document.getElementById('currentDateTime');
+            dateTimeElement.textContent = currentDateTime;
+        }
+
+
+    <script>
 </head>
 </html>
