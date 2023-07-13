@@ -432,7 +432,12 @@
     ];
       var timetableHTML = '';
 
-      var perioditisnow = 0;
+      var perioditisnow = 9;
+    if (getCurrentTime() > '8:35'){
+      if (getCurrentTime() < '8:45'){
+            var perioditisnow = 1;
+      }
+    }
     if (getCurrentTime() > '8:50'){
       if (getCurrentTime() < '9:50'){
             var perioditisnow = 1;
