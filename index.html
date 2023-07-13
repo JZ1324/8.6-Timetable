@@ -478,6 +478,7 @@
     // Schedule the timetable update for the next day at 6 PM AEST
     var tomorrowUpdate = new Date();
    var tomorrowUpdate2 = new Date2();
+  var a = 0;
     tomorrowUpdate.setDate(tomorrowUpdate.getDate());
   tomorrowUpdate2.setDate(tomorrowUpdate2.getDate());
     tomorrowUpdate.setUTCHours(6, 0, 0, 0); // Set the update time to 4 PM AEST (6 AM UTC)
@@ -486,8 +487,9 @@
     var timeUntilTomorrowUpdate2 = tomorrowUpdate2 - new Date2();
 
     setTimeout(function() {
-      updateTimetable(0);
-    }, timeUntilTomorrowUpdate1);
+      a = 1;
+    }, timeUntilTomorrowUpdate2);
+  updateTimetable(a);
   </script>
 </body>
 </html>
