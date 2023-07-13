@@ -3,35 +3,38 @@
 <head>
   <title>Previous QOTD's</title>
   <link rel="icon" type="image/png" href="https://i.imgur.com/rJtWReo.png">
-   <style>
+  <style>
     body {
-       background-color: #A48BBE;
+      background-color: #A48BBE;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
-    
+
     h1 {
       text-align: center;
       color: #FFFFFF;
       font-size: 30px;
       padding: 20px;
       text-shadow: 2px 2px #000000;
-    }h2{
-      colour: #FFFFFF;
+    }
+
+    h2 {
+      color: #FFFFFF;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    h3 {max-width: 800px;
+
+    h3 {
+      max-width: 800px;
       margin: 0 auto;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-           }
-    
+    }
 
     .rose {
       font-family: monospace;
@@ -66,38 +69,20 @@
       white-space: pre;
     }
   </style>
-  <script>
-    function getCurrentAESTTime() {
-      const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      return currentTime.toLocaleTimeString('en-AU', options);
-    }
-    
-    function displayCurrentTime() {
-      const timeElement = document.createElement('div');
-      timeElement.innerHTML = `Current AEST Time: ${getCurrentAESTTime()}`;
-      document.querySelector('head').appendChild(timeElement);
-    }
-    
-    displayCurrentTime();
-  </script>
 </head>
 <body>
-  <div style="display: flex; justify-content:left; align-items: left;">
-  <h2><a href="index.html"><b>Back
-  </b></a></h2>
+  <div style="display: flex; justify-content: left; align-items: left;">
+    <h2><a href="index.html"><b>Back</b></a></h2>
   </div>
   <h1>Past QOTD Responses</h1>
-   <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLScpTBnXeKbXfzg5m1Z5PEOpfJEcKBitQGLtbhlbcUrIksYuuw/viewanalytics" target="_Blank"><b>What is this? ☕️</b></a>
-    <div></div>
-     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd32STJDcfFtSf3uXGuoR2Usg8E7wZHBuBhXKzh5UGoXn-Heg/viewanalytics" target="_blank"><b>Whose Time Table is Better?</b></a></h3>
+  <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLScpTBnXeKbXfzg5m1Z5PEOpfJEcKBitQGLtbhlbcUrIksYuuw/viewanalytics" target="_blank"><b>What is this? ☕️</b></a></h3>
+  <div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd32STJDcfFtSf3uXGuoR2Usg8E7wZHBuBhXKzh5UGoXn-Heg/viewanalytics" target="_blank"><b>Whose Time Table is Better?</b></a>
+  </div>
   <div class="rose-background">
-    
-      <div class="rose"> 
-
-
-        <!-- ASCII art of the rose -->
-                                                                                         .====----:..                                                                                                                                                                                                       
+    <div class="rose">
+      <!-- ASCII art of the rose -->
+                                                                                               .====----:..                                                                                                                                                                                                       
                                                                                          *@@%%%%%%@@@%#*=-.                                                                                                                                                                                                 
                                                                                           -#@%*++++++**##%@%#*=-.                                                                                                                                                                                           
                         :-.                                                        :-=+#%%@@@@@+++++++++++++**#%@%#+-.                                                                                                                                                                                      
@@ -204,8 +189,23 @@
                                                                                                                              .:=+*#%%%%%########*****###########%@%*:        .:-+*#%@%##**+===------------:::::---+*#%@#*=:                                                                                
                                                                                                                                       ...:::::-----------------::.                    .:-=++*##%%%%%%%%%%%%%%@@@%%#*+=:.                                                                                  
                                                                                                                                                                                               ..  .      . ...                                                                                         
-      </div>
+
     </div>
   </div>
-</head>
+  <script>
+    function getCurrentAESTTime() {
+      const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);
+    }
+
+    function displayCurrentTime() {
+      const timeElement = document.createElement('div');
+      timeElement.innerHTML = `Current AEST Time: ${getCurrentAESTTime()}`;
+      document.body.appendChild(timeElement);
+    }
+
+    displayCurrentTime();
+  </script>
+</body>
 </html>
