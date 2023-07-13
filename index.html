@@ -478,7 +478,14 @@
 
     // Update the timetable initially
     updateTimetable();
-
+    if (currentTime === '12:30') {
+      // Subtract 1 day
+      var currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() - 1);
+      currentWeek = getWeekNumber(currentDate) % 2 === 0 ? 'B' : 'A';
+      currentDay = getCurrentDay();
+    }
+  
     // Schedule the timetable update for the next day at 6 PM AEST
     var tomorrowUpdate = new Date();
     tomorrowUpdate.setDate(tomorrowUpdate.getDate()+1);
