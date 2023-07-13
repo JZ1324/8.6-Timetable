@@ -485,15 +485,6 @@
     updateTimetable();
    
   
-    // Schedule the timetable update for the next day at 6 PM AEST
-    var tomorrowUpdate = new Date();
-    tomorrowUpdate.setDate(tomorrowUpdate.getDate());
-    tomorrowUpdate.setUTCHours(7, 0, 0, 0); // Set the update time to 5 PM AEST (7 AM UTC)
-    var timeUntilTomorrowUpdate = tomorrowUpdate - new Date();
-
-    setTimeout(function() {
-      updateTimetable();
-    }, timeUntilTomorrowUpdate);
   
   function getCurrentAESTTime() {
       const currentTime = new Date();
