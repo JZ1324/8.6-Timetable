@@ -432,7 +432,24 @@
     ];
       var timetableHTML = '';
 
-      var perioditisnow = 9;
+      
+          
+  
+  function getCurrentAESTTime() {
+      const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);
+    }
+
+    function displayCurrentTime() {
+      const timeElement = document.getElementById('timeElement');
+      timeElement.innerHTML = `${getCurrentAESTTime()}`;
+    }
+    
+    // Update the time every second
+  setInterval(displayCurrentTime, 1000);
+  setInterval({
+    var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
             var perioditisnow = 0;
@@ -522,23 +539,9 @@
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
-
-          
+    updateTimetable()
+  },60000);
   
-  function getCurrentAESTTime() {
-      const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      return currentTime.toLocaleTimeString('en-AU', options);
-    }
-
-    function displayCurrentTime() {
-      const timeElement = document.getElementById('timeElement');
-      timeElement.innerHTML = `${getCurrentAESTTime()}`;
-    }
-    
-    // Update the time every second
-  setInterval(displayCurrentTime, 1000);
-updateTimetable()  
   </script>
 </body>
 </html>
