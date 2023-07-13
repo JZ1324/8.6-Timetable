@@ -431,9 +431,7 @@
       }
     ];
       var timetableHTML = '';
-      
-   function periodupdate(timetableHTML){
-     var timetableHTML = timetableHTML;
+
       var perioditisnow = 0;
     if (getCurrentTime() > '8:50'){
       if (getCurrentTime() < '9:50'){
@@ -517,7 +515,6 @@
           break;
         }
       }
-   }
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
@@ -534,10 +531,9 @@
       const timeElement = document.getElementById('timeElement');
       timeElement.innerHTML = `${getCurrentAESTTime()}`;
     }
-
+   function 
     // Update the time every second
     setInterval(displayCurrentTime(), 1000);
-    setInterval(periodupdate(), 1000);
    setInterval(undateTimetable(), 1000);
   
   </script>
