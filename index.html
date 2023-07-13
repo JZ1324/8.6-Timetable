@@ -431,7 +431,9 @@
       }
     ];
       var timetableHTML = '';
-    var perioditisnow = 0;
+      
+    function periodupdate(timetableHTML){
+      var perioditisnow = 0;
     if (getCurrentTime() > '8:50'){
       if (getCurrentTime() < '9:50'){
             var perioditisnow = 1;
@@ -484,6 +486,7 @@
           }
           timetableHTML += '</div>';
 
+          var timetableHTML = periodupdate(timetableHTML);
           // Set the poem based on the current day
           var poem = '';
           switch (currentDay) {
@@ -517,10 +520,9 @@
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
-    // Update the timetable initially
-    updateTimetable();
-   
-  
+
+          
+    }
   
   function getCurrentAESTTime() {
       const currentTime = new Date();
@@ -534,8 +536,10 @@
     }
 
     // Update the time every second
-    setInterval(displayCurrentTime, 1000);
-
+    setInterval(displayCurrentTime(), 1000);
+    setInterval(periodupdate(timetableHTML), 1000);
+   setInterval(undateTimetable(), 1000);
+  
   </script>
 </body>
 </html>
