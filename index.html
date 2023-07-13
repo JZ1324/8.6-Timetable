@@ -469,7 +469,11 @@
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
           timetableHTML += '<div class="day-heading">';
-         if (currentWeek === 'A'){
+        if (weekData.day === 6 or weekData.day === 7{
+          timetableHTML += '<div class="day-heading">Day ' + 6 + '</div>';    
+        }else if (weekData.day === 11 or weekData.day === 12){
+          timetableHTML += '<div class="day-heading">Day ' + 1 + '</div>';
+        }else if (currentWeek === 'A'){
           timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
         }
          else
