@@ -70,7 +70,8 @@
       font-size: 1px;
       white-space: pre;
     }
-        .accordion {
+    
+    .accordion {
       background-color: #eee;
       color: #444;
       cursor: pointer;
@@ -134,55 +135,55 @@
         isDragging = false;
       });
     });
-        // Additional JavaScript for the accordion
- 
+
+    // Additional JavaScript for the accordion
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+      });
+    }
   </script>
 </head>
 <body>
   <h1>Welcome to secret stuff</h1>
-  <h3><b>Congrats</b></a>
+  <h3><b>Congrats</b></h3>
   <div></div>
- <b>JZ likes ur mum</b></a>
+  <b>JZ likes ur mum</b>
   <div></div>
-      <!-- Accordion section -->
+  
+  <!-- Accordion section -->
   <h2>Monkey's Secret</h2>
   <p>OoooOOoOOOoOOOoooO</p>
 
-<button class="accordion">JZ's Stuff</button>
-<div class="panel">
-  <p>JZ https://i.imgur.com/CLu78nG.jpg</p>
-</div>
+  <button class="accordion">JZ's Stuff</button>
+  <div class="panel">
+    <img src="https://i.imgur.com/CLu78nG.jpg" alt="JZ's Image">
+    <p>JZ's writing goes here...</p>
+  </div>
 
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>sad</p>
-</div>
+  <button class="accordion">Section 2</button>
+  <div class="panel">
+    <p>sad</p>
+  </div>
 
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>mad</p>
-</div>
+  <button class="accordion">Section 3</button>
+  <div class="panel">
+    <p>mad</p>
+  </div>
 
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+  <div class="rose">
+    <!-- ASCII art of the rose -->
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-</script>
-    <div class="rose">
-      <!-- ASCII art of the rose -->
-
-                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
@@ -338,8 +339,7 @@ for (i = 0; i < acc.length; i++) {
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
            
-                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                
-    </div>
+            
+  </div>
 </body>
 </html>
