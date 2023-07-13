@@ -76,43 +76,61 @@
       white-space: pre;
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+    $(function() {
+      $(".accordion").accordion();
+    });
+  </script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const accordionHeaders = document.querySelectorAll('h3');
+      const rose = document.querySelector('.rose');
 
-      accordionHeaders.forEach((header) => {
-        header.addEventListener('click', () => {
-          const content = header.nextElementSibling;
-          const expandedPanels = document.querySelectorAll('.accordion-content.show');
+      let offsetX = 0;
+      let offsetY = 0;
+      let isDragging = false;
 
-          if (content.classList.contains('show')) {
-            content.classList.remove('show');
-          } else {
-            expandedPanels.forEach((panel) => {
-              panel.classList.remove('show');
-            });
-            content.classList.add('show');
-          }
-        });
+      rose.addEventListener('mousedown', (event) => {
+        offsetX = event.clientX - rose.offsetLeft;
+        offsetY = event.clientY - rose.offsetTop;
+        isDragging = true;
+      });
+
+      document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+          event.preventDefault();
+          const x = event.clientX - offsetX;
+          const y = event.clientY - offsetY;
+          rose.style.left = x + 'px';
+          rose.style.top = y + 'px';
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
       });
     });
   </script>
 </head>
 <body>
   <h1>Welcome to secret stuff</h1>
-  <h3><b>Congrats</b></h3>
-  <div class="accordion-content">
-    <h2>This is some hidden content</h2>
-    <p>Here's a paragraph of text that is initially hidden within the accordion. You can add any kind of content you want here, such as images, videos, or forms. When the accordion header is clicked, this content will expand and become visible to the user.</p>
-  </div>
-  <h3><b>JZ likes your mum</b></h3>
-  <div class="accordion-content">
-    <h2>More hidden content</h2>
-    <p>This is another section of hidden content within the accordion. Feel free to add more sections or customize the content as needed.</p>
-  </div>
+  <div class="accordion">
+    <h3><b>Congrats</b></h3>
+
+    <h3><b>JZ likes your mum</b></h3>
     <div class="accordion-content">
-    <h2>This is some hidden content</h2>
-    <p>Here's a paragraph of text that is initially hidden within the accordion. You can add any kind of content you want here, such as images, videos, or forms. When the accordion header is clicked, this content will expand and become visible to the user.</p>
+      <h2>More hidden content</h2>
+      <p>This is another section of hidden content within the accordion. Feel free to add more sections or customize the content as needed.</p>
+    </div>
+        <div class="accordion-content">
+      <h2>This is some hidden content</h2>
+      <p>Here's a paragraph of text that is initially hidden within the accordion. You can add any kind of content you want here, such as images, videos, or forms. When the accordion header is clicked, this content will expand and become visible to the user.</p>
+    </div>
+        <div class="accordion-content">
+      <h2>This is some hidden content</h2>
+      <p>Here's a paragraph of text that is initially hidden within the accordion. You can add any kind of content you want here, such as images, videos, or forms. When the accordion header is clicked, this content will expand and become visible to the user.</p>
+    </div>
   </div>
   <div class="rose">
     <!-- ASCII art of the rose -->
