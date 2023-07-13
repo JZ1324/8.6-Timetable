@@ -70,6 +70,41 @@
       font-size: 1px;
       white-space: pre;
     }
+        .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+      background-color: #ccc;
+    }
+
+    .panel {
+      padding: 0 18px;
+      background-color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+
+    .plus-minus::after {
+      content: '\02795';
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active .plus-minus::after {
+      content: "\2796";
+    }
   </style>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -107,6 +142,30 @@
   <div></div>
  <b>JZ likes ur mum</b></a>
   <div></div>
+      <!-- Accordion section -->
+  <h2>Accordion with symbols</h2>
+  <p>In this example, we have added a "plus" sign to each button. When the user clicks on the button, the "plus" sign is replaced with a "minus" sign.</p>
+
+  <button class="accordion">Section 1<span class="plus-minus"></span></button>
+  <div class="panel">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+
+  <button class="accordion">Section 2<span class="plus-minus"></span></button>
+  <div class="panel">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+
+  <button class="accordion">Section 3<span class="plus-minus"></span></button>
+  <div class="panel">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
   </h3>
     <div class="rose">
       <!-- ASCII art of the rose -->
