@@ -446,7 +446,7 @@
       timeElement.innerHTML = `${getCurrentAESTTime()}`;
     }
     
-    function periodnow(){
+  function periodnow(){
       var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
@@ -478,7 +478,8 @@
             var perioditisnow = 5;
       }
     }
-    }
+    return perioditisnow;
+  }
       
       for (var i = 0; i < timetableData.length; i++) {
         var weekData = timetableData[i];
@@ -495,7 +496,7 @@
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
-            if (j == periodnow()){
+            if (j === periodnow()){
               timetableHTML += '<div class="period-now">';
             }else{
               timetableHTML += '<div class="period">';
