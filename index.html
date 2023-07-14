@@ -541,7 +541,7 @@
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
     updateTimetable();
-   setInterval(displayCurrentTime,1000);
+   setInterval(displayCurrentTime(),1000);
   window.setTimeout(function(){ 
         window.location.reload();
   },10000);
