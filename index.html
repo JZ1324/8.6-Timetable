@@ -446,9 +446,7 @@
       timeElement.innerHTML = `${getCurrentAESTTime()}`;
     }
     
-    // Update the time every second
-  setInterval(displayCurrentTime, 1000);
-  window.setTimeout(function(timetableHTML){    
+    // Update the time every second   
     var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
@@ -538,10 +536,12 @@
       }
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
+    }
+    updateTimetable()
+   setInterval(displayCurrentTime, 1000);
+  window.setTimeout(function(){ 
     updateTimetable()
   },1000);
-    updateTimetable()
-    }
   </script>
 </body>
 </html>
