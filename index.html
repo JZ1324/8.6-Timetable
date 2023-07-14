@@ -431,22 +431,7 @@
       }
     ];
       var timetableHTML = '';
-
-      
-          
-  
-  function getCurrentAESTTime() {
-      const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      return currentTime.toLocaleTimeString('en-AU', options);
-    }
-
-    function displayCurrentTime() {
-      const timeElement = document.getElementById('timeElement');
-      timeElement.innerHTML = `${getCurrentAESTTime()}`;
-    }
-    
-  function periodnow(){
+function periodnow(){
       var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
@@ -540,8 +525,22 @@
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
-    updateTimetable();
-   setInterval(displayCurrentTime(),1000);
+      
+          
+  
+  function getCurrentAESTTime() {
+      const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);
+    }
+
+    function displayCurrentTime() {
+      const timeElement = document.getElementById('timeElement');
+      timeElement.innerHTML = `${getCurrentAESTTime()}`;
+    }
+
+  updateTimetable();
+  setInterval(displayCurrentTime(),1000);
   window.setTimeout(function(){ 
         window.location.reload();
   },10000);
