@@ -531,7 +531,10 @@
   updateTimetable();
   setInterval(displayCurrentTime,1000);
   setInterval(updateTimetable,1000);
-
+  function autoRefresh() {
+            window.location = window.location.href;
+        }
+  setInterval('autoRefresh()', 300000);
   </script>
 </body>
 </html>
