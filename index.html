@@ -431,7 +431,6 @@
       }
     ];
       var timetableHTML = '';
-function periodnow(){
       var perioditisnow = 2;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
@@ -463,8 +462,7 @@ function periodnow(){
             var perioditisnow = 5;
       }
     }
-    return perioditisnow;
-  }
+  
       
       for (var i = 0; i < timetableData.length; i++) {
         var weekData = timetableData[i];
@@ -481,7 +479,7 @@ function periodnow(){
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
-            if (j === periodnow()){
+            if (j === perioditisnow)){
               timetableHTML += '<div class="period-now">';
             }else{
               timetableHTML += '<div class="period">';
