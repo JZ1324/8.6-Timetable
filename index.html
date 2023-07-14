@@ -431,7 +431,7 @@
       }
     ];
       var timetableHTML = '';
-      var perioditisnow = 9;
+    var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
             var perioditisnow = 0;
@@ -479,7 +479,7 @@
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
-            if (j === perioditisnow)){
+            if (j === perioditisnow){
               timetableHTML += '<div class="period-now">';
             }else{
               timetableHTML += '<div class="period">';
