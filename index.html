@@ -540,9 +540,10 @@
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
     updateTimetable()
-   setInterval(displayCurrentTime, 1000);
   window.setTimeout(function(){ 
     updateTimetable()
+    periodnow()
+    displayCurrentTime()
   },1000);
   </script>
 </body>
