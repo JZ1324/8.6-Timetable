@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="https://i.imgur.com/rJtWReo.png">
   <style>
       /* Loading Screen Styles */
-       /* Loading Screen Styles */
     body {
       height: 100%;
       margin: 0;
@@ -18,7 +17,7 @@
       align-items: center;
       justify-content: center;
     }
-
+    
     .loading-screen {
       position: fixed;
       top: 0;
@@ -31,18 +30,18 @@
       justify-content: center;
       z-index: 9999;
     }
-
+    
     .main {
       position: relative;
     }
-
+    
     .dragon {
       width: 200px;
       height: 140px;
       transform-origin: 50% 80%;
       animation: zoomIn .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-
+    
     .dragon .body {
       position: absolute;
       top: 0;
@@ -53,7 +52,7 @@
       background-size: contain;
       z-index: 10;
     }
-
+    
     .dragon .horn-left {
       position: absolute;
       top: -17px;
@@ -67,7 +66,7 @@
       transform: rotate(-5deg);
       animation: swingRight .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-
+    
     .dragon .horn-right {
       position: absolute;
       top: -16px;
@@ -81,7 +80,7 @@
       transform: rotate(5deg);
       animation: swingLeft .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-
+    
     .dragon .eye {
       position: absolute;
       top: 39px;
@@ -91,17 +90,17 @@
       background-size: contain;
       z-index: 12;
     }
-
+    
     .dragon .eye.left {
       left: 49px;
     }
-
+    
     .dragon .eye.right {
       left: 118px;
       transform-origin: 50% 50%;
       transform: rotate(180deg);
     }
-
+    
     .dragon .blush {
       position: absolute;
       top: 46px;
@@ -112,15 +111,15 @@
       z-index: 11;
       animation: blush .5s ease infinite alternate;
     }
-
+    
     .dragon .blush.left {
       left: 43px;
     }
-
+    
     .dragon .blush.right {
       left: 120px;
     }
-
+    
     .dragon .mouth {
       position: absolute;
       top: 52px;
@@ -132,7 +131,7 @@
       z-index: 11;
       animation: openMouth 1s ease infinite;
     }
-
+    
     .dragon .tail-sting {
       position: absolute;
       top: 67px;
@@ -145,13 +144,13 @@
       transform-origin: 0 100%;
       animation: tailUp .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-
+    
     .shadow-wrapper {
       position: absolute;
       top: 110px;
       width: 100%;
     }
-
+    
     .shadow {
       margin: 0 auto;
       width: 110px;
@@ -161,7 +160,7 @@
       z-index: 0;
       animation: zoomIn .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-
+    
     .fire-wrapper {
       position: absolute;
       width: 40px;
@@ -171,7 +170,7 @@
       transform-origin: 50% 100%;
       animation: fireUp 1s ease-in infinite;
     }
-
+    
     .fire {
       padding-bottom: 135%;
       width: 100%;
@@ -180,23 +179,26 @@
       background-size: contain;
       animation: fire 1s ease-out infinite;
     }
-
-    /* Custom Progress Bar */
-    .progress-wrapper {
-      width: 80%;
-      height: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
+    
+    .progress {
       margin-top: 30px;
+      width: 100%;
+      visibility: hidden; /* Add this line */
     }
-
-    .progress-bar {
-      height: 100%;
+    
+    .progress .outer {
+      width: 100%;
+      height: 14px;
+      border-radius: 7px;
+      background: rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .progress .inner {
       width: 0;
-      background-color: #ffcd33;
-      transition: width 2s ease-in-out;
+      height: 100%;
+      background: #ffcd33;
+      animation: loading 4.5s linear forwards;
     }
     
     @keyframes zoomIn {
@@ -413,7 +415,7 @@
     }
   </style>
   <script>    
- window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', () => {
       // Display the body content after a minimum 5-second delay
       setTimeout(() => {
         document.body.style.display = 'block';
@@ -470,20 +472,30 @@
   </script>
 </head>
 <body>
-  <!-- Loading Screen -->
+   <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="main">
       <div class="shadow-wrapper">
         <div class="shadow"></div>
       </div>
       <div class="dragon">
-        <!-- ... dragon elements ... -->
+        <div class="body"></div>
+        <div class="horn-left"></div>
+        <div class="horn-right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="mouth"></div>
+        <div class="tail-sting"></div>
       </div>
       <div class="fire-wrapper">
         <div class="fire"></div>
       </div>
-      <div class="progress-wrapper">
-        <div class="progress-bar"></div>
+      <div class="progress">
+        <div class="outer">
+          <div class="inner"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -693,21 +705,6 @@
         }
       });
     }
-    <script>
-    <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      // Simulate progress animation
-      const progressBar = document.querySelector('.progress-bar');
-      let progressWidth = 0;
-      const progressInterval = setInterval(() => {
-        progressWidth += 1;
-        progressBar.style.width = `${progressWidth}%`;
-        if (progressWidth >= 100) {
-          clearInterval(progressInterval);
-        }
-      }, 50); // Adjust the interval to control the speed of the progress animation
-    });
-
   </script>
 </body>
 </html>
