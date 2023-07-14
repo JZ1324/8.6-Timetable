@@ -448,7 +448,8 @@
     
     // Update the time every second
   setInterval(displayCurrentTime, 1000);
-  window.setTimeout(function(){    var perioditisnow = 9;
+  window.setTimeout(function(timetableHTML){    
+    var perioditisnow = 9;
     if (getCurrentTime() > '8:35'){
       if (getCurrentTime() < '8:45'){
             var perioditisnow = 0;
