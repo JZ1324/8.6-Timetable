@@ -441,27 +441,28 @@
     });
 
     function search() {
-      const searchInput = document.getElementById('searchInput');
-      const boxes = document.getElementById('boxes');
+  const searchInput = document.getElementById('searchInput');
+  const boxes = document.getElementById('boxes');
 
-      const searchTerm = searchInput.value.toLowerCase();
-      const boxToShow = document.getElementById(`box${searchTerm}`);
+  const searchTerm = searchInput.value.toLowerCase();
+  const boxToShow = document.getElementById(`box${searchTerm}`);
 
-      if (boxToShow) {
-        boxes.style.display = 'block';
-        Array.from(boxes.children).forEach(box => {
-          if (box.id === `box${searchTerm}`) {
-            box.style.display = 'block';
-          } else {
-            box.style.display = 'none';
-          }
-        });
+  if (boxToShow) {
+    boxes.style.display = 'block';
+    Array.from(boxes.children).forEach(box => {
+      if (box.id === `box${searchTerm}`) {
+        box.style.display = 'block';
       } else {
-        boxes.style.display = 'none';
+        box.style.display = 'none';
       }
+    });
+  } else {
+    boxes.style.display = 'none';
+  }
 
-      searchInput.value = '';
-    }
+  searchInput.value = '';
+}
+
   </script>
 </head>
 <body>
