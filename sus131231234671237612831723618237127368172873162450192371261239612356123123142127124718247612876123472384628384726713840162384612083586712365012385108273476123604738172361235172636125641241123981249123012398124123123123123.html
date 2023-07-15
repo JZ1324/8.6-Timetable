@@ -442,12 +442,14 @@
     function search() {
       const searchInput = document.getElementById('searchInput');
       const boxes = document.getElementById('boxes');
+      const submitButton = document.getElementById('searchButton');
 
       const searchTerm = searchInput.value.toLowerCase();
       const boxToShow = document.getElementById(`box${searchTerm}`);
 
       if (boxToShow) {
         boxes.style.display = 'block';
+        submitButton.style.display = 'none';
         Array.from(boxes.children).forEach(box => {
           if (box.id === `box${searchTerm}`) {
             box.style.display = 'block';
@@ -531,14 +533,10 @@
       <!-- Place your content here -->
     </div>
     <div id="box6">
-      <!-- Place your content here -->
-      <div id="box6">
-  <p>Box 6 - Ivaan</p>
-  <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
+      <p>Box 6 - Ivaan</p>
+      <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
   <p>Ivaan doing stuff 😉😉</p>
 </div>
-
-    </div>
   </div>
 
   <div class="rose">
@@ -701,6 +699,8 @@
            
             
                                                                                                                                                                                                                                                                                                                             
+
+                                                                                                                                                                                                                                                                                                                  
 
   </div>
 </body>
