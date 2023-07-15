@@ -324,72 +324,73 @@
   <script>
     // JavaScript code
 
-    var animationTime = 20;
-    var days = 7;
+  var animationTime = 20;
+var days = 7;
 
-    document.addEventListener("DOMContentLoaded", function() {
-      var progressTimeFill = document.getElementById('progress-time-fill');
-      var deathGroup = document.getElementById('death-group');
-      var designerArmGroup = document.getElementById('designer-arm-grop');
-      var deadlineDays = document.querySelector('.deadline-days .day');
+document.addEventListener("DOMContentLoaded", function() {
+  var progressTimeFill = document.getElementById('progress-time-fill');
+  var deathGroup = document.getElementById('death-group');
+  var designerArmGroup = document.getElementById('designer-arm-grop');
+  var deadlineDays = document.querySelector('.deadline-days .day');
 
-      progressTimeFill.style.animationDuration = animationTime + 's';
+  if (progressTimeFill && deathGroup && designerArmGroup && deadlineDays) {
+    progressTimeFill.style.animationDuration = animationTime + 's';
 
-      var deadlineAnimation = function() {
-        setTimeout(function() {
-          designerArmGroup.style.animationDuration = '1.5s';
-        }, 0);
+    var deadlineAnimation = function() {
+      setTimeout(function() {
+        designerArmGroup.style.animationDuration = '1.5s';
+      }, 0);
 
-        setTimeout(function() {
-          designerArmGroup.style.animationDuration = '1s';
-        }, 4000);
+      setTimeout(function() {
+        designerArmGroup.style.animationDuration = '1s';
+      }, 4000);
 
-        setTimeout(function() {
-          designerArmGroup.style.animationDuration = '0.7s';
-        }, 8000);
+      setTimeout(function() {
+        designerArmGroup.style.animationDuration = '0.7s';
+      }, 8000);
 
-        setTimeout(function() {
-          designerArmGroup.style.animationDuration = '0.3s';
-        }, 12000);
+      setTimeout(function() {
+        designerArmGroup.style.animationDuration = '0.3s';
+      }, 12000);
 
-        setTimeout(function() {
-          designerArmGroup.style.animationDuration = '0.2s';
-        }, 15000);
-      };
+      setTimeout(function() {
+        designerArmGroup.style.animationDuration = '0.2s';
+      }, 15000);
+    };
 
-      function timer(totalTime, deadline) {
-        var time = totalTime * 1000;
-        var dayDuration = time / deadline;
-        var actualDay = deadline;
+    function timer(totalTime, deadline) {
+      var time = totalTime * 1000;
+      var dayDuration = time / deadline;
+      var actualDay = deadline;
 
-        var timer = setInterval(countTime, dayDuration);
+      var timer = setInterval(countTime, dayDuration);
 
-        function countTime() {
-          --actualDay;
-          deadlineDays.textContent = actualDay;
+      function countTime() {
+        --actualDay;
+        deadlineDays.textContent = actualDay;
 
-          if (actualDay == 0) {
-            clearInterval(timer);
-            deadlineDays.textContent = deadline;
-          }
+        if (actualDay == 0) {
+          clearInterval(timer);
+          deadlineDays.textContent = deadline;
         }
       }
+    }
 
-      var deadlineText = function() {
-        var deadlineDaysContainer = document.querySelector('.deadline-days');
+    var deadlineText = function() {
+      var deadlineDaysContainer = document.querySelector('.deadline-days');
+      if (deadlineDaysContainer) {
         var html = '<div class="mask-red"><div class="inner">' + deadlineDaysContainer.innerHTML + '</div></div><div class="mask-white"><div class="inner">' + deadlineDaysContainer.innerHTML + '</div></div>';
         deadlineDaysContainer.innerHTML = html;
-      };
+      }
+    };
 
-      deadlineText();
-      deadlineAnimation();
+    deadlineText();
+    deadlineAnimation();
+    timer(animationTime, days);
+
+    setInterval(function() {
       timer(animationTime, days);
-
-      setInterval(function() {
-        timer(animationTime, days);
-        deadlineAnimation();
-      }, animationTime * 1000);
-    });
-  </script>
-</body>
-</html>
+      deadlineAnimation();
+    }, animationTime * 1000);
+  }
+});
