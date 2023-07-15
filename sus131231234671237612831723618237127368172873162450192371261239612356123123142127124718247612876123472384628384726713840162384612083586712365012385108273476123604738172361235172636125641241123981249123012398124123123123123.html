@@ -377,10 +377,9 @@
 
     /* Added CSS for search bar and boxes */
     #searchContainer {
+      margin: 10px auto;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 10px auto;
     }
 
     #searchInput {
@@ -389,6 +388,7 @@
 
     #boxes {
       display: none;
+      margin-top: 10px;
     }
 
     #boxes div {
@@ -506,8 +506,8 @@
 
   <!-- Search Bar -->
   <div id="searchContainer">
-    <input type="text" id="searchInput" placeholder="Type a name and press Enter">
-    <button id="searchButton" onclick="search()">Submit</button>
+    <input type="text" id="searchInput" placeholder="Type a name">
+    <button onclick="search()">Submit</button>
   </div>
 
   <!-- Boxes -->
@@ -534,18 +534,14 @@
       <!-- Place your content here -->
     </div>
     <div id="box6">
-      <!-- Place your content here -->
-      <div id="box6">
-        <p>Box 6 - Ivaan</p>
-        <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
-        <p>Ivaan doing stuff 😉😉</p>
-      </div>
+      <p>Box 6 - Ivaan</p>
+      <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
+      <p>Ivaan doing stuff 😉😉</p>
     </div>
   </div>
 
   <div class="rose">
     <!-- ASCII art of the rose -->
-
                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
@@ -704,6 +700,8 @@
            
             
                                                                                                                                                                                                                                                                                                                             
+
+                                                                                                                                                                                                                                                                                                                  
 
   </div>
 </body>
