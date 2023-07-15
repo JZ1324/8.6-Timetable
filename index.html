@@ -658,15 +658,19 @@
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
           timetableHTML += '<div class="day-heading">';
-        if (weekData.day ===  6 || weekData.day === 7){
+        if (weekData.day ===  6){
          timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
         }else{
-          if (currentWeek === 'A'){          
-            timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
-         }
-          else
-         {
-           timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 5) + '</div>';
+         if (weekData.day ===  6){
+           timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
+         }else{
+           if (currentWeek === 'A'){          
+             timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+           }
+           else
+           {
+            timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 5) + '</div>';
+           }
          }
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
