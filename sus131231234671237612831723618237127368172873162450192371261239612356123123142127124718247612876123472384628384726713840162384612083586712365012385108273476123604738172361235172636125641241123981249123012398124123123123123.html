@@ -376,14 +376,8 @@
     }
 
     /* Added CSS for search bar and boxes */
-    #searchContainer {
-      margin: 10px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
- #searchContainer {
+    
+#searchContainer {
     margin: 10px auto;
     display: flex;
     align-items: center;
@@ -394,11 +388,8 @@
     margin-right: 10px;
   }
 
-  #boxes {
-    margin-top: 10px;
-  }
-
-  #boxes div {
+  .box {
+    display: none;
     margin-top: 10px;
     background-color: rgba(230, 225, 225, 0.8);
     padding: 20px;
@@ -448,28 +439,21 @@
     });
 
  function search() {
-      const searchInput = document.getElementById('searchInput');
-      const boxes = document.getElementById('boxes');
+    const searchInput = document.getElementById('searchInput');
+    const boxes = document.querySelectorAll('.box');
 
-      const searchTerm = searchInput.value.toLowerCase();
-      const boxToShow = document.getElementById(`box${searchTerm}`);
+    const searchTerm = searchInput.value.toLowerCase();
 
-      if (boxToShow) {
-        boxes.style.display = 'block';
-        Array.from(boxes.children).forEach(box => {
-          if (box.id === `box${searchTerm}`) {
-            box.style.display = 'block';
-          } else {
-            box.style.display = 'none';
-          }
-        });
+    boxes.forEach(box => {
+      if (box.innerText.toLowerCase().includes(searchTerm)) {
+        box.style.display = 'block';
       } else {
-        boxes.style.display = 'none';
+        box.style.display = 'none';
       }
+    });
 
-      searchInput.value = '';
-    }
-
+    searchInput.value = '';
+  }
   </script>
 </head>
 <body>
@@ -520,35 +504,37 @@
 
 
   <!-- Boxes -->
-  <div id="boxes">
-    <div id="box1">
-      <p>Box 1 - JZ</p>
-      <!-- Place your content here -->
-      <p>JZ likes your mum... bruh....</p>
-    </div>
-    <div id="box2">
-      <p>Box 2 - Kerming</p>
-      <!-- Place your content here -->
-    </div>
-    <div id="box3">
-      <p>Box 3 - Samuel</p>
-      <!-- Place your content here -->
-    </div>
-    <div id="box4">
-      <p>Box 4 - Max</p>
-      <!-- Place your content here -->
-    </div>
-    <div id="box5">
-      <p>Box 5 - Allen</p>
-      <!-- Place your content here -->
-      <p>sets</p>
-    </div>
-    <div id="box6">
-      <p>Box 6 - Ivaan</p>
-      <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
-      <p>Ivaan doing stuff 😉😉</p>
-    </div>
+<!-- Boxes -->
+<div id="boxes">
+  <div id="box1" class="box">
+    <p>Box 1 - JZ</p>
+    <!-- Place your content here -->
+    <p>JZ likes your mum... bruh....</p>
   </div>
+  <div id="box2" class="box">
+    <p>Box 2 - Kerming</p>
+    <!-- Place your content here -->
+  </div>
+  <div id="box3" class="box">
+    <p>Box 3 - Samuel</p>
+    <!-- Place your content here -->
+  </div>
+  <div id="box4" class="box">
+    <p>Box 4 - Max</p>
+    <!-- Place your content here -->
+  </div>
+  <div id="box5" class="box">
+    <p>Box 5 - Allen</p>
+    <!-- Place your content here -->
+    <p>sets</p>
+  </div>
+  <div id="box6" class="box">
+    <p>Box 6 - Ivaan</p>
+    <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
+    <p>Ivaan doing stuff 😉😉</p>
+  </div>
+</div>
+
 
   <div class="rose">
     <!-- ASCII art of the rose -->
