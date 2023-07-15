@@ -440,28 +440,28 @@
       });
     });
 
-    function search() {
-  const searchInput = document.getElementById('searchInput');
-  const boxes = document.getElementById('boxes');
+ function search() {
+      const searchInput = document.getElementById('searchInput');
+      const boxes = document.getElementById('boxes');
 
-  const searchTerm = searchInput.value.toLowerCase();
-  const boxToShow = document.getElementById(`box${searchTerm}`);
+      const searchTerm = searchInput.value.toLowerCase();
+      const boxToShow = document.getElementById(`box${searchTerm}`);
 
-  if (boxToShow) {
-    boxes.style.display = 'block';
-    Array.from(boxes.children).forEach(box => {
-      if (box.id === `box${searchTerm}`) {
-        box.style.display = 'block';
+      if (boxToShow) {
+        boxes.style.display = 'block';
+        Array.from(boxes.children).forEach(box => {
+          if (box.id === `box${searchTerm}`) {
+            box.style.display = 'block';
+          } else {
+            box.style.display = 'none';
+          }
+        });
       } else {
-        box.style.display = 'none';
+        boxes.style.display = 'none';
       }
-    });
-  } else {
-    boxes.style.display = 'none';
-  }
 
-  searchInput.value = '';
-}
+      searchInput.value = '';
+    }
 
   </script>
 </head>
@@ -506,10 +506,11 @@
   <div></div>
 
   <!-- Search Bar -->
-  <div id="searchContainer">
+ <div id="searchContainer">
     <input type="text" id="searchInput" placeholder="Type a name">
     <button id="searchButton" onclick="search()">Submit</button>
   </div>
+
 
   <!-- Boxes -->
   <div id="boxes">
