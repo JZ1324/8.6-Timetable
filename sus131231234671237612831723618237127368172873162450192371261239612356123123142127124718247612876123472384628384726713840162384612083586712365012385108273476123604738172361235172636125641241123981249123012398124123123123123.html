@@ -376,14 +376,15 @@
     }
 
     /* Added CSS for search bar and boxes */
-    #searchInput {
+    #searchContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 10px auto;
-      display: block;
     }
 
-    #searchButton {
-      margin: 10px auto;
-      display: block;
+    #searchInput {
+      margin-right: 10px;
     }
 
     #boxes {
@@ -442,14 +443,12 @@
     function search() {
       const searchInput = document.getElementById('searchInput');
       const boxes = document.getElementById('boxes');
-      const submitButton = document.getElementById('searchButton');
 
       const searchTerm = searchInput.value.toLowerCase();
       const boxToShow = document.getElementById(`box${searchTerm}`);
 
       if (boxToShow) {
         boxes.style.display = 'block';
-        submitButton.style.display = 'none';
         Array.from(boxes.children).forEach(box => {
           if (box.id === `box${searchTerm}`) {
             box.style.display = 'block';
@@ -506,8 +505,10 @@
   <div></div>
 
   <!-- Search Bar -->
-  <input type="text" id="searchInput" placeholder="Type a name and press Enter">
-  <button id="searchButton" onclick="search()">Submit</button>
+  <div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Type a name and press Enter">
+    <button id="searchButton" onclick="search()">Submit</button>
+  </div>
 
   <!-- Boxes -->
   <div id="boxes">
@@ -533,14 +534,18 @@
       <!-- Place your content here -->
     </div>
     <div id="box6">
-      <p>Box 6 - Ivaan</p>
-      <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
-  <p>Ivaan doing stuff 😉😉</p>
-</div>
+      <!-- Place your content here -->
+      <div id="box6">
+        <p>Box 6 - Ivaan</p>
+        <img src="https://i.imgur.com/npGexdy.jpg" alt="Ivaan" width="200">
+        <p>Ivaan doing stuff 😉😉</p>
+      </div>
+    </div>
   </div>
 
   <div class="rose">
     <!-- ASCII art of the rose -->
+
                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
@@ -699,8 +704,6 @@
            
             
                                                                                                                                                                                                                                                                                                                             
-
-                                                                                                                                                                                                                                                                                                                  
 
   </div>
 </body>
