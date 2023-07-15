@@ -383,22 +383,29 @@
       justify-content: center;
     }
 
-    #searchInput {
-      margin-right: 10px;
-    }
+ #searchContainer {
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    #boxes {
-      display: none;
-      margin-top: 10px;
-    }
+  #searchInput {
+    margin-right: 10px;
+  }
 
-    #boxes div {
-      margin-top: 10px;
-      background-color: rgba(230, 225, 225, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-    }
+  #boxes {
+    margin-top: 10px;
+  }
+
+  #boxes div {
+    margin-top: 10px;
+    background-color: rgba(230, 225, 225, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  }
+</style>
   </style>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
