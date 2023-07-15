@@ -269,10 +269,28 @@
 
     @keyframes yellow-flame {
       0% {
-        transform: translateY(-30px) scale(0.8, 0.7);
+        transform: translateY(-30px) scale(1, 1);
       }
-      50% {
-        transform: translateY(-30px) scale(1.1, 1.2);
+      25% {
+        transform: translateY(-30px) scale(1.2, 1.1);
+      }
+      75% {
+        transform: translateY(-30px) scale(0.9, 0.7);
+      }
+      100% {
+        transform: translateY(-30px) scale(1, 1);
+      }
+    }
+
+    @keyframes white-flame {
+      0% {
+        transform: translateY(-30px) scale(1, 1);
+      }
+      25% {
+        transform: translateY(-30px) scale(1.3, 1.1);
+      }
+      75% {
+        transform: translateY(-30px) scale(0.9, 0.7);
       }
       100% {
         transform: translateY(-30px) scale(1, 1);
@@ -306,32 +324,36 @@
   <script>
     // JavaScript code
 
-    var $ = jQuery;
     var animationTime = 20;
     var days = 7;
 
-    $(document).ready(function() {
-      $('#progress-time-fill, #death-group').css({ 'animation-duration': animationTime + 's' });
+    document.addEventListener("DOMContentLoaded", function() {
+      var progressTimeFill = document.getElementById('progress-time-fill');
+      var deathGroup = document.getElementById('death-group');
+      var designerArmGroup = document.getElementById('designer-arm-grop');
+      var deadlineDays = document.querySelector('.deadline-days .day');
+
+      progressTimeFill.style.animationDuration = animationTime + 's';
 
       var deadlineAnimation = function() {
         setTimeout(function() {
-          $('#designer-arm-grop').css({ 'animation-duration': '1.5s' });
+          designerArmGroup.style.animationDuration = '1.5s';
         }, 0);
 
         setTimeout(function() {
-          $('#designer-arm-grop').css({ 'animation-duration': '1s' });
+          designerArmGroup.style.animationDuration = '1s';
         }, 4000);
 
         setTimeout(function() {
-          $('#designer-arm-grop').css({ 'animation-duration': '0.7s' });
+          designerArmGroup.style.animationDuration = '0.7s';
         }, 8000);
 
         setTimeout(function() {
-          $('#designer-arm-grop').css({ 'animation-duration': '0.3s' });
+          designerArmGroup.style.animationDuration = '0.3s';
         }, 12000);
 
         setTimeout(function() {
-          $('#designer-arm-grop').css({ 'animation-duration': '0.2s' });
+          designerArmGroup.style.animationDuration = '0.2s';
         }, 15000);
       };
 
@@ -344,19 +366,19 @@
 
         function countTime() {
           --actualDay;
-          $('.deadline-days .day').text(actualDay);
+          deadlineDays.textContent = actualDay;
 
           if (actualDay == 0) {
             clearInterval(timer);
-            $('.deadline-days .day').text(deadline);
+            deadlineDays.textContent = deadline;
           }
         }
       }
 
       var deadlineText = function() {
-        var $el = $('.deadline-days');
-        var html = '<div class="mask-red"><div class="inner">' + $el.html() + '</div></div><div class="mask-white"><div class="inner">' + $el.html() + '</div></div>';
-        $el.html(html);
+        var deadlineDaysContainer = document.querySelector('.deadline-days');
+        var html = '<div class="mask-red"><div class="inner">' + deadlineDaysContainer.innerHTML + '</div></div><div class="mask-white"><div class="inner">' + deadlineDaysContainer.innerHTML + '</div></div>';
+        deadlineDaysContainer.innerHTML = html;
       };
 
       deadlineText();
