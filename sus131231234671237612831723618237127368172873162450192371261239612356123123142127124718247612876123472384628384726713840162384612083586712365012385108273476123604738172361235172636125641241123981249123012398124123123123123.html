@@ -381,6 +381,11 @@
       display: block;
     }
 
+    #searchButton {
+      margin: 10px auto;
+      display: block;
+    }
+
     #boxes {
       display: none;
     }
@@ -435,18 +440,26 @@
     });
 
     function search() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const boxes = document.getElementById('boxes').children;
+      const searchInput = document.getElementById('searchInput');
+      const boxes = document.getElementById('boxes');
 
-      for (let i = 0; i < boxes.length; i++) {
-        const box = boxes[i];
+      const searchTerm = searchInput.value.toLowerCase();
+      const boxToShow = document.getElementById(`box${searchTerm}`);
 
-        if (box.id.toLowerCase().includes(input)) {
-          box.style.display = 'block';
-        } else {
-          box.style.display = 'none';
-        }
+      if (boxToShow) {
+        boxes.style.display = 'block';
+        Array.from(boxes.children).forEach(box => {
+          if (box.id === `box${searchTerm}`) {
+            box.style.display = 'block';
+          } else {
+            box.style.display = 'none';
+          }
+        });
+      } else {
+        boxes.style.display = 'none';
       }
+
+      searchInput.value = '';
     }
   </script>
 </head>
@@ -492,6 +505,7 @@
 
   <!-- Search Bar -->
   <input type="text" id="searchInput" placeholder="Type a name and press Enter">
+  <button id="searchButton" onclick="search()">Submit</button>
 
   <!-- Boxes -->
   <div id="boxes">
