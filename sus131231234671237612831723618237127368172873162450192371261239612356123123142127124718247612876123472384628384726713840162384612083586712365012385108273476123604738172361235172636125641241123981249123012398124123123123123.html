@@ -374,46 +374,6 @@
       font-size: 1px;
       white-space: pre;
     }
-
-    .accordion {
-      background-color: #eee;
-      color: #444;
-      cursor: pointer;
-      padding: 18px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      transition: 0.4s;
-    }
-
-    .active, .accordion:hover {
-      background-color: #ccc;
-    }
-
-    .panel {
-      padding: 0 18px;
-      background-color: white;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out;
-    }
-
-    .panel img {
-      max-width: 20%;
-    }
-
-    .plus-minus::after {
-      content: '\02795';
-      font-size: 13px;
-      color: #777;
-      float: right;
-      margin-left: 5px;
-    }
-
-    .active .plus-minus::after {
-      content: "\2796";
-    }
   </style>
   <script>    
     window.addEventListener('DOMContentLoaded', () => {
@@ -455,20 +415,20 @@
       });
     });
 
-    // Additional JavaScript for the accordion
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    function search() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const boxes = document.getElementById("boxes").children;
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
+      for (let i = 0; i < boxes.length; i++) {
+        const box = boxes[i];
+        const name = box.querySelector("h2").textContent.toLowerCase();
+        
+        if (name === input) {
+          box.style.display = "block";
         } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        } 
-      });
+          box.style.display = "none";
+        }
+      }
     }
   </script>
 </head>
@@ -510,28 +470,72 @@
   <div></div>
   <h4><b>Monkey's Secret</b></h4>
   <p>OoooOOoOOOoOOOoooO</p>
-  <div></div>
   
-  <!-- Accordion section -->
-  <button class="accordion">JZ's Stuff</button>
-  <div class="panel">
-    <img src="https://i.imgur.com/CLu78nG.jpg" alt="JZ's Image">
-    <p>Joshua Still likes Julie (but the tea will expire very very very soon).</p>
-  </div>
+  <!-- Search Bar -->
+  <input type="text" id="searchInput" placeholder="Search name...">
+  <button onclick="search()">Submit</button>
 
-  <button class="accordion">Section 2</button>
-  <div class="panel">
-    <p>sad</p>
+  <!-- Boxes -->
+  <div id="boxes">
+    <div id="box1">
+      <h2>JZ</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
+    <div id="box2">
+      <h2>Kerming</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
+    <div id="box3">
+      <h2>Samuel</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
+    <div id="box4">
+      <h2>Max</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
+    <div id="box5">
+      <h2>Allen</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
+    <div id="box6">
+      <h2>Ivaan</h2>
+      <div class="pictures">
+        <!-- Add pictures here -->
+      </div>
+      <div class="words">
+        <!-- Add text here -->
+      </div>
+    </div>
   </div>
-
-  <button class="accordion">Section 3</button>
-  <div class="panel">
-    <p>mad</p>
-  </div>
-
+  
   <div class="rose">
     <!-- ASCII art of the rose -->
-                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                             
@@ -689,24 +693,8 @@
            
             
                                                                                                                                                                                                                                                                                                                             
+
      
   </div>
-
-  <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
-    }
-  </script>
 </body>
 </html>
