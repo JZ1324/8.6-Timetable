@@ -17,7 +17,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .loading-screen {
       position: fixed;
       top: 0;
@@ -30,18 +30,18 @@
       justify-content: center;
       z-index: 9999;
     }
-    
+
     .main {
       position: relative;
     }
-    
+
     .dragon {
       width: 200px;
       height: 140px;
       transform-origin: 50% 80%;
       animation: zoomIn .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-    
+
     .dragon .body {
       position: absolute;
       top: 0;
@@ -52,7 +52,7 @@
       background-size: contain;
       z-index: 10;
     }
-    
+
     .dragon .horn-left {
       position: absolute;
       top: -17px;
@@ -66,7 +66,7 @@
       transform: rotate(-5deg);
       animation: swingRight .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-    
+
     .dragon .horn-right {
       position: absolute;
       top: -16px;
@@ -80,7 +80,7 @@
       transform: rotate(5deg);
       animation: swingLeft .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-    
+
     .dragon .eye {
       position: absolute;
       top: 39px;
@@ -90,17 +90,17 @@
       background-size: contain;
       z-index: 12;
     }
-    
+
     .dragon .eye.left {
       left: 49px;
     }
-    
+
     .dragon .eye.right {
       left: 118px;
       transform-origin: 50% 50%;
       transform: rotate(180deg);
     }
-    
+
     .dragon .blush {
       position: absolute;
       top: 46px;
@@ -111,15 +111,15 @@
       z-index: 11;
       animation: blush .5s ease infinite alternate;
     }
-    
+
     .dragon .blush.left {
       left: 43px;
     }
-    
+
     .dragon .blush.right {
       left: 120px;
     }
-    
+
     .dragon .mouth {
       position: absolute;
       top: 52px;
@@ -131,7 +131,7 @@
       z-index: 11;
       animation: openMouth 1s ease infinite;
     }
-    
+
     .dragon .tail-sting {
       position: absolute;
       top: 67px;
@@ -144,13 +144,13 @@
       transform-origin: 0 100%;
       animation: tailUp .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-    
+
     .shadow-wrapper {
       position: absolute;
       top: 110px;
       width: 100%;
     }
-    
+
     .shadow {
       margin: 0 auto;
       width: 110px;
@@ -160,7 +160,7 @@
       z-index: 0;
       animation: zoomIn .5s cubic-bezier(0.47, 0, 0.75, 0.72) infinite alternate;
     }
-    
+
     .fire-wrapper {
       position: absolute;
       width: 40px;
@@ -170,7 +170,7 @@
       transform-origin: 50% 100%;
       animation: fireUp 1s ease-in infinite;
     }
-    
+
     .fire {
       padding-bottom: 135%;
       width: 100%;
@@ -179,13 +179,13 @@
       background-size: contain;
       animation: fire 1s ease-out infinite;
     }
-    
+
     .progress {
       margin-top: 30px;
       width: 100%;
       visibility: hidden; /* Add this line */
     }
-    
+
     .progress .outer {
       width: 100%;
       height: 14px;
@@ -193,58 +193,58 @@
       background: rgba(0, 0, 0, 0.1);
       overflow: hidden;
     }
-    
+
     .progress .inner {
       width: 0;
       height: 100%;
       background: #ffcd33;
       animation: loading 4.5s linear forwards;
     }
-    
+
     @keyframes zoomIn {
       100% {
         transform: scale(1.16, 1.16);
       }
     }
-    
+
     @keyframes swingRight {
       100% {
         transform: rotate(5deg);
       }
     }
-    
+
     @keyframes swingLeft {
       100% {
         transform: rotate(-5deg);
       }
     }
-    
+
     @keyframes blush {
       0% {
         opacity: 0;
       }
-    
+
       100% {
         opacity: 1;
       }
     }
-    
+
     @keyframes openMouth {
       0% {
         -webkit-clip-path: ellipse(20% 0% at 50% 0);
                 clip-path: ellipse(20% 0% at 50% 0);
       }
-    
+
       50% {
         -webkit-clip-path: ellipse(100% 100% at 50% 0);
                 clip-path: ellipse(100% 100% at 50% 0);
       }
-    
+
       70% {
         -webkit-clip-path: ellipse(100% 100% at 50% 0);
                 clip-path: ellipse(100% 100% at 50% 0);
       }
-    
+
       100% {
         -webkit-clip-path: ellipse(20% 0% at 50% 0);
                 clip-path: ellipse(20% 0% at 50% 0);
@@ -374,8 +374,27 @@
       font-size: 1px;
       white-space: pre;
     }
+
+    /* Added CSS for search bar and boxes */
+    #searchInput {
+      margin: 10px auto;
+      display: block;
+    }
+
+    #boxes {
+      display: none;
+    }
+
+    #boxes div {
+      display: none;
+      margin-top: 10px;
+      background-color: rgba(230, 225, 225, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    }
   </style>
-  <script>    
+  <script>
     window.addEventListener('DOMContentLoaded', () => {
       // Display the body content after a minimum 5-second delay
       setTimeout(() => {
@@ -386,7 +405,7 @@
         loadingScreen.style.display = 'none';
       }, 2000); // 2000 milliseconds = 2 seconds
     });
-    
+
     window.addEventListener('DOMContentLoaded', () => {
       const rose = document.querySelector('.rose');
 
@@ -416,17 +435,16 @@
     });
 
     function search() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const boxes = document.getElementById("boxes").children;
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const boxes = document.getElementById('boxes').children;
 
       for (let i = 0; i < boxes.length; i++) {
         const box = boxes[i];
-        const name = box.querySelector("h2").textContent.toLowerCase();
-        
-        if (name === input) {
-          box.style.display = "block";
+
+        if (box.id.toLowerCase().includes(input)) {
+          box.style.display = 'block';
         } else {
-          box.style.display = "none";
+          box.style.display = 'none';
         }
       }
     }
@@ -460,7 +478,7 @@
       </div>
     </div>
   </div>
-  
+
   <h1>Welcome to secret stuff</h1>
   <h3><b>Congrats</b>
     <div>
@@ -470,69 +488,39 @@
   <div></div>
   <h4><b>Monkey's Secret</b></h4>
   <p>OoooOOoOOOoOOOoooO</p>
-  
+  <div></div>
+
   <!-- Search Bar -->
-  <input type="text" id="searchInput" placeholder="Search name...">
-  <button onclick="search()">Submit</button>
+  <input type="text" id="searchInput" placeholder="Type a name and press Enter">
 
   <!-- Boxes -->
   <div id="boxes">
     <div id="box1">
-      <h2>JZ</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 1 - JZ</p>
+      <!-- Place your content here -->
     </div>
     <div id="box2">
-      <h2>Kerming</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 2 - Kerming</p>
+      <!-- Place your content here -->
     </div>
     <div id="box3">
-      <h2>Samuel</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 3 - Samuel</p>
+      <!-- Place your content here -->
     </div>
     <div id="box4">
-      <h2>Max</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 4 - Max</p>
+      <!-- Place your content here -->
     </div>
     <div id="box5">
-      <h2>Allen</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 5 - Allen</p>
+      <!-- Place your content here -->
     </div>
     <div id="box6">
-      <h2>Ivaan</h2>
-      <div class="pictures">
-        <!-- Add pictures here -->
-      </div>
-      <div class="words">
-        <!-- Add text here -->
-      </div>
+      <p>Box 6 - Ivaan</p>
+      <!-- Place your content here -->
     </div>
   </div>
-  
+
   <div class="rose">
     <!-- ASCII art of the rose -->
                                                                                                                                                                                                                                                                                                                     
@@ -694,7 +682,6 @@
             
                                                                                                                                                                                                                                                                                                                             
 
-     
   </div>
 </body>
 </html>
