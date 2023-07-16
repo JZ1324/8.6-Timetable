@@ -654,7 +654,7 @@
       
       for (var i = 0; i < timetableData.length; i++) {
         var weekData = timetableData[i];
-        var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A';
+        var currentWeek = getWeekNumber(new Date()) % 3 === 0 ? 'B' : 'A';
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
           timetableHTML += '<div class="day-heading">';
