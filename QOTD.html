@@ -76,7 +76,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
+    left: auto;
     right: 0;
   }
 
@@ -95,9 +95,9 @@
   .bb::after {
     content: "";
     z-index: -1;
-    margin: -5% 0; /* Update the margin */
-    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5), 0 0 0 2px rgba(105, 202, 98, 0.5); /* Include the border */
-    right: 0; /* Align the elements to the top right corner */
+    margin: -5%;
+    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5), 0 0 0 2px rgba(105, 202, 98, 0.5);
+    right: 0;
     animation: clipMe 8s linear infinite;
   }
 
@@ -137,6 +137,7 @@
     box-sizing: border-box;
   }
 </style>
+
 </head>
 <body>
   <div style="display: flex; justify-content: left; align-items: left;">
