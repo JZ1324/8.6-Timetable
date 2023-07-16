@@ -76,7 +76,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: auto;
+    left: 0;
     right: 0;
   }
 
@@ -88,15 +88,16 @@
     height: 200px;
     background: url("https://jz1324.github.io/Pictures/Logo.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
     color: #69ca62;
-    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5), 0 0 0 2px rgba(105, 202, 98, 0.5); /* Add the border box-shadow */
+    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
   }
 
   .bb::before,
   .bb::after {
     content: "";
     z-index: -1;
-    margin: -5%;
-    box-shadow: inset 0 0 0 2px rgba(105, 202, 98, 0.5); /* Update the box-shadow */
+    margin: -5% 0; /* Update the margin */
+    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5), 0 0 0 2px rgba(105, 202, 98, 0.5); /* Include the border */
+    right: 0; /* Align the elements to the top right corner */
     animation: clipMe 8s linear infinite;
   }
 
@@ -136,7 +137,6 @@
     box-sizing: border-box;
   }
 </style>
-
 </head>
 <body>
   <div style="display: flex; justify-content: left; align-items: left;">
