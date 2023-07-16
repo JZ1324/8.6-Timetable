@@ -81,7 +81,7 @@
 .bb {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 200px;
   width: 200px;
   height: 200px;
   background: url("https://jz1324.github.io/Pictures/Logo.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
@@ -91,7 +91,7 @@
 
 .bb::before, .bb::after {
   content: "";
-  z-index: 1;
+  z-index: -1;
   margin: -5%;
   box-shadow: inset 0 0 0 2px;
   animation: clipMe 8s linear infinite;
