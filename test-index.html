@@ -240,8 +240,8 @@
       position: absolute;
       top: 200px;
       left: 64%;
-      width: 400px;
-      height: 20px;
+      width: 0px;
+      height: 0px;
       transition: 0.4s;
       transform: translateX(-50%);
       border-radius: 100%;
@@ -267,7 +267,7 @@
     }
   </style>
  <style>
-  .bb::before, .bb::after, .bb {
+.bb::before, .bb::after, .bb {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -326,8 +326,7 @@ body {
   box-sizing: border-box;
 }
  </style>
-  
- </head>
+</head>
 <body>
  <h1><div id="timeElement" style="display: flex; justify-content: center; align-items: center;" ></div></h1>
   <h1>8.6 Timetable</h1>
@@ -336,11 +335,12 @@ body {
   <div></div>
   <div class="rose-background">
     <div class="quote">
+       <div class="bb"></div>
       <div class="rose"> 
 
 
         <!-- ASCII art of the rose -->
-                                                                                              .====----:..                                                                                                                                                                                                       
+                                                                                         .====----:..                                                                                                                                                                                                       
                                                                                          *@@%%%%%%@@@%#*=-.                                                                                                                                                                                                 
                                                                                           -#@%*++++++**##%@%#*=-.                                                                                                                                                                                           
                         :-.                                                        :-=+#%%@@@@@+++++++++++++**#%@%#+-.                                                                                                                                                                                      
@@ -447,8 +447,7 @@ body {
                                                                                                                              .:=+*#%%%%%########*****###########%@%*:        .:-+*#%@%##**+===------------:::::---+*#%@#*=:                                                                                
                                                                                                                                       ...:::::-----------------::.                    .:-=++*##%%%%%%%%%%%%%%@@@%%#*+=:.                                                                                  
  
-             
-                                                                                                                                                    ..  .      . ...                                                                                         
+                                                                                                                                                                 ..  .      . ...                                                                                         
       </div>
       <div class="quote-text"></div>
     </div>
@@ -470,7 +469,7 @@ body {
   <h4><a href="https://forms.gle/cddkPSuvjmQ232YT6" target="_blank" style="text-decoration:none"><b>Evana's English Form</b></a></h4>
    <div></div>
 <!-- Envelope -->
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSd32STJDcfFtSf3uXGuoR2Usg8E7wZHBuBhXKzh5UGoXn-Heg/alreadyresponded?embedded=true" target="_blank">
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScytCgUMv5lkVOJMFX5dfhgaju1280tXrOmpyK46YA8seVwog/viewform?usp=sf_link" target="_blank">
   <div class="letter-image">
     <div class="animated-mail">
       <div class="back-fold"></div>
@@ -489,7 +488,6 @@ body {
     <div class="shadow"></div>
   </div>
 </a>
-  <div class="bb"></div>
   <script>
     // Function to get the week number
     function getWeekNumber(date) {
@@ -536,11 +534,11 @@ body {
         day: 1,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'Your Location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Esteam', location: 'FO4' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO8' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'your own classroom' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Esteam', location: 'F04' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L08'},
           { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'MO5' }
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'M05' }
         ]
       },
       {
@@ -548,9 +546,9 @@ body {
         day: 2,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'MO5' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'M05' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S04' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
           { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
           { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport (REMEMBER SPORTS BAG) ', location: 'Your own Location' }
         ]
@@ -560,11 +558,11 @@ body {
         day: 3,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO3' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'MO6' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'SO5' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'LO6' }
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'F03' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'M06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'S06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'L06' }
         ]
       },
       {
@@ -572,11 +570,11 @@ body {
         day: 4,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'SO2' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'F03' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S02' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'F04' }
         ]
       },
       {
@@ -585,10 +583,10 @@ body {
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
           { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'LO6' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'LO6' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'PO2' }
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'D02' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'P02' }
         ]
       },
                {
@@ -616,9 +614,9 @@ body {
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
           { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
           { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Esteam', location: 'FO4' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'LO6' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'LO6' }
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Esteam', location: 'F04' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'L06' }
         ]
       },
       {
@@ -627,9 +625,9 @@ body {
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
           { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'LO6' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'SO2' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Music', location: 'PO1' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'S06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Music', location: 'P01' },
           { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Your own location' }
         ]
       },
@@ -638,11 +636,11 @@ body {
         day: 3,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'FO3' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'VCD', location: 'F03' },
           { period: 'Period 2', time: '9:55am–10:55am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'LO6' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'MO6' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO1' }
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'M06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'S03' }
         ]
       },
       {
@@ -650,11 +648,11 @@ body {
         day: 4,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'LO6' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'LO6' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'DO2' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Plus+', location: 'LO6' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'SO2' }
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'L06' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'D02' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Plus+', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'S07' }
         ]
       },
       {
@@ -662,11 +660,11 @@ body {
         day:5,
         schedule: [
           { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'LO9' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'FO3' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'LO6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'L09' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'F03' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
           { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'Library' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'FO4' }
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Esteam', location: 'F04' }
         ]
       },
           {
@@ -683,7 +681,7 @@ body {
       day: 0,
       title: 'Sunday',
       schedule: [
-        {period: 'Period 0', time:'Have a good weekend :)',subject:'Sunday',location:'have a good rest'}
+        {period: 'Period 0', time:'Have a good weekend (:',subject:'Sunday',location:'have a good rest '}
         // Periods for Sunday
       ]
     },
@@ -717,16 +715,24 @@ body {
       
       for (var i = 0; i < timetableData.length; i++) {
         var weekData = timetableData[i];
-        var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'B' : 'A';
+        var currentWeek = getWeekNumber(new Date()) % 3 === 0 ? 'B' : 'A';
         if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
           timetableHTML += '<div class="day">';
           timetableHTML += '<div class="day-heading">';
-       if (currentWeek === 'A'){
-          timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
-        }
-         else
-        {
-          timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 5) + '</div>';
+        if (weekData.day ===  6){
+         timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
+        }else{
+         if (weekData.day ===  0){
+           timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
+         }else{
+           if (currentWeek === 'A'){          
+             timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
+           }
+           else
+           {
+            timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 5) + '</div>';
+           }
+         }
         }
           for (var j = 0; j < weekData.schedule.length; j++) {
             var periodData = weekData.schedule[j];
