@@ -16,22 +16,12 @@ h1 {
   animation: gradientAnimation 5s linear infinite;
 }
 
-h1::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: linear-gradient(45deg, #FF006E, #1b2bde);
-}
-
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 
 
  
@@ -42,12 +32,6 @@ h1::before {
       padding: 0;
     }
     
-    h1 {
-      text-align: center;
-      color: #FFFFFF;
-      font-size: 30px;
-      padding: 20px;
-      text-shadow: 2px 2px #000000;
     
     } h3 {
       text-align: center;
