@@ -5,11 +5,14 @@
   <link rel="icon" type="image/png" href="https://i.imgur.com/rJtWReo.png">
   <style>
        /* Add animation styles for h1 */
- h1 {
+h1 {
   text-align: center;
   font-size: 30px;
   position: relative;
   z-index: 1;
+  background: linear-gradient(45deg, #FF006E, #1b2bde);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: gradientAnimation 5s linear infinite;
 }
 
@@ -19,11 +22,6 @@
   100% { background-position: 0% 50%; }
 }
 
-.gradient-text {
-  background: -webkit-linear-gradient(45deg, #FF006E, #1b2bde);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 
  
