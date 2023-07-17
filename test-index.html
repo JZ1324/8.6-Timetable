@@ -10,6 +10,10 @@ h1 {
   font-size: 30px;
   position: relative;
   z-index: 1;
+}
+
+h1 span {
+  display: inline-block;
   background: linear-gradient(45deg, #FF006E, #1b2bde);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -21,6 +25,7 @@ h1 {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 
 
 
@@ -352,7 +357,7 @@ body {
 </head>
 <body>
  <h3><div id="timeElement" style="display: flex; justify-content: center; align-items: center;" ></div></h3>
-  <h1>8.6 Timetable</h1>
+  <h1><span>8.6 Timetable</span></h1>
    <div class="week"></div>
   <div class="timetable"></div>
   <div></div>
