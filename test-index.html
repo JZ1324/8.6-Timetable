@@ -6,17 +6,14 @@
   <style>
        /* Add animation styles for h1 */
 
-    h1 {
+     h1 {
       text-align: center;
       font-size: 30px;
       position: relative;
       z-index: 1;
       background: linear-gradient(45deg, #FF006E, #1b2bde);
-      background-clip: text;
       -webkit-background-clip: text;
-      color: transparent;
-      -webkit-animation: gradientAnimation 5s ease infinite;
-      -moz-animation: gradientAnimation 5s ease infinite;
+      -webkit-text-fill-color: transparent;
       animation: gradientAnimation 5s ease infinite;
     }
 
@@ -25,6 +22,7 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
 
  
     body {
