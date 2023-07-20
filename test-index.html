@@ -16,6 +16,9 @@
             position: relative;
             width: 600px;
             height: 900px;
+            display: flex; /* Use flexbox layout */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
             overflow: hidden; /* Hide any overflow from the image */
         }
 
@@ -82,7 +85,7 @@
             const authorTop = 20 + quoteTextHeight + 10; // 10px spacing between quote and author
             quoteAuthorElement.style.top = `${authorTop}px`;
 
-            quoteContainer.style.display = 'block';
+            quoteContainer.style.display = 'flex'; // Use flexbox layout for the container
         }
 
         window.onload = updateQuote;
