@@ -2,63 +2,40 @@
 <html>
 <head>
     <title>Random Quote Generator</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-        #quote-image {
-            position: relative;
-            max-width: 600px; /* Adjust the width based on your preference */
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-        #quote-text {
-            position: absolute;
-            top: 0; /* Position the quote text at the top of the image */
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-        }
-    </style>
 </head>
 <body>
-    <div id="quote-image">
-        <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Quote Image" width="600" height="900" id="img-background">
-        <div id="quote-text">Loading quote...</div>
+    <div id="quote-container">
+        <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Background Image" width="600" height="900">
+        <div id="quote-text"></div>
+        <div id="quote-author"></div>
     </div>
 
-    <script src="papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script>
         async function fetchQuotes() {
-            const response = await fetch('https://gist.githubusercontent.com/JakubPetriska/060958fd744ca34f099e947cd080b540/raw/963b5a9355f04741239407320ac973a6096cd7b6/quotes.csv');
+            const response = await fetch('proxy.php'); // Change 'proxy.php' to the correct path if it's in a different location
             const text = await response.text();
             const parsedQuotes = Papa.parse(text, { delimiter: ',', skipEmptyLines: true });
             const quotes = parsedQuotes.data.slice(1); // Remove header row
             return quotes;
         }
 
-        function getRandomQuote(quotes) {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            return quotes[randomIndex];
-        }
-
         async function updateQuote() {
             const quotes = await fetchQuotes();
-            const [author, quote] = getRandomQuote(quotes);
-            const quoteText = `${quote} - ${author}`;
-            document.getElementById("quote-text").textContent = quoteText;
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+
+            const quoteTextElement = document.getElementById('quote-text');
+            const quoteAuthorElement = document.getElementById('quote-author');
+
+            quoteTextElement.textContent = quote[1]; // Quote text
+            quoteAuthorElement.textContent = quote[0]; // Author
+
+            const quoteContainer = document.getElementById('quote-container');
+            quoteContainer.style.display = 'block';
         }
 
-        updateQuote();
+        window.onload = updateQuote;
     </script>
 </body>
 </html>
