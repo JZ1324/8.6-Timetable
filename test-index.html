@@ -13,7 +13,7 @@
         }
         #quote-image {
             position: relative;
-            max-width: 400px; /* Adjust the width based on your preference */
+            max-width: 600px; /* Adjust the width based on your preference */
             border: 1px solid #ccc;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             overflow: hidden;
@@ -32,60 +32,29 @@
 </head>
 <body>
     <div id="quote-image">
-         <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Quote Image" width="600" height="900" id="img-background">
+        <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Quote Image" width="600" height="900" id="img-background">
         <div id="quote-text">Loading quote...</div>
     </div>
 
     <script>
-        const quotes = [
-            // Previous quotes...
-            ["Chinese proverb", "Talk doesn't cook rice."],
-            ["Buddha", "He is able who thinks he is able."],
-            ["Larry Elder", "A goal without a plan is just a wish."],
-            ["Michael Korda", "To succeed, we must first believe that we can."],
-            ["Albert Einstein", "Learn from yesterday, live for today, hope for tomorrow."],
-            ["James Lowell", "A weed is no more than a flower in disguise."],
-            ["Yoda", "Do, or do not. There is no try."],
-            ["Harriet Beecher Stowe", "All serious daring starts from within."],
-            ["Byron Pulsifer", "The best teacher is experience learned from failures."],
-            ["Murray Gell-Mann", "Think how hard physics would be if particles could think."],
-            ["John Lennon", "Love is the flower you've got to let grow."],
-            ["Napoleon Hill", "Don't wait. The time will never be just right."],
-            ["Pericles", "Time is the wisest counsellor of all."],
-            ["Napoleon Hill", "You give before you get."],
-            ["Socrates", "Wisdom begins in wonder."],
-            ["Baltasar Gracian", "Without courage, wisdom bears no fruit."],
-            ["Aristotle", "Change in all things is sweet."],
-            ["Byron Pulsifer", "What you fear is that which requires action to overcome."],
-            ["Cullen Hightower", "When performance exceeds ambition, the overlap is called success."],
-            ["African proverb", "When deeds speak, words are nothing."],
-            ["Wayne Dyer", "Real magic in relationships means an absence of judgement of others."],
-            ["Albert Einstein", "I never think of the future. It comes soon enough."],
-            ["Ralph Emerson", "Skill to do comes of doing."],
-            ["Sophocles", "Wisdom is the supreme part of happiness."],
-            ["Maya Angelou", "I believe that every person is born with talent."],
-            ["Abraham Lincoln", "Important principles may, and must, be inflexible."],
-            ["Richard Evans", "The undertaking of a new action brings new strength."],
-            ["Ralph Emerson", "The years teach much which the days never know."],
-            ["Ralph Emerson", "Our distrust is very expensive."],
-            ["Bodhidharma", "All know the way; few actually walk it."],
-            ["Johann Wolfgang von Goethe", "Great talent finds happiness in execution."],
-            ["Michelangelo", "Faith in oneself is the best and safest course."],
-            ["Winston Churchill", "Courage is going from failure to failure without losing enthusiasm."],
-            ["Leo Tolstoy", "The two most powerful warriors are patience and time."],
-            ["Lao Tzu", "Anticipate the difficult by managing the easy."],
-            ["Buddha", "Those who are free of resentful thoughts surely find peace."],
-            // Add more quotes here separated by commas
-            //...
-        ];
+        async function fetchQuotes() {
+            const response = await fetch('https://gist.githubusercontent.com/JakubPetriska/060958fd744ca34f099e947cd080b540/raw/963b5a9355f04741239407320ac973a6096cd7b6/quotes.csv');
+            const text = await response.text();
+            const quotes = text.split('\n').map(line => {
+                const [author, quote] = line.split('","');
+                return [author.replace('"', ''), quote.replace('"', '')];
+            });
+            return quotes;
+        }
 
-        function getRandomQuote() {
+        function getRandomQuote(quotes) {
             const randomIndex = Math.floor(Math.random() * quotes.length);
             return quotes[randomIndex];
         }
 
-        function updateQuote() {
-            const [author, quote] = getRandomQuote();
+        async function updateQuote() {
+            const quotes = await fetchQuotes();
+            const [author, quote] = getRandomQuote(quotes);
             const quoteText = `${quote} - ${author}`;
             document.getElementById("quote-text").textContent = quoteText;
         }
