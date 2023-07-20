@@ -2,10 +2,40 @@
 <html>
 <head>
     <title>Random Quote Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #quote-container {
+            position: relative;
+            width: 600px;
+            height: 900px;
+            overflow: hidden; /* Hide any overflow from the image */
+        }
+
+        #quote-text, #quote-author {
+            position: absolute;
+            top: 20px; /* Adjust this value to position the text as desired */
+            left: 20px; /* Adjust this value to position the text as desired */
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div id="quote-container">
-        <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Background Image" width="600" height="900">
+        <img src="https://i.imgur.com/DiaAuDr.jpg" alt="Background Image">
         <div id="quote-text"></div>
         <div id="quote-author"></div>
     </div>
@@ -13,7 +43,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script>
         async function fetchQuotes() {
-            const response = await fetch('proxy.php'); // Change 'proxy.php' to the correct path if it's in a different location
+            const gistUrl = 'https://gist.githubusercontent.com/JakubPetriska/060958fd744ca34f099e947cd080b540/raw/963b5a9355f04741239407320ac973a6096cd7b6/quotes.csv';
+            const response = await fetch(gistUrl);
             const text = await response.text();
             const parsedQuotes = Papa.parse(text, { delimiter: ',', skipEmptyLines: true });
             const quotes = parsedQuotes.data.slice(1); // Remove header row
