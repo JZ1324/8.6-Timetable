@@ -4,34 +4,25 @@
     <title>Random Quote Generator</title>
     <style>
         body {
-            background-color: #A48BBE;
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex; /* Use flexbox layout */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Set the body height to full viewport height */
         }
 
         #quote-container {
             position: relative;
             width: 600px;
             height: 900px;
-            display: flex; /* Use flexbox layout */
-            flex-direction: column; /* Stack children vertically */
-            justify-content: flex-start; /* Align items to the top */
-            align-items: center; /* Center horizontally */
             overflow: hidden; /* Hide any overflow from the image */
         }
 
         #quote-text, #quote-author {
+            position: absolute;
+            top: 20px; /* Adjust this value to position the text as desired */
+            left: 20px; /* Adjust this value to position the text as desired */
             color: black; /* Change the text color to black */
             font-size: 24px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Use white shadow for better visibility */
-            text-align: center; /* Center the text */
-            margin-top: 20px; /* Add some margin at the top */
         }
 
         #quote-author {
@@ -71,7 +62,6 @@
 
             const quoteTextElement = document.getElementById('quote-text');
             const quoteAuthorElement = document.getElementById('quote-author');
-            const quoteContainer = document.getElementById('quote-container'); // Define the quoteContainer variable
 
             quoteTextElement.textContent = `"${quote[1]}"`; // Quote text
 
@@ -82,7 +72,13 @@
                 quoteAuthorElement.textContent = ''; // Empty content if the author is blank
             }
 
-            quoteContainer.style.display = 'flex'; // Use flexbox layout for the container
+            // Adjust the position of the author based on the height of the quote
+            const quoteContainer = document.getElementById('quote-container');
+            const quoteTextHeight = quoteTextElement.clientHeight;
+            const authorTop = 20 + quoteTextHeight + 10; // 10px spacing between quote and author
+            quoteAuthorElement.style.top = `${authorTop}px`;
+
+            quoteContainer.style.display = 'block';
         }
 
         window.onload = updateQuote;
