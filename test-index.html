@@ -64,7 +64,13 @@
             const quoteAuthorElement = document.getElementById('quote-author');
 
             quoteTextElement.textContent = `"${quote[1]}"`; // Quote text
-            quoteAuthorElement.textContent = `- ${quote[0]}`; // Author
+
+            // Check if the author is blank and set the appropriate content
+            if (quote[0].trim() !== '') {
+                quoteAuthorElement.textContent = `- ${quote[0]}`; // Author with '-'
+            } else {
+                quoteAuthorElement.textContent = ''; // Empty content if the author is blank
+            }
 
             // Adjust the position of the author based on the height of the quote
             const quoteContainer = document.getElementById('quote-container');
