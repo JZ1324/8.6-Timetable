@@ -19,10 +19,15 @@
             position: absolute;
             top: 20px; /* Adjust this value to position the text as desired */
             left: 20px; /* Adjust this value to position the text as desired */
-            color: white;
+            color: black; /* Change the text color to black */
             font-size: 24px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Use white shadow for better visibility */
+        }
+
+        #quote-author {
+            top: 60px; /* Adjust this value to position the author as desired */
+            font-size: 20px;
         }
 
         img {
@@ -59,8 +64,8 @@
             const quoteTextElement = document.getElementById('quote-text');
             const quoteAuthorElement = document.getElementById('quote-author');
 
-            quoteTextElement.textContent = quote[1]; // Quote text
-            quoteAuthorElement.textContent = quote[0]; // Author
+            quoteTextElement.textContent = `"${quote[1]}"`; // Quote text
+            quoteAuthorElement.textContent = `- ${quote[0]}`; // Author
 
             const quoteContainer = document.getElementById('quote-container');
             quoteContainer.style.display = 'block';
