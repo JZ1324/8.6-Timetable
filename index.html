@@ -614,12 +614,12 @@ display: flex; justify-content: center; align-items: center;"></div>
 
     // Function to update the timetable based on the current day and week
     function updateTimetable() {
-        var currentWeek = getWeekNumber(new Date()) % 3 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
+        var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'A' : 'B'; // Assuming week A is the starting week
        var currentDay = (getCurrentDay()) % 7; 
        var currentTime = getCurrentTime();
       if (getCurrentTime() > '17:00') {
            if (getCurrentTime() < '24:00'){
-             var currentWeek = getWeekNumber(new Date()+1) % 3 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
+             var currentWeek = getWeekNumber(new Date()+1) % 2 === 0 ? 'A' : 'B'; // Assuming week A is the starting week
              var currentDay = (getCurrentDay() +1 ) % 7; 
              var currentTime = getCurrentTime();
            }
