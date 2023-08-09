@@ -620,7 +620,7 @@ display: flex; justify-content: center; align-items: center;"></div>
       if (getCurrentTime() > '17:00') {
            if (getCurrentTime() < '24:00'){
              var currentWeek = getWeekNumber(new Date()+1) % 2 === 0 ? 'B' : 'A'; // Assuming week A is the starting week
-             var currentDay = (getCurrentDay() +1 ) % 7; 
+             var currentDay = (getCurrentDay() +8 ) % 7; 
              var currentTime = getCurrentTime();
            }
       }
