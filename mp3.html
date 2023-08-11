@@ -485,14 +485,15 @@ const PARTICLE_CONFIG = {
   }
 }
 
-const DROP_ZONE_WRAPPER = getEl('drop-zone-wrapper'),
-      DROP_ZONE = getEl('drop-zone'),
-      ALTERNATE_OPTION = getEl('alternate-option'),
-      AUDIO_CANVAS = getEl('audio-canvas'),
-      CENTER_LOGO = getEl('center-logo'),
-      PARTICLES_SLOW = getEl('particles-slow'),
-      PARTICLES_FAST = getEl('particles-fast'),
-      RESET = getEl('reset')
+const DROP_ZONE_WRAPPER = document.getElementById('drop-zone-wrapper'),
+      DROP_ZONE = document.getElementById('drop-zone'),
+      ALTERNATE_OPTION = document.getElementById('alternate-option'),
+      AUDIO_CANVAS = document.getElementById('audio-canvas'),
+      CENTER_LOGO = document.getElementById('center-logo'),
+      PARTICLES_SLOW = document.getElementById('particles-slow'),
+      PARTICLES_FAST = document.getElementById('particles-fast'),
+      RESET = document.getElementById('reset')
+
 
 const dragStart = () => {
   addClass(DROP_ZONE, 'hovering')
