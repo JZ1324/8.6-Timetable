@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Player</title>
+  <title>Audio Visualizer</title>
   <style>
-    /* Your CSS code here */
+    /* Your CSS styles can go here */
     html, body {
   font-family: "Roboto", sans-serif;
   height: 100%;
@@ -391,36 +391,20 @@ body {
   </style>
 </head>
 <body>
-  <div id="wrapper">
-    <div id="drop-zone-wrapper">
-      <div id="drop-zone">
-        <div id="label"><i class="fa fa-cloud-upload"></i>
-          <h1>Drop MP3 Here</h1>
-        </div>
-      </div>
-      <div id="alternate-option"><i class="fa fa-music"></i>
-        <h1>Or Use Default Song</h1>
-      </div>
-    </div>
-    <div class="hidden" id="center-logo">
-      <div id="audio-canvas-wrapper">
-        <canvas id="audio-canvas"></canvas>
-      </div>
-      <div id="text">
-        <h1>MUSIC</h1>
-        <h1>SQUAD</h1>
-      </div>
-    </div>
-    <div class="particles" id="particles-slow"></div>
-    <div class="particles initial hidden" id="particles-fast"></div>
-    <div id="reset">
-      <h1>Reset</h1>
-    </div>
+  <div id="drop-zone-wrapper" class="hidden">
+    <div id="drop-zone" class="hidden">Drop Audio File Here</div>
   </div>
-
+  <div id="alternate-option" class="hidden">Or use default audio</div>
+  <canvas id="audio-canvas"></canvas>
+  <div id="center-logo" class="hidden">Your Logo</div>
+  <div id="particles-slow" class="particles"></div>
+  <div id="particles-fast" class="particles hidden"></div>
+  <div id="reset">Reset</div>
+  <!-- Include particles.js library -->
+  <script src="particles.js"></script>
   <script>
-    // Your JavaScript code here
-    const STATE = {
+    // Your JavaScript code goes here
+   const STATE = {
   audio: null,
   songEnded: false,
   usingDefault: false,
@@ -485,15 +469,14 @@ const PARTICLE_CONFIG = {
   }
 }
 
-const DROP_ZONE_WRAPPER = document.getElementById('drop-zone-wrapper'),
-      DROP_ZONE = document.getElementById('drop-zone'),
-      ALTERNATE_OPTION = document.getElementById('alternate-option'),
-      AUDIO_CANVAS = document.getElementById('audio-canvas'),
-      CENTER_LOGO = document.getElementById('center-logo'),
-      PARTICLES_SLOW = document.getElementById('particles-slow'),
-      PARTICLES_FAST = document.getElementById('particles-fast'),
-      RESET = document.getElementById('reset')
-
+const DROP_ZONE_WRAPPER = getEl('drop-zone-wrapper'),
+      DROP_ZONE = getEl('drop-zone'),
+      ALTERNATE_OPTION = getEl('alternate-option'),
+      AUDIO_CANVAS = getEl('audio-canvas'),
+      CENTER_LOGO = getEl('center-logo'),
+      PARTICLES_SLOW = getEl('particles-slow'),
+      PARTICLES_FAST = getEl('particles-fast'),
+      RESET = getEl('reset')
 
 const dragStart = () => {
   addClass(DROP_ZONE, 'hovering')
@@ -792,21 +775,7 @@ RESET.onclick = () => {
   resetPlayer()
 }
 
-const throttle = (func, limit) => {
-  let inThrottle
-  return function() {
-    const args = arguments
-    const context = this
-    if (!inThrottle) {
-      func.apply(context, args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
-    }
-  }
-}
-
-window.onresize = throttle(() => {
-
+window.onresize = _.throttle(() => {
   initializeCanvas()
 }, 100)
 
