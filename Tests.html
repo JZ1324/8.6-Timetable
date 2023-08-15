@@ -134,45 +134,48 @@
     },
     ];
 
-   const scheduleContainer = document.getElementById('scheduleContainer');
-const scheduleButton = document.getElementById('scheduleButton');
-let isScheduleVisible = false;
-
-function toggleSchedule() {
-  if (!isScheduleVisible) {
-    scheduleContainer.style.display = 'block';
-    scheduleContainer.innerHTML = getScheduleHTML(); // Generate the schedule content here
-    scheduleButton.style.display = 'none';
-  } else {
-    hideSchedule();
-  }
-  isScheduleVisible = !isScheduleVisible;
-}
-
-function hideSchedule() {
-  scheduleContainer.style.display = 'none';
-  scheduleButton.style.display = 'block';
-  isScheduleVisible = false;
-}
-
-function getScheduleHTML(selectedSchedule) {
-  let scheduleHTML = '<ul>';
-  for (const period of selectedSchedule.schedule) {
-    scheduleHTML += `
-      <li>
-        ${period.period} - ${period.time}<br>
-        Subject: ${period.subject}<br>
-        Location: ${period.location}
-      </li>
-    `;
-  }
-  scheduleHTML += '</ul>';
-  return scheduleHTML;
-}
-
-scheduleButton.addEventListener('click', toggleSchedule);
-
+ function getScheduleHTML(selectedSchedule) {
+      let scheduleHTML = '<ul>';
+      for (const period of selectedSchedule.schedule) {
+        scheduleHTML += `
+          <li>
+            ${period.period} - ${period.time}<br>
+            Subject: ${period.subject}<br>
+            Location: ${period.location}
+          </li>
+        `;
+      }
+      scheduleHTML += '</ul>';
+      return scheduleHTML;
     }
+
+    // Function to toggle the schedule visibility
+    function toggleSchedule(selectedSchedule) {
+      const scheduleContainer = document.getElementById('scheduleContainer');
+      const scheduleButton = document.getElementById('scheduleButton');
+      let isScheduleVisible = scheduleContainer.style.display === 'block';
+
+      if (!isScheduleVisible) {
+        scheduleContainer.style.display = 'block';
+        scheduleContainer.innerHTML = getScheduleHTML(selectedSchedule);
+        scheduleButton.style.display = 'none';
+      } else {
+        hideSchedule();
+      }
+    }
+
+    // Function to hide the schedule
+    function hideSchedule() {
+      const scheduleContainer = document.getElementById('scheduleContainer');
+      const scheduleButton = document.getElementById('scheduleButton');
+      scheduleContainer.style.display = 'none';
+      scheduleButton.style.display = 'block';
+    }
+
+    // Attach the click event listener
+    document.getElementById('scheduleButton').addEventListener('click', function() {
+      toggleSchedule(scheduleData[0]); // Show the first schedule by default
+    });
   </script>
 </body>
 </html>
