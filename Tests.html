@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     #buttonContainer {
       text-align: center;
@@ -10,11 +9,23 @@
 
     #timetableContainer {
       display: none;
-    }
-
-    canvas {
       max-width: 600px;
       margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
     }
   </style>
 </head>
@@ -23,11 +34,13 @@
     <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
   </div>
   <div id="timetableContainer">
-    <canvas id="timetableGraph"></canvas>
+    <table id="timetableTable">
+      <!-- Table headers will be generated dynamically -->
+    </table>
   </div>
 
   <script>
-    const scheduleData = [
+        const scheduleData = [
       {
         week: 'Week A',
         day: 1,
@@ -156,6 +169,7 @@
     function toggleTimetable() {
       const button = document.getElementById("toggleButton");
       const timetableContainer = document.getElementById("timetableContainer");
+      const timetableTable = document.getElementById("timetableTable");
 
       if (timetableVisible) {
         timetableContainer.style.display = "none";
@@ -163,43 +177,39 @@
       } else {
         timetableContainer.style.display = "block";
         button.textContent = "Hide Timetable";
-        renderTimetableGraph(scheduleData);
+        renderTimetable(scheduleData, timetableTable);
       }
 
       timetableVisible = !timetableVisible;
     }
 
-    function renderTimetableGraph(data) {
-      const ctx = document.getElementById("timetableGraph").getContext("2d");
+    function renderTimetable(data, container) {
+      container.innerHTML = ""; // Clear the existing table
 
-      const labels = data.map(day => day.week + ", Day " + day.day);
-      const subjects = data.flatMap(day => day.schedule.map(period => period.subject));
+      // Create table headers
+      const tableHeaderRow = document.createElement("tr");
+      const headerTitles = ["Week", "Day", "Period", "Time", "Subject", "Location"];
+      headerTitles.forEach(title => {
+        const th = document.createElement("th");
+        th.textContent = title;
+        tableHeaderRow.appendChild(th);
+      });
+      container.appendChild(tableHeaderRow);
 
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [{
-            label: "Subjects",
-            data: subjects.length,
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
-            borderColor: "rgba(75, 192, 192, 1)",
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              stepSize: 1
-            }
-          }
-        }
+      // Populate the table with schedule data
+      data.forEach(day => {
+        day.schedule.forEach(period => {
+          const row = document.createElement("tr");
+          const cellData = [day.week, day.day, period.period, period.time, period.subject, period.location];
+          cellData.forEach(text => {
+            const cell = document.createElement("td");
+            cell.textContent = text;
+            row.appendChild(cell);
+          });
+          container.appendChild(row);
+        });
       });
     }
   </script>
 </body>
 </html>
-```
-
-This code snippet uses Chart.js to create a simple bar chart that shows the number of subjects for each day of the week. You'll need to adjust the graph rendering logic to match your actual requirements and graphing library if needed.
