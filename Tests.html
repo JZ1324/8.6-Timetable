@@ -2,82 +2,59 @@
 <html>
 <head>
   <style>
-    #buttonContainer {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    #timetableContainer {
-      display: none;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-  <style>
-    
     body {
       background-color: #A48BBE;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
-       /* Add animation styles for h1 */
-h1 {
-  text-align: center;
-  font-size: 30px;
-  position: relative;
-  z-index: 1;
-}
-
-h1 span {
-  display: inline-block;
-  background: linear-gradient(45deg, #FF006E, #1b2bde);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientAnimation 5s linear infinite;
-}
-
-
-
-
     
-    
-  .fake-h1 {
-    text-align: center;
-    font-weight: bold;    
-   color: #FFFFFF;
-    font-size: 30px;
-    padding: 20px;
-    text-shadow: 2px 2px #6c4d7d;
-   
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      position: relative;
+      z-index: 1;
+    }
 
+    h1 span {
+      display: inline-block;
+      background: linear-gradient(45deg, #FF006E, #1b2bde);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientAnimation 5s linear infinite;
+    }
 
-       
-    } h4 {
-      colour: #FFFFFF;
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .fake-h1 {
+      text-align: center;
+      font-weight: bold;    
+      color: #FFFFFF;
+      font-size: 30px;
+      padding: 20px;
+      text-shadow: 2px 2px #6c4d7d;
+    } 
+
+    h4 {
+      color: #FFFFFF;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    } h2 {
-      
-      colour: #FFFFFF;
+    }
+
+    h2 {
+      color: #FFFFFF;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     } 
-    
+
     .week {
       text-align: center;
       color: #FFFFFF;
@@ -85,7 +62,7 @@ h1 span {
       padding: 10px;
       text-shadow: 2px 2px #000000;
     }
-    
+
     .timetable {
       max-width: 800px;
       margin: 0 auto;
@@ -94,60 +71,58 @@ h1 span {
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    
+
     .day {
       margin-bottom: 30px;
     }
-    
+
     .day-heading {
       color: #333333;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 10px;
     }
-    
+
     .period {
       margin-bottom: 10px;
     }
-    .period-now{
+
+    .period-now {
       margin-bottom: 10px;
       background-color: rgba(180, 200, 255, 0.8);
       padding: 20px;
       border-radius: 2;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    
+
     .period-time {
       color: #666666;
       font-size: 16px;
       font-weight: bold;
     }
-    
+
     .period-subject {
       font-size: 18px;
       font-weight: bold;
       color: #333333;
     }
-    
+
     .period-location {
       font-size: 16px;
       color: #666666;
     }
-    
   </style>
 </head>
 <body>
   <div id="buttonContainer">
     <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
   </div>
-  <div id="timetableContainer">
-    <table id="timetableTable">
-      <!-- Table headers will be generated dynamically -->
-    </table>
+  <div id="timetableContainer" class="timetable">
+    <!-- Timetable will be dynamically generated here -->
   </div>
 
   <script>
-        const scheduleData = [
+    const scheduleData = [
       {
         week: 'Week A',
         day: 1,
@@ -276,45 +251,55 @@ h1 span {
     function toggleTimetable() {
       const button = document.getElementById("toggleButton");
       const timetableContainer = document.getElementById("timetableContainer");
-      const timetableTable = document.getElementById("timetableTable");
 
       if (timetableVisible) {
+        timetableContainer.innerHTML = ""; // Clear the table when hiding
         timetableContainer.style.display = "none";
         button.textContent = "Show Timetable";
       } else {
         timetableContainer.style.display = "block";
         button.textContent = "Hide Timetable";
-        renderTimetable(scheduleData, timetableTable);
+        renderTimetable(scheduleData, timetableContainer);
       }
 
       timetableVisible = !timetableVisible;
     }
 
     function renderTimetable(data, container) {
-      container.innerHTML = ""; // Clear the existing table
+      container.innerHTML = ""; // Clear the existing content
 
-      // Create table headers
-      const tableHeaderRow = document.createElement("tr");
-      const headerTitles = ["Week", "Day", "Period", "Time", "Subject", "Location"];
-      headerTitles.forEach(title => {
-        const th = document.createElement("th");
-        th.textContent = title;
-        tableHeaderRow.appendChild(th);
-      });
-      container.appendChild(tableHeaderRow);
-
-      // Populate the table with schedule data
       data.forEach(day => {
+        const dayElement = document.createElement("div");
+        dayElement.classList.add("day");
+
+        const dayHeading = document.createElement("div");
+        dayHeading.classList.add("day-heading");
+        dayHeading.textContent = `${day.week}, Day ${day.day}`;
+        dayElement.appendChild(dayHeading);
+
         day.schedule.forEach(period => {
-          const row = document.createElement("tr");
-          const cellData = [day.week, day.day, period.period, period.time, period.subject, period.location];
-          cellData.forEach(text => {
-            const cell = document.createElement("td");
-            cell.textContent = text;
-            row.appendChild(cell);
-          });
-          container.appendChild(row);
+          const periodElement = document.createElement("div");
+          periodElement.classList.add("period");
+
+          const periodTime = document.createElement("div");
+          periodTime.classList.add("period-time");
+          periodTime.textContent = period.time;
+          periodElement.appendChild(periodTime);
+
+          const periodSubject = document.createElement("div");
+          periodSubject.classList.add("period-subject");
+          periodSubject.textContent = period.subject;
+          periodElement.appendChild(periodSubject);
+
+          const periodLocation = document.createElement("div");
+          periodLocation.classList.add("period-location");
+          periodLocation.textContent = period.location;
+          periodElement.appendChild(periodLocation);
+
+          dayElement.appendChild(periodElement);
         });
+
+        container.appendChild(dayElement);
       });
     }
   </script>
