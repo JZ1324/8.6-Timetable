@@ -2,115 +2,7 @@
 <html>
 <head>
   <style>
-    body {
-      background-color: #A48BBE;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    
-    h1 {
-      text-align: center;
-      font-size: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 span {
-      display: inline-block;
-      background: linear-gradient(45deg, #FF006E, #1b2bde);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientAnimation 5s linear infinite;
-    }
-
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .fake-h1 {
-      text-align: center;
-      font-weight: bold;    
-      color: #FFFFFF;
-      font-size: 30px;
-      padding: 20px;
-      text-shadow: 2px 2px #6c4d7d;
-    } 
-
-    h4 {
-      color: #FFFFFF;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      color: #FFFFFF;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    } 
-
-    .week {
-      text-align: center;
-      color: #FFFFFF;
-      font-size: 24px;
-      padding: 10px;
-      text-shadow: 2px 2px #000000;
-    }
-
-    .timetable {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .day {
-      margin-bottom: 30px;
-    }
-
-    .day-heading {
-      color: #333333;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .period {
-      margin-bottom: 10px;
-    }
-
-    .period-now {
-      margin-bottom: 10px;
-      background-color: rgba(180, 200, 255, 0.8);
-      padding: 20px;
-      border-radius: 2;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .period-time {
-      color: #666666;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .period-subject {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-    }
-
-    .period-location {
-      font-size: 16px;
-      color: #666666;
-    }
+    body{background-color:#A48BBE;font-family:Arial,sans-serif;margin:0;padding:0}h1{text-align:center;font-size:30px;position:relative;z-index:1}h1 span{display:inline-block;background:linear-gradient(45deg,#FF006E,#1b2bde);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientAnimation 5s linear infinite}@keyframes gradientAnimation{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}.fake-h1{text-align:center;font-weight:bold;color:#FFFFFF;font-size:30px;padding:20px;text-shadow:2px 2px #6c4d7d}h4{color:#FFFFFF;background-color:rgba(255,255,255,.8);padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.3)}h2{color:#FFFFFF;background-color:rgba(255,255,255,.8);padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.3)}.week{text-align:center;color:#FFFFFF;font-size:24px;padding:10px;text-shadow:2px 2px #000}.timetable{max-width:800px;margin:0 auto;background-color:rgba(255,255,255,.8);padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.3)}.day{margin-bottom:30px}.day-heading{color:#333;font-size:20px;font-weight:bold;margin-bottom:10px}.period{margin-bottom:10px}.period-now{margin-bottom:10px;background-color:rgba(180,200,255,.8);padding:20px;border-radius:2;box-shadow:0 0 10px rgba(0,0,0,.3)}.period-time{color:#666;font-size:16px;font-weight:bold}.period-subject{font-size:18px;font-weight:bold;color:#333}.period-location{font-size:16px;color:#666}
   </style>
 </head>
 <body>
@@ -253,7 +145,7 @@
       const timetableContainer = document.getElementById("timetableContainer");
 
       if (timetableVisible) {
-        timetableContainer.innerHTML = ""; // Clear the table when hiding
+        timetableContainer.innerHTML = "";
         timetableContainer.style.display = "none";
         button.textContent = "Show Timetable";
       } else {
@@ -266,33 +158,33 @@
     }
 
     function renderTimetable(data, container) {
-      container.innerHTML = ""; // Clear the existing content
+      container.innerHTML = "";
 
       data.forEach(day => {
         const dayElement = document.createElement("div");
-        dayElement.classList.add("day");
+        dayElement.className = "day";
 
         const dayHeading = document.createElement("div");
-        dayHeading.classList.add("day-heading");
+        dayHeading.className = "day-heading";
         dayHeading.textContent = `${day.week}, Day ${day.day}`;
         dayElement.appendChild(dayHeading);
 
         day.schedule.forEach(period => {
           const periodElement = document.createElement("div");
-          periodElement.classList.add("period");
+          periodElement.className = "period";
 
           const periodTime = document.createElement("div");
-          periodTime.classList.add("period-time");
+          periodTime.className = "period-time";
           periodTime.textContent = period.time;
           periodElement.appendChild(periodTime);
 
           const periodSubject = document.createElement("div");
-          periodSubject.classList.add("period-subject");
+          periodSubject.className = "period-subject";
           periodSubject.textContent = period.subject;
           periodElement.appendChild(periodSubject);
 
           const periodLocation = document.createElement("div");
-          periodLocation.classList.add("period-location");
+          periodLocation.className = "period-location";
           periodLocation.textContent = period.location;
           periodElement.appendChild(periodLocation);
 
