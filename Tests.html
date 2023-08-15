@@ -8,7 +8,7 @@
       margin: 0;
       padding: 0;
     }
-    
+
     .timetable-container {
       display: flex;
       overflow-x: auto;
@@ -16,14 +16,13 @@
     }
 
     .day-column {
-      flex: 1;
-      max-width: 200px;
+      flex: 0 0 auto;
+      width: 200px;
       margin: 0 10px;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      white-space: nowrap;
     }
 
     .day-heading {
@@ -66,7 +65,7 @@
   </div>
 
   <script>
-    const scheduleData = [
+       const scheduleData = [
       {
         week: 'Week A',
         day: 1,
@@ -201,7 +200,7 @@
         timetableContainer.style.display = "none";
         button.textContent = "Show Timetable";
       } else {
-        timetableContainer.style.display = "block";
+        timetableContainer.style.display = "flex";
         button.textContent = "Hide Timetable";
         renderTimetable(scheduleData, timetableContainer);
       }
