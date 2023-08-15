@@ -10,6 +10,7 @@
   </div>
 
   <script>
+    
     const scheduleData = [
         week: 'Week A',
         day: 1,
@@ -134,46 +135,43 @@
     ];
 
    const scheduleContainer = document.getElementById('scheduleContainer');
-    const scheduleButton = document.getElementById('scheduleButton');
-    let isScheduleVisible = false;
+const scheduleButton = document.getElementById('scheduleButton');
+let isScheduleVisible = false;
 
-    function toggleSchedule() {
-      if (!isScheduleVisible) {
-        scheduleContainer.style.display = 'block';
-        scheduleContainer.innerHTML = getScheduleHTML(); // Generate the schedule content here
-        scheduleButton.style.display = 'none';
-      } else {
-        hideSchedule();
-      }
-      isScheduleVisible = !isScheduleVisible;
-    }
+function toggleSchedule() {
+  if (!isScheduleVisible) {
+    scheduleContainer.style.display = 'block';
+    scheduleContainer.innerHTML = getScheduleHTML(); // Generate the schedule content here
+    scheduleButton.style.display = 'none';
+  } else {
+    hideSchedule();
+  }
+  isScheduleVisible = !isScheduleVisible;
+}
 
-    function hideSchedule() {
-      scheduleContainer.style.display = 'none';
-      scheduleButton.style.display = 'block';
-      isScheduleVisible = false;
-    }
+function hideSchedule() {
+  scheduleContainer.style.display = 'none';
+  scheduleButton.style.display = 'block';
+  isScheduleVisible = false;
+}
 
-    scheduleContainer.addEventListener('click', hideSchedule);
+function getScheduleHTML(selectedSchedule) {
+  let scheduleHTML = '<ul>';
+  for (const period of selectedSchedule.schedule) {
+    scheduleHTML += `
+      <li>
+        ${period.period} - ${period.time}<br>
+        Subject: ${period.subject}<br>
+        Location: ${period.location}
+      </li>
+    `;
+  }
+  scheduleHTML += '</ul>';
+  return scheduleHTML;
+}
 
-    function getScheduleHTML() {
-      // Retrieve the schedule data for the selected week and day
-      const selectedSchedule = scheduleData.find(item => item.week === 'Week A' && item.day === 1);
+scheduleButton.addEventListener('click', toggleSchedule);
 
-      // Generate the HTML for the schedule
-      let scheduleHTML = '<ul>';
-      for (const period of selectedSchedule.schedule) {
-        scheduleHTML += `
-          <li>
-            ${period.period} - ${period.time}<br>
-            Subject: ${period.subject}<br>
-            Location: ${period.location}
-          </li>
-        `;
-      }
-      scheduleHTML += '</ul>';
-
-      return scheduleHTML;
     }
   </script>
 </body>
