@@ -135,14 +135,10 @@
     },
     ];
 
- scheduleData = [
-      // ... (your schedule data here)
-    ];
-
-    // Function to generate the schedule HTML
-    function getScheduleHTML(selectedSchedule) {
+  // Function to generate the schedule HTML
+    function getScheduleHTML(schedule) {
       let scheduleHTML = '<ul>';
-      for (const period of selectedSchedule.schedule) {
+      for (const period of schedule) {
         scheduleHTML += `
           <li>
             ${period.period} - ${period.time}<br>
@@ -163,7 +159,7 @@
 
       if (!isScheduleVisible) {
         scheduleContainer.style.display = 'block';
-        scheduleContainer.innerHTML = getScheduleHTML(selectedSchedule);
+        scheduleContainer.innerHTML = getScheduleHTML(selectedSchedule.schedule);
         scheduleButton.style.display = 'none';
       } else {
         hideSchedule();
