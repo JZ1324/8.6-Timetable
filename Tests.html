@@ -133,7 +133,7 @@
     },
     ];
 
-    const scheduleContainer = document.getElementById('scheduleContainer');
+   const scheduleContainer = document.getElementById('scheduleContainer');
     const scheduleButton = document.getElementById('scheduleButton');
     let isScheduleVisible = false;
 
@@ -142,6 +142,8 @@
         scheduleContainer.style.display = 'block';
         scheduleContainer.innerHTML = getScheduleHTML(); // Generate the schedule content here
         scheduleButton.style.display = 'none';
+      } else {
+        hideSchedule();
       }
       isScheduleVisible = !isScheduleVisible;
     }
