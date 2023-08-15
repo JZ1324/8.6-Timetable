@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Schedule Display</title>
+  <style>
+    #buttonContainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #timetableContainer {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <button id="scheduleButton" onclick="toggleSchedule()">Show Schedule</button>
-  <div id="scheduleContainer" style="display: none;">
-    <!-- Schedule content will be displayed here -->
+  <div id="buttonContainer">
+    <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
+  </div>
+  <div id="timetableContainer">
+    <!-- Graph rendering code goes here -->
   </div>
 
   <script>
-    
-    const scheduleData = [
+       const scheduleData = [
       {
         week: 'Week A',
         day: 1,
@@ -134,50 +144,23 @@
       ]
     },
     ];
+    let timetableVisible = false;
 
-  // Function to generate the schedule HTML
-    function getScheduleHTML(schedule) {
-      let scheduleHTML = '<ul>';
-      for (const period of schedule) {
-        scheduleHTML += `
-          <li>
-            ${period.period} - ${period.time}<br>
-            Subject: ${period.subject}<br>
-            Location: ${period.location}
-          </li>
-        `;
-      }
-      scheduleHTML += '</ul>';
-      return scheduleHTML;
-    }
+    function toggleTimetable() {
+      const button = document.getElementById("toggleButton");
+      const timetableContainer = document.getElementById("timetableContainer");
 
-    // Function to toggle the schedule visibility
-    function toggleSchedule(selectedSchedule) {
-      const scheduleContainer = document.getElementById('scheduleContainer');
-      const scheduleButton = document.getElementById('scheduleButton');
-      let isScheduleVisible = scheduleContainer.style.display === 'block';
-
-      if (!isScheduleVisible) {
-        scheduleContainer.style.display = 'block';
-        scheduleContainer.innerHTML = getScheduleHTML(selectedSchedule.schedule);
-        scheduleButton.style.display = 'none';
+      if (timetableVisible) {
+        timetableContainer.style.display = "none";
+        button.textContent = "Show Timetable";
       } else {
-        hideSchedule();
+        timetableContainer.style.display = "block";
+        button.textContent = "Hide Timetable";
+        renderTimetableGraph(scheduleData); // Call your graph rendering function here
       }
-    }
 
-    // Function to hide the schedule
-    function hideSchedule() {
-      const scheduleContainer = document.getElementById('scheduleContainer');
-      const scheduleButton = document.getElementById('scheduleButton');
-      scheduleContainer.style.display = 'none';
-      scheduleButton.style.display = 'block';
+      timetableVisible = !timetableVisible;
     }
-
-    // Attach the click event listener
-    document.getElementById('scheduleButton').addEventListener('click', function() {
-      toggleSchedule(scheduleData[0]); // Show the first schedule by default
-    });
   </script>
 </body>
 </html>
