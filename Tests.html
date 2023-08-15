@@ -135,7 +135,12 @@
     },
     ];
 
- function getScheduleHTML(selectedSchedule) {
+ scheduleData = [
+      // ... (your schedule data here)
+    ];
+
+    // Function to generate the schedule HTML
+    function getScheduleHTML(selectedSchedule) {
       let scheduleHTML = '<ul>';
       for (const period of selectedSchedule.schedule) {
         scheduleHTML += `
