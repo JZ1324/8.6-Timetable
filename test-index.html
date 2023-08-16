@@ -1,48 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Opal in HTML, CSS, and JS</title>
-  <style>
-    body {
-      text-align: center;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+
+  .gemstone {
+    width: 150px;
+    height: 150px;
+    background: conic-gradient(
+      from 45deg,
+      #FF69B4 0%,
+      #FF1493 25%,
+      #FF69B4 50%,
+      #FF1493 75%,
+      #FF69B4 100%
+    );
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(45deg);
+    animation: rotate 8s linear infinite;
+  }
+
+  .gem-facet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewY(-45deg);
+  }
+
+  .gem-facet:nth-child(1) {
+    transform: rotate(45deg) skewY(-45deg);
+  }
+
+  .gem-facet:nth-child(2) {
+    transform: rotate(90deg) skewY(-45deg);
+  }
+
+  .gem-facet:nth-child(3) {
+    transform: rotate(135deg) skewY(-45deg);
+  }
+
+  .gem-facet:nth-child(4) {
+    transform: rotate(180deg) skewY(-45deg);
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(45deg);
     }
-    .opal {
-      width: 200px;
-      height: 200px;
-      border: 1px solid black;
-      background-color: transparent;
+    100% {
+      transform: rotate(405deg);
     }
-    .opal .play-of-color {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(45deg, #ffff00, #ff0000, #ffff00);
-      opacity: 0.5;
-    }
-  </style>
+  }
+</style>
+<title>Gemstone Example</title>
 </head>
 <body>
-  <div id="opal"></div>
-  <script src="https://opalrb.com/opal/current/opal.min.js"></script>
-  <script type="text/ruby">
-    require 'opal'
-
-    document.getElementById('opal').classList.add('opal')
-
-    div = document.createElement('div')
-    div.classList.add('play-of-color')
-    document.getElementById('opal').appendChild(div)
-
-    document.querySelector('.opal').on :click do
-      puts 'You clicked the opal!'
-      @play_of_color.style.opacity = 0.0
-      setTimeout(->
-        @play_of_color.style.opacity = 0.5
-      , 200)
-    end
-  </script>
+  <div class="gemstone">
+    <div class="gem-facet"></div>
+    <div class="gem-facet"></div>
+    <div class="gem-facet"></div>
+    <div class="gem-facet"></div>
+  </div>
 </body>
 </html>
