@@ -22,6 +22,7 @@
       display: none; /* Hide by default */
       overflow-x: auto;
       padding: 20px;
+      display: flex; /* Set to flex to create a horizontal layout */
     }
 
     .day-column1 {
@@ -210,7 +211,7 @@
         timetableContainer.style.display = "none";
         button.textContent = "Show Timetable";
       } else {
-        timetableContainer.style.display = "block";
+        timetableContainer.style.display = "flex";
         button.textContent = "Hide Timetable";
         renderTimetable(scheduleData, timetableContainer);
       }
