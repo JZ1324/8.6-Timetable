@@ -489,7 +489,6 @@ display: flex; justify-content: center; align-items: center;"></div>
   <div id="buttonContainer1">
     <button class="glow-on-hover" id="toggleButton" onclick="toggleTimetable()"><b style="font-size: 16px;">Show Full Timetable</b></button>
   </div>
-  <div></div>
   <div id="timetableContainer1" class="timetable-container1">
     <!-- Timetable will be dynamically generated here -->
   </div>
@@ -1093,11 +1092,14 @@ display: flex; justify-content: center; align-items: center;"></div>
 
       if (timetableVisible) {
         timetableContainer.innerHTML = ""; // Clear the table when hiding
-        timetableContainer.style.display = "none";
+        timetableContainer.style.display = "flex";
+        button.style = "font-size: 16px";
+        
         button.textContent = "Show Timetable";
       } else {
         timetableContainer.style.display = "flex";
         button.textContent = "Hide Timetable";
+        button.style = "font-size: 16px";
         renderTimetable(scheduleData1, timetableContainer);
       }
 
