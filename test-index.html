@@ -14,23 +14,16 @@
   }
 
   .gemstone {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     position: relative;
-    perspective: 800px;
+    perspective: 1000px;
   }
 
   .gem {
     width: 100%;
     height: 100%;
-    background: conic-gradient(
-      from 45deg,
-      #FF69B4 0%,
-      #FF1493 25%,
-      #FF69B4 50%,
-      #FF1493 75%,
-      #FF69B4 100%
-    );
+    background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4);
     border-radius: 50%;
     position: absolute;
     transform-style: preserve-3d;
@@ -41,25 +34,25 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    transform: skewY(-45deg) translateZ(50px);
+    transform: skewY(-45deg);
   }
 
   .gem-facet:nth-child(1) {
-    transform: rotateX(45deg) skewY(-45deg) translateZ(50px);
+    transform: rotate(45deg) skewY(-45deg);
   }
 
   .gem-facet:nth-child(2) {
-    transform: rotateX(90deg) skewY(-45deg) translateZ(50px);
+    transform: rotate(90deg) skewY(-45deg);
   }
 
   .gem-facet:nth-child(3) {
-    transform: rotateX(135deg) skewY(-45deg) translateZ(50px);
+    transform: rotate(135deg) skewY(-45deg);
   }
 
   .gem-facet:nth-child(4) {
-    transform: rotateX(180deg) skewY(-45deg) translateZ(50px);
+    transform: rotate(180deg) skewY(-45deg);
   }
 
   @keyframes rotate {
