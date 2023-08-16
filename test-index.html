@@ -25,12 +25,12 @@
   </style>
 </head>
 <body>
-  <div class="opal">
-    <div class="play-of-color"></div>
-  </div>
+  <div id="opal"></div>
   <script src="https://opalrb.com/opal/current/opal.min.js"></script>
   <script type="text/ruby">
     require 'opal'
+
+    document.getElementById('opal').classList.add('opal')
 
     document.querySelector('.opal').on :click do
       puts 'You clicked the opal!'
