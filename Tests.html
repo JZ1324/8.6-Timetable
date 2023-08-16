@@ -9,13 +9,13 @@
       padding: 0;
     }
 
-    .timetable-container {
+    .timetable-container1 {
       display: flex;
       overflow-x: auto;
       padding: 20px;
     }
 
-    .day-column {
+    .day-column1 {
       flex: 0 0 auto;
       width: 200px;
       margin: 0 10px;
@@ -25,7 +25,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
-    .day-heading {
+    .day-heading1 {
       color: #333333;
       font-size: 20px;
       font-weight: bold;
@@ -33,24 +33,24 @@
       text-align: center;
     }
 
-    .period {
+    .period1 {
       margin-bottom: 10px;
       text-align: left;
     }
 
-    .period-time {
+    .period-time1 {
       color: #666666;
       font-size: 16px;
       font-weight: bold;
     }
 
-    .period-subject {
+    .period-subject1 {
       font-size: 18px;
       font-weight: bold;
       color: #333333;
     }
 
-    .period-location {
+    .period-location1 {
       font-size: 16px;
       color: #666666;
     }
@@ -60,12 +60,12 @@
   <div id="buttonContainer">
     <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
   </div>
-  <div id="timetableContainer" class="timetable-container">
+  <div id="timetableContainer1" class="timetable-container1">
     <!-- Timetable will be dynamically generated here -->
   </div>
 
   <script>
-       const scheduleData = [
+       const scheduleData1 = [
       {
         week: 'Week A',
         day: 1,
@@ -193,16 +193,16 @@
 
     function toggleTimetable() {
       const button = document.getElementById("toggleButton");
-      const timetableContainer = document.getElementById("timetableContainer");
+      const timetableContainer = document.getElementById("timetableContainer1");
 
       if (timetableVisible) {
         timetableContainer.innerHTML = ""; // Clear the table when hiding
         timetableContainer.style.display = "none";
-        button.textContent = "Show Timetable";
+        button.textContent = "Show Timetable1";
       } else {
         timetableContainer.style.display = "flex";
-        button.textContent = "Hide Timetable";
-        renderTimetable(scheduleData, timetableContainer);
+        button.textContent = "Hide Timetable1";
+        renderTimetable(scheduleData, timetableContainer1);
       }
 
       timetableVisible = !timetableVisible;
@@ -213,7 +213,7 @@
 
       data.forEach(day => {
         const dayColumn = document.createElement("div");
-        dayColumn.classList.add("day-column");
+        dayColumn.classList.add("day-colum1n");
 
         const dayHeading = document.createElement("div");
         dayHeading.classList.add("day-heading");
@@ -225,9 +225,9 @@
           periodElement.classList.add("period");
 
           const periodTime = document.createElement("div");
-          periodTime.classList.add("period-time");
-          periodTime.textContent = period.time;
-          periodElement.appendChild(periodTime);
+          periodTime.classList.add("period-time1");
+          periodTime.textContent = period.time1;
+          periodElement.appendChild(periodTime1);
 
           const periodSubject = document.createElement("div");
           periodSubject.classList.add("period-subject");
@@ -235,14 +235,14 @@
           periodElement.appendChild(periodSubject);
 
           const periodLocation = document.createElement("div");
-          periodLocation.classList.add("period-location");
-          periodLocation.textContent = period.location;
-          periodElement.appendChild(periodLocation);
+          periodLocation1.classList.add("period-location1");
+          periodLocation1.textContent = period.location1;
+          periodElement.appendChild(periodLocation1);
 
-          dayColumn.appendChild(periodElement);
+          dayColumn.appendChild(periodElement1);
         });
 
-        container.appendChild(dayColumn);
+        container.appendChild(dayColumn1);
       });
     }
   </script>
