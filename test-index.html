@@ -31,7 +31,10 @@
     require 'opal'
 
     document.getElementById('opal').classList.add('opal')
-    document.getElementById('opal').appendChild(document.createElement('div')).classList.add('play-of-color')
+
+    div = document.createElement('div')
+    div.classList.add('play-of-color')
+    document.getElementById('opal').appendChild(div)
 
     document.querySelector('.opal').on :click do
       puts 'You clicked the opal!'
