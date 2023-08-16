@@ -11,7 +11,7 @@
       width: 200px;
       height: 200px;
       border: 1px solid black;
-      background-color: #ffffff;
+      background-color: transparent;
     }
     .opal .play-of-color {
       position: absolute;
@@ -31,6 +31,7 @@
     require 'opal'
 
     document.getElementById('opal').classList.add('opal')
+    document.getElementById('opal').appendChild(document.createElement('div')).classList.add('play-of-color')
 
     document.querySelector('.opal').on :click do
       puts 'You clicked the opal!'
