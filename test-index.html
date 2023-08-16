@@ -1,1145 +1,623 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>8.6's Timetable</title>
-  <link rel="icon" type="image/png" href="https://i.imgur.com/rJtWReo.png">
-  <style>
-    
-    body {
-      background-color: #A48BBE;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-       /* Add animation styles for h1 */
-h1 {
-  text-align: center;
-  font-size: 30px;
-  position: relative;
-  z-index: 1;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+
+
+.button--piyo{
+    --main_color : #f4cf47 ;
+    --sub_color1 : #f4e19c ;
+    --sub_color2 : #ff8108 ;
+    --base_color : #000 ;
+    --border_radius1 : 60px 60px 40px 40px / 48px 48px 30px 30px ;
+    --border_radius2 : 70px 70px 40px 40px / 48px 48px 30px 30px ;
+    --border_radius3 : 40px 40px 40px 40px / 48px 48px 30px 30px ;
+}
+.button--hoo{
+    --main_color : #4993ff ;
+    --sub_color1 : #385082 ;
+    --sub_color2 : #fff58f ;
+    --sub_color3 : #fff ;
+    --base_color : #FFF ;
+    --border_radius1 : 50px 50px 50px 50px / 40px 40px 40px 40px ;
+    --border_radius2 : 60px 60px 50px 50px / 40px 40px 40px 40px ;
+    --border_radius3 : 40px 40px 50px 50px / 60px 60px 40px 40px ;
+    --border_radius3 : 50px 50px 45px 45px / 40px 40px 60px 60px ;
+}
+.button--pen{
+    --main_color : #4d4d4d ;
+    --sub_color1 : #FFF ;
+    --sub_color2 : #e9b800 ;
+    --base_color : #e9b800 ;
+    --border_radius1 : 60px 60px 40px 40px / 48px 48px 30px 30px ;
+    --border_radius2 : 70px 70px 40px 40px / 48px 48px 30px 30px ;
+    --border_radius3 : 40px 40px 40px 40px / 48px 48px 30px 30px ;
+}
+.button{
+    position : relative ;
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    width : 280px ;
+    height : 80px ;
+    box-sizing : border-box ;
+    text-decoration : none ;
+    border : solid 3px #000 ;
+    border-radius : 40px ;
+    background : var(--main_color) ;
+    font-family: 'Fredoka One', cursive;
+}
+.button::before{
+    content : '' ;
+    position : absolute ;
+    z-index : 2 ;
+    top : 0 ;
+    right : 20px ;
+    bottom : 0 ;
+    margin : auto 0 ;
+    width : 24px ;
+    height : 24px ;
+    background : var(--base_color) ; 
+    transition : all ease .2s ;
+}
+.button__wrapper{
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    position : relative ;
+    z-index : 1 ; 
+    width : 100% ;
+    height : 100% ;
+    border-radius : 40px ;
+    overflow : hidden ;
+}
+.button__wrapper::before,
+.button__wrapper::after{
+    transition : all .5s ease ;
+}
+.characterBox{
+    position : absolute ;
+    top : -54px ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+    display : flex ;
+    justify-content : space-between ;
+    align-items : flex-end ;
+    width : 180px ;
+    height : 56px ;
+}
+.button__text{
+    position : relative ;
+    z-index : 3 ;
+    font-size : 32px ;
+    letter-spacing : 4px ;
+    color : var(--base_color) ;
+    transition : all .3s ease ;
+}
+.character{
+    position : relative ;
+    width : 56px ;
+    height : 36px ;
+    box-sizing : border-box ;
+    border : solid 3px #000 ;
+    background : var(--main_color) ;
+    border-radius : var(--border_radius1) ;
+    animation : sleep 1s ease infinite alternate ;
+}
+.character::before{
+    content : '' ;
+    position : absolute ;
+    top : -12px ;
+    left : 22px ;
+    width : 12px ;
+    height : 12px ;
+    background : #000 ;
+    clip-path : path('M10.23,3.32c-3.54,.63-5.72,2.51-7.02,4.23-.33-1.58-.34-3.54,.93-5.12,.52-.65,.41-1.59-.24-2.11C3.24-.19,2.29-.08,1.77,.57c-3.82,4.77-.31,11.11-.13,11.42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0-.01-.02,2.49,.04,2.52,0,.1-.14,1.54-4.82,6.59-5.71,.82-.14,1.37-.92,1.22-1.74s-.94-1.36-1.75-1.21Z') ;
+}
+.character__face{
+    position : absolute ;
+    z-index : 2 ;
+    top : 15px ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+    width : 12px ;
+    height : 6px ;
+    background : var(--sub_color2) ;
+    border-radius : 50% 50% 50% 50% / 78% 78% 22% 22% ;
+    transition : .2s ;
+}
+.character__face::before,
+.character__face::after{
+    content : '' ;
+    position : absolute ;
+    top : -4px ;
+    width : 8px ;
+    height : 2px ;
+    border-radius : 4px ;
+    background : #000 ;
+}
+.character__face::before{
+    left : -5px ;
+}
+.character__face::after{
+    right : -5px ;
+}
+.button--hoo .character__face::before,
+.button--hoo .character__face::after{
+    background : #fff ;
+}
+.button--hoo .charactor__face2{
+    position : absolute ;
+    z-index : 1 ;
+    top : 8px ;
+    left : 0 ;
+    right : 0 ;
+    margin : auto ;
+    width : 14px ;
+    height : 10px ;
+    background : #385082 ;
+    animation : face_hoo 1s ease infinite alternate ;
+}
+.button--hoo .charactor__face2::before,
+.button--hoo .charactor__face2::after{
+    content : '' ;
+    position : absolute ;
+    top : -1px ;
+    width : 20px ;
+    height : 10px ;
+    box-sizing : border-box ;
+    border-radius : 50% ;
+    border : solid 3px #385082 ;
+    background : #000 ;
+}
+.button--hoo .charactor__face2::before{
+    left : -12px ;
+}
+.button--hoo .charactor__face2::after{
+    right : -12px ;
+}
+.button--hoo .charactor__body{
+    position : absolute ;
+    bottom : 0 ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+    width : 0 ;
+    height : 0 ;
+    border-top : solid 2px #385082 ;
+    border-left : solid 7px transparent ;
+    border-right : solid 7px transparent ;
+    border-bottom : solid 0 transparent ;
+    animation : body_hoo 1s ease infinite alternate ;
+}
+.button--hoo .charactor__body::before,
+.button--hoo .charactor__body::after{
+    content : '' ;
+    position : absolute ;
+    top : -4px ;
+    width : 0 ;
+    height : 0 ;
+    border-top : solid 2px #385082 ;
+    border-left : solid 7px transparent ;
+    border-right : solid 7px transparent ;
+    border-bottom : solid 0 transparent ;
+}
+.button--hoo .charactor__body::before{
+    left : -17px ;
+}
+.button--hoo .charactor__body::after{
+    right : -17px ;
 }
 
-h1 span {
-  display: inline-block;
-  background: linear-gradient(45deg, #FF006E, #1b2bde);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientAnimation 5s linear infinite;
+.button--pen .charactor__face2{
+    position : absolute ;
+    z-index : 1 ;
+    bottom : 0 ;
+    left : 0 ;
+    right : 0 ;
+    margin : auto ;
+    width : 30px ;
+    height : 10px ;
+    border-radius : 50% ;
+    background : #fff ;
+    animation : face_pen 1s ease infinite alternate ;
+}
+.button--pen .charactor__face2::before,
+.button--pen .charactor__face2::after{
+    content : '' ;
+    position : absolute ;
+    top : -8px ;
+    width : 17px ;
+    height : 10px ;
+    border-radius : 50% ;
+    background : #fff ;
+}
+.button--pen .charactor__face2::before{
+    left : -4px ;
+}
+.button--pen .charactor__face2::after{
+    right : -4px ;
 }
 
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.button--piyo::before{
+    clip-path : path('M24,12.02c0-1.09-.75-1.71-.81-1.77L11.17,.45c-.91-.74-2.21-.56-2.91,.42-.69,.97-.52,2.37,.39,3.11l7.12,5.81-13.7-.02h0C.93,9.77,0,10.76,0,11.99c0,1.23,.93,2.22,2.07,2.22l13.7,.02-7.13,5.78c-.91,.74-1.09,2.13-.4,3.11,.41,.58,1.03,.88,1.65,.88,.44,0,.88-.15,1.25-.45l12.04-9.76c.07-.06,.82-.67,.82-1.77Z') ;
 }
-
-
-
-    
-    
-  .fake-h1 {
-    text-align: center;
-    font-weight: bold;    
-   color: #FFFFFF;
-    font-size: 30px;
-    padding: 20px;
-    text-shadow: 2px 2px #6c4d7d;
-   
-
-
-       
-    } h4 {
-      colour: #FFFFFF;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    } h2 {
-      
-      colour: #FFFFFF;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    } 
-    
-    .week {
-      text-align: center;
-      color: #FFFFFF;
-      font-size: 24px;
-      padding: 10px;
-      text-shadow: 2px 2px #000000;
-    }
-    
-    .timetable {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .day {
-      margin-bottom: 30px;
-    }
-    
-    .day-heading {
-      color: #333333;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .period {
-      margin-bottom: 10px;
-    }
-    .period-now{
-      margin-bottom: 10px;
-      background-color: rgba(180, 200, 255, 0.8);
-      padding: 20px;
-      border-radius: 2;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .period-time {
-      color: #666666;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    
-    .period-subject {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-    }
-    
-    .period-location {
-      font-size: 16px;
-      color: #666666;
-    }
-
-    .rose {
-      font-family: monospace;
-      font-size: 3px;
-      white-space: pre;
-      animation: rose-color-animation 5s infinite;
-    }
-
-    @keyframes rose-color-animation {
-      0% { color: #f50a0a; }
-      25% { color: #FF006E; }
-      50% { color: #1b2bde; }
-      75% { color: #f719ff; }
-      100% { color: #9C4870; }
-    }
-
-    .quote {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .quote .rose {
-      font-family: monospace;
-      color: #FF3154;
-      font-size: 3px;
-      white-space: pre;
-    }
-
-    .quote .quote-text {
-      color: #333333;
-      font-size: 20px;
-      margin-top: 10px;
-    }
-
-    /* Envelope CSS */
-
-
-
-    .letter-image {
-      position: absolute;
-      top: 12%;
-      left: 85%;
-      width: 150px;
-      height: 150px;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-    }
-
-    .animated-mail {
-      position: absolute;
-      height: 150px;
-      width: 200px;
-      transition: 0.4s;
-    }
-
-    .animated-mail .body {
-      position: absolute;
-      bottom: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0 100px 200px;
-      border-color: transparent transparent #e95f55 transparent;
-      z-index: 2;
-    }
-
-    .animated-mail .top-fold {
-      position: absolute;
-      top: 50px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 50px 100px 0 100px;
-      transform-origin: 50% 0%;
-      transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
-      border-color: #cf4a43 transparent transparent transparent;
-      z-index: 2;
-    }
-
-    .animated-mail .back-fold {
-      position: absolute;
-      bottom: 0;
-      width: 200px;
-      height: 100px;
-      background: #cf4a43;
-      z-index: 0;
-    }
-
-    .animated-mail .left-fold {
-      position: absolute;
-      bottom: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 50px 0 50px 100px;
-      border-color: transparent transparent transparent #e15349;
-      z-index: 2;
-    }
-
-    .animated-mail .letter {
-      left: 20px;
-      bottom: 0px;
-      position: absolute;
-      width: 160px;
-      height: 60px;
-      background: white;
-      z-index: 1;
-      overflow: hidden;
-      transition: 0.4s 0.2s;
-    }
-
-    .animated-mail .letter .letter-border {
-      height: 10px;
-      width: 100%;
-      background: repeating-linear-gradient(-45deg, #cb5a5e, #cb5a5e 8px, transparent 8px, transparent 18px);
-    }
-
-    .animated-mail .letter .letter-title {
-      margin-top: 10px;
-      margin-left: 5px;
-      height: 10px;
-      width: 40%;
-      background: #cb5a5e;
-    }
-
-    .animated-mail .letter .letter-context {
-      margin-top: 10px;
-      margin-left: 5px;
-      height: 10px;
-      width: 20%;
-      background: #cb5a5e;
-    }
-
-    .animated-mail .letter .letter-stamp {
-      margin-top: 30px;
-      margin-left: 120px;
-      border-radius: 100%;
-      height: 30px;
-      width: 30px;
-      background: #cb5a5e;
-      opacity: 0.3;
-    }
-
-    .shadow {
-      position: absolute;
-      top: 200px;
-      left: 64%;
-      width: 0px;
-      height: 0px;
-      transition: 0.4s;
-      transform: translateX(-50%);
-      border-radius: 100%;
-      background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
-    }
-
-    .letter-image:hover .animated-mail {
-      transform: translateY(50px);
-    }
-
-    .letter-image:hover .animated-mail .top-fold {
-      transition: transform 0.4s, z-index 0.2s;
-      transform: rotateX(180deg);
-      z-index: 0;
-    }
-
-    .letter-image:hover .animated-mail .letter {
-      height: 180px;
-    }
-
-    .letter-image:hover .shadow {
-      width: 230px;
-    }
-  </style>
- <style>
-.bb::before, .bb::after, .bb {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.button--hoo::before{
+    clip-path : path('M21.93,9.8h-3.33S11.5,.79,11.5,.79c-.74-.94-2.05-1.05-2.92-.26-.88,.79-.99,2.19-.25,3.13l4.84,6.13-11.09-.02C.95,9.73,0,10.76,0,11.99c0,1.23,.93,2.22,2.07,2.22l11.09,.02-4.86,6.12c-.74,.93-.63,2.33,.24,3.13,.39,.35,.87,.53,1.34,.53,.59,0,1.17-.27,1.58-.78l7.13-8.99h3.32s0,0,0,0c1.14,0,2.07-.99,2.07-2.22,0-1.23-.93-2.22-2.07-2.22Z') ;
 }
-
-.bb {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 200px;
-  height: 200px;
-  background: url("https://jz1324.github.io/Pictures/Logo.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
-  color: #69ca62;
-  box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+.button--pen::before{
+    clip-path : path('M23.36,10.63L6.18,.13c-.93-.57-1.85,.81-1.39,2.06l1.44,3.91c.3,.81,.01,1.81-.6,2.1L.72,10.58c-.96,.47-.96,2.37,0,2.83l4.91,2.38c.62,.3,.9,1.29,.6,2.1l-1.44,3.91c-.46,1.26,.46,2.63,1.39,2.06L23.36,13.37c.86-.53,.86-2.22,0-2.75Z') ;
 }
-
-.bb::before, .bb::after {
-  content: "";
-  z-index: -1;
-  margin: -5%;
-  box-shadow: inset 0 0 0 2px;
-  animation: clipMe 8s linear infinite;
+.button--piyo .button__wrapper::before,
+.button--piyo .button__wrapper::after{
+    content : '' ;
+    position : absolute ;
+    bottom : 0 ;
+    width : 130px ;
+    height : 38px ;
+    background : var(--sub_color1) ;
+    clip-path : path('M13.77,37.35L.25,16.6c-.87-1.33,.69-2.91,2-2.02l12.67,8.59c.81,.55,1.91,.14,2.18-.81l2.62-9.33c.39-1.4,2.34-1.42,2.76-.02l3.6,11.99c.33,1.11,1.74,1.4,2.47,.52L49.38,.52c.87-1.04,2.53-.42,2.53,.95V23.7c0,1.13,1.2,1.83,2.16,1.26l12.75-7.51c.85-.5,1.94,0,2.13,.98l1.5,7.6c.2,1.03,1.37,1.51,2.22,.92l17.74-12.3c1.09-.75,2.52,.25,2.21,1.55l-2.44,10.2c-.26,1.09,.74,2.06,1.8,1.75l30.8-9.04c1.37-.4,2.42,1.26,1.49,2.36l-9.07,10.66c-.83,.98-.1,2.49,1.17,2.42l12.12-.68c1.6-.09,2.12,2.15,.65,2.8l-2.73,1.21c-.18,.08-.38,.12-.58,.12H14.97c-.48,0-.93-.25-1.2-.65Z') ;
 }
-.bb::before {
-  animation-delay: -4s;
+.button--piyo .button__wrapper::before{
+    left : 0 ;
 }
-.bb:hover::after, .bb:hover::before {
-  background-color: rgba(255, 0, 0, 0.3);
+.button--piyo .button__wrapper::after{
+    right : 0 ;
+    transform : rotateY(180deg) ;
 }
-
-@keyframes clipMe {
-  0%, 100% {
-    clip: rect(0px, 220px, 2px, 0px);
-  }
-  25% {
-    clip: rect(0px, 2px, 220px, 0px);
-  }
-  50% {
-    clip: rect(218px, 220px, 220px, 0px);
-  }
-  75% {
-    clip: rect(0px, 220px, 220px, 218px);
-  }
+.button--hoo .button__wrapper::before,
+.button--hoo .button__wrapper::after{
+    content : '' ;
+    position : absolute ;
+    width : 80px ;
+    height : 100px ;
+    background : var(--sub_color1) ;
+    clip-path : path('M75.96,41.27l-42.76,11.17V0H0V100H33.2v-28.75l45.07-23.97c3.38-1.8,1.39-6.98-2.31-6.01Z') ;
 }
-html,
-body {
-  height: 100%;
+.button--hoo .button__wrapper::before{
+    left : 6px ;
+    bottom : 0 ;
+}
+.button--hoo .button__wrapper::after{
+    right : 8px ;
+    bottom : -10px ;
+    transform : rotateY(180deg) ;
+}
+.button--pen .button__wrapper::before,
+.button--pen .button__wrapper::after{
+    content : '' ;
+    position : absolute ;
+    width : 110px ;
+    height : 60px ;
+    background : var(--sub_color1) ;
+    clip-path : path('M9.12,14.14L43.15,.5c1.61-.86,3.57-.59,4.9,.68l19.55,14.31c.42,.4,.76,.89,.99,1.42l3.45,13.09c.89,2.06,3.18,3.09,5.28,2.37l11.76-4.86c1.56-.54,3.29-.11,4.43,1.1l11.93,12.39c.48,.51,.84,1.12,1.03,1.8l3.35,11.62c.8,2.79-1.25,5.58-4.1,5.58H4.27c-2.71,0-4.73-2.54-4.18-5.24L6.92,17.11c.26-1.28,1.07-2.37,2.2-2.97Z') ;
+}
+.button--pen .button__wrapper::before{
+    left : -16px ;
+    bottom : -10px ;
+}
+.button--pen .button__wrapper::after{
+    right : -8px ;
+    bottom : -20px ;
+    transform : rotateY(180deg) ;
+}
+.button:hover .button__wrapper::before{
+    transform : translateX(-12px) ;
+}
+.button:hover .button__wrapper::after{
+    transform : rotateY(180deg) translateX(-12px) ;
+}
+.button:hover .button__text{
+    letter-spacing : 6px ;
+}
+.button:hover::before{
+    right : 14px ;
+}
+.button:hover .wakeup{
+    animation : wakeup .2s ease ;
+    animation-fill-mode : forwards ;
+}
+.button:hover .wakeup .character__face{
+    top : 20px ;
+}
+.button:hover .wakeup .character__face::before,
+.button:hover .wakeup .character__face::after{
+    animation : eye 5s linear infinite ;
+}
+.button:hover .wakeup:nth-child(2) .character__face::before,
+.button:hover .wakeup:nth-child(2) .character__face::after{
+    animation : eye_2 5s linear infinite ;
+}
+.button--hoo:hover .wakeup .charactor__face2::before,
+.button--hoo:hover .wakeup .charactor__face2::after{
+    height : 20px ;
+}
+.button--hoo:hover .wakeup .charactor__body{
+    animation : body_hoo_wakeup .2s ease ;
+    animation-fill-mode : forwards ;
+    border-top : solid 6px #385082 ;
+}
+.button--hoo:hover .wakeup .charactor__body::before,
+.button--hoo:hover .wakeup .charactor__body::after{
+    top : -12px ;
+    border-top : solid 5px #385082 ;
+}
+.button--pen:hover .wakeup .charactor__face2{
+    animation : face_pen_wakeup .2s ease ;
+    animation-fill-mode : forwards ;
+}
+.button--pen:hover .wakeup .charactor__face2::before,
+.button--pen:hover .wakeup .charactor__face2::after{
+    top : -12px ;
+    height : 18px ;
+}
+@keyframes sleep{
+    0%  {
+        height : 36px ;
+        border-radius : var(--border_radius1) ;
+    }
+    100%{
+        height : 32px ;
+        border-radius : var(--border_radius2) ;
+    }
+}
+@keyframes wakeup{
+    0%  {
+        height : 32px ;
+        border-radius : var(--border_radius2) ;
+    }
+    100%{
+        height : 56px ;
+        border-radius : var(--border_radius3) ;
+    }
+}
+@keyframes eye {
+    0%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    30%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    32%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+    }
+    34%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    70%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    72%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+    }
+    74%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    76%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+    }
+    78%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    100%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+}
+@keyframes eye_2 {
+    0%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    10%{
+        transform : translateX(0);
+    }
+    12%{
+        transform : translateX(3px);
+    }
+    20%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    22%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+    }
+    24%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    25%{
+        transform : translateX(3px);
+    }
+    27%{
+        transform : translateX(0);
+    }
+    74%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+        transform : translateX(0);
+    }
+    76%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+        transform : translateX(3px);
+    }
+    78%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    80%{
+        top : -4px ;
+        width : 8px ;
+        height : 2px ;
+    }
+    82%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+    }
+    85%{
+        transform : translateX(3px);
+    }
+    87%{
+        transform : translateX(0);
+    }
+    100%{
+        top : -6px ;
+        width : 6px ;
+        height : 6px ;
+        transform : translateX(0);
+    }
+}
+@keyframes body_hoo{
+    0%  {
+        bottom : 2px ;
+    }
+    100%{
+        bottom : 0 ;
+    }
+}
+@keyframes body_hoo_wakeup{
+    0%  {
+        bottom : 2px ;
+    }
+    100%{
+        bottom : 6px ;
+    }
+}
+@keyframes face_pen{
+    0%  {
+        height : 14px ;
+    }
+    100%{
+        height : 10px ;
+    }
+}
+@keyframes face_pen_wakeup{
+    0%  {
+        height : 14px ;
+    }
+    100%{
+        height : 28px ;
+    }
 }
 
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+
+
+
+
+
+/* 本体と関係ないスタイル */
+.container{
+    width : 100% ;
+    height : 600px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : center ;
+    align-items : center ;
+    background : #FFF ;
 }
- </style>
-      <style>
-      /* Gradient button CSS */
-        html,
-        body {
-            margin: 0;
-            padding: 10px;
-            width: 100%;
-            height: 100vh;
-        }
+.button:not(:last-child){
+    margin-bottom : 80px ;
+}
 
-        .glow-on-hover {
-            width: 220px;
-            height: 50px;
-            border: none;
-            outline: none;
-            color: #fff;
-            background: #111;
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
-            border-radius: 10px;
-        }
-
-        .glow-on-hover:before {
-            content: '';
-            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-            position: absolute;
-            top: -2px;
-            left:-2px;
-            background-size: 400%;
-            z-index: -1;
-            filter: blur(5px);
-            width: calc(100% + 4px);
-            height: calc(100% + 4px);
-            animation: glowing 20s linear infinite;
-            opacity: 0;
-            transition: opacity .3s ease-in-out;
-            border-radius: 10px;
-        }
-
-        .glow-on-hover:active {
-            color: #000;
-        }
-
-        .glow-on-hover:active:after {
-            background: transparent;
-        }
-
-        .glow-on-hover:hover:before {
-            opacity: 1;
-        }
-
-        .glow-on-hover:after {
-            z-index: -1;
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #111;
-            left: 0;
-            top: 0;
-            border-radius: 10px;
-        }
-
-        @keyframes glowing {
-            0% { background-position: 0 0; }
-            50% { background-position: 400% 0; }
-            100% { background-position: 0 0; }
-        }
     </style>
- <style>
-    .timetable-container1 {
-      display: flex;
-      overflow-x: auto;
-      padding: 20px;
-    }
-
-    .day-column1 {
-      flex: 0 0 auto;
-      width: 200px;
-      margin: 0 10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .day-heading1 {
-      color: #333333;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .period1 {
-      margin-bottom: 10px;
-      text-align: left;
-    }
-
-    .period-time1 {
-      color: #666666;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .period-subject1 {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-    }
-
-    .period-location1 {
-      font-size: 16px;
-      color: #666666;
-    }#buttonContainer1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10px; /* Adjust this value as needed */
-    margin-top: 20px; /* Add some top margin for spacing */
-  }
-  </style>
-
+    <title>Button Styles</title>
 </head>
 <body>
-<div class="fake-h1" id="timeElement" style="
-display: flex; justify-content: center; align-items: center;"></div>
-  <h1><span>8.6 Timetable</span></h1>
-  <div id="buttonContainer1">
-    <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
-  </div>
-  <div id="timetableContainer1" class="timetable-container1">
-    <!-- Timetable will be dynamically generated here -->
-  </div>
-   <div class="week"></div>
-  <div class="timetable"></div>
-  <div></div>
-  <div class="rose-background">
-    <div class="quote">
-       <div class="bb"></div>
-      <div class="rose"> 
+    <div class="container">
+        <a href="#" class="button button--piyo">
+            <div class="button__wrapper">
+                <span class="button__text">ENTRY</span>
+            </div>
+            <div class="characterBox">
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                </div>
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                </div>
+                <div class="character">
+                    <div class="character__face"></div>
+                </div>
+            </div>
+        </a>
 
+        <a href="#" class="button button--hoo">
+            <div class="button__wrapper">
+                <span class="button__text">ENTRY</span>
+            </div>
+            <div class="characterBox">
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                    <div class="charactor__body"></div>
+                </div>
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                    <div class="charactor__body"></div>
+                </div>
+                <div class="character">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                    <div class="charactor__body"></div>
+                </div>
+            </div>
+        </a>
 
-        <!-- ASCII art of the rose -->
-                                                                                                      .====----:..                                                                                                                                                                                                       
-                                                                                         *@@%%%%%%@@@%#*=-.                                                                                                                                                                                                 
-                                                                                          -#@%*++++++**##%@%#*=-.                                                                                                                                                                                           
-                        :-.                                                        :-=+#%%@@@@@+++++++++++++**#%@%#+-.                                                                                                                                                                                      
-                       .@@+                                                   .-+#@@%%****++++++++++++++++++++++++*#%@%+:                                                                                                                                                                                
-                       -@@@:                                              :=*%@%#*+=++++++++++++++++++++++++++++++++==*%@%+.#@@%*-.                                                                                                                                                                         
-                       +@#@%. .-.                                     .=*%@%#*+++++++++++++++++++++++++++++++++++++++++++*%@@@#+#%@*-                                                             ..                                                                                                        
-                       *@*#@%.%@%:                                .-*%@%#*++++++++++++++++++++++++++++++++++++++++++++++++++#%*+==+#@%-                                                   .-=*#%@@@@@@%*+=-.                                                                                                
-                     .:*@#+#@#@@%@:                        -==+*#%@%#*+++++=++++++++=+++++++++++++++++++++++++++++++++++++++++++++++=#@#-                                           :-+*%%%*+==-------=++*#%%#*=-.                                                                                          
-                     #@@@#++#@@%+%@=    :.                 =@@@%##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=+%@+                                    .:=*%%#*+=-:::-----------------=+*#%%#+-.                                                                                     
-                    .#@@@%+++*#*++#@#: :@@%*-.              :*@@@%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*@*                                :=#@%*+---------------------------------=*#@%+-                                                                                  
-                     +@*+++++++++++*%@+.*@##%@@%#********#%@@%#*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#@+                           :=*%%*+-----------------------------------------=*%@#=:                                                                              
-                     :@#=++++++++++++*%@*@%++++******###**+++++++++++++++++++++++++++++++++++++++++++++++++=++++++++++++++++++++++++*+++++%@-                      .=#%%*+-------------------------------------------------=*%%+:                                                                         
-                      %@+++++++++++++++*%@@@*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=++++++++++++++++++*++++++++=++*@%.              .:-=**%@#+----------------------------------------:----------::---=*@%=                                                                        
-                      =@*+++++++++++++=++*##*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==+++++++++++++++++++++++++=*@+      .:-=+*#%@@@@@#+--------------------------------------=----:-----------:------+%%=                                                                      
-                       %@+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**+**+++**+**+%@=-+*#@@%#**++#%%*=:-------------------------=---------=--------=======---------------=%%-                                                                     
-                       =@#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*++++***+***++=+#%@@@#*+===-=-+%@#=--------=---------------==--==-----==------------==-==------------------+@*.                                                                  
-                       .%@*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**+*****+**##%@%**=::------=*%%+---------------=-==---=---===--==---=--=----------=------==-----------:.::::+@#.                                                                
-                        .%@*++++++++++++++=++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+*****++**#%@%#+==:.:::--=====#@%+:---------=---==-----=-------=-----=---===-=====--====---=----=----:--------:--+@#:.                                                                
-                         :@%+++++++++++++++++++++++++++++++++++++++++=++++++++++++++++++*+++++++=++++++++++++++++**+*******##@@%+--:-::-:----=====#@%=--:--------======-=-------------=---==---=----==-=--=-=============---------------+@@@%#+-:.                                                          
-                         .=@%*+++++++++++++++++++++++++++++++++++++++++++++++++*+*******++**+****+++++++++++++++++++****#@%*+=::--::-------=====#@%=----------======---------===-===-=--------====--==-============+++++++======---------*@*=+*#%@%#*=-.                                                    
-                          *%@%*+++++++++++++++++++++++++++++++++++++++++++*+**************************+++++++++++*****%@#+:::::::--------======@%=---------======-------========-======--===================+*#%%@@%#####%%@@#*======-----%@=-------=*#%%#+-.                                              
-                          +@@@@*+++++++++++++++++++++++++++++++++++++++++*%@@@@@%%%%%###**********+++****+++++++****#@@+:---------------=====+@%----------=---==--------======-=============-==========+*#@@%#*+=-----------=*%@%*=-====---@%------:-----=*%@%+:                                           
-                          .%@##*++++++++++++++++++++++++++++++++++++++++++++*****####%%@@@%%##*************+++++***#@*-:---------------=====+@%---------=-=--=---=-===============================+*#%@%#*=---------------------+#@#+=====-*@+--=---:------::-*@#-                                       
-                           -@%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**#%@@%##**********+++*+*%@*::-----------=--=======@%-----------====-=======++++++++=================+#%@%#+=-----------------------------*@@*===-=@%======--------::--*@#:                                        
-                            +@#*+++++++++++++++++++++++++++++++++++++++++++++++=++++++++++++++*#@@%#******++******@%-----------:-------====#@=--------==========*#%@@%%%##%%%@@@%#*+=======*%@@#+----------------------:::::::-------+%@#===#@+===--=------------=@@:                        
-                            .%@**++++++++++++++++++++++++++++++++++++++++++++++=+++++++++++++++++*#@@%#********+*@@-------------------=====@%-----------=====+%@#+=-------------=+#%@%*=*%@%*=------------::--------------:--::--------+#@#++@#======-------------=%%.                                     
-                             :@@**+++++++++++++++++++++++++++++++++=++++++++++++++++++++++++++++++++*%@@#*******%@=---------------==--=====@#-------=-=====*@@+----------------------+%@@*===--------------------------------------------=*@@@@=-=======-==--------=@#.                    
-                              =@%**++++++++++++++++++++++++++++++++++++++++++++++++=+++++++++++++*++++*#@@#****#@*-------:------------=====@#------======+%@*--:-----------------------*@%===--------------------------------------:::------#@@@%%#**+++===---------+@*                                    
-                              .=@%**+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**++++*++*%@%***@@---------------=----======@%------=====#@#=----------------------------=%%+===----------------------------------------:-----=#@@#**####%%@@%%#*++=--#@-                             
-                                =@%*+=++++++++++++++++++++++++++++++=++++++++++++++++++++++++++***+*+***++*%@%%@=-----------=--------======@%-----==--+%@+--------------------::--------:-%@*===-=--==----=------------:---------------:--------*@%=-----:::-==**#%%@%@%=-:                                 
-                                 +@#+*+++++++++++++++++++++++++++++++++++++++++++++++++++++++******+++*+****#@@*----------------:----=====-%%------==#@#---------:-:----------:--::-------:#@*==========--===-=--=-----:------=---------::-:------#@%===----:--:-----=+*##@@#+:             
-                                  =@#**+++++++++++++++++++++++++++++++++++++++++++++++++++++**++++*++********@%-----------------:--=--=--=-%@------+%@+-----------------------:-===+++++++++%@#+++++======-==========-==------------------::-------=#@#=----------:--:-----=+#@%+.               
-                                   =@%**++++++++++++++++++=++++++++++++++++++++++++++++++***+***********##%@@@+-----------------------=----*@=----#@#---------:-:-----------+*%@%###*********#######%%%%@@@%%#*+=======--------------------::--------=%@#=-=-==--=-------------=#@*: 
-                                    +@%***+++++++++++++++++++++++++++++++++++++++++++++*************#%@@%#*+@@--------------:----------==-==@#--=%@=-------:-:-------=----*@@*=----------------------------=+*#@@*=======------------------------------=%@*==-===------=---------=#@=                       
-                                     -@%**+++++++++++++++++++++++++++++++++++++++++++++*********##%@%*==---#@+------------------------------%@-+@%--:-------:--------=--+%%+-:----------------------------------+%@*======----------------------:-----:--*@%+=-==-==---------------+@#:        
-                                      :%@#++++++++++++++++++++++++++++++++++++++++++*+*******#%@#*=::--=---@%--------------------------=+**#@@#@*-----------:-------=-+%@*---------------:------:-:---------------#@#=======----=---------------------::---*@%==-====---------------=#@-               
-                                     .=-*@%*+++++++++++++++++++++++++++++++++++++==+++****#%@#+--------=--*@+--------------------=+*#@@%##*++@@=:----------------====#@#--------:--------:::----:-:--:-------------#@+======--------=-=---------------------+@@+=========----------:--#@+            
-                                     -@@@@@@#++++++++++++++++++++++++++++++*+++++=++****#@@*-::----------=@@------------=--=+*#%@%#*+==-==-+@#-----------------==--+%%+---------------------------------------------@%========-====--==-----------------------%@*====--==--------------*@+                  
-                                      +@#*%@@@*++++++++++++++++++++++++++++++***+++****%@#------------=--*@*----------==+#%@#*+=-----=--==#@*----------------====-#@#-------:---------------------------------------#@%#*+=========---=-==---------------------#@#====-===--------------*@=                 
-                                      .#@#++**+++++++++++++++++++++++++++++++**++*****%@*------------=-=-%@=---------=#@%*=--------======%@*------------------==-#@#------:::---------------------------------------*@#+#%@@%+========--====----------------:---+@#======-=------------::#@-                
-                                       .*@#**+++++++++++++++++++++++++++++=++++****+*%@+---------------==@@--------=#@#=----------=-====%@+-----------------===-*@*-------:::--------------:------------------------+@#::--=*%@%*======--=--=--------------------*@#=====--=--------------@@:            
-                                        .+@%**++++++++++++++++++++++++++++++*+******%@+--------------===+@#---===-+@%=----------:--==-=%@+:---------------====-#@*---------::-----------------==---==---------------+@#--------+#@%*========-=-----------------::-@@======----------------=@#               
-                                          -@@**+++++++++++++++++++++++++++++++*****#@*--------------====#@+----=-+@%=-----------------#@*::--------------==---*@#-------:-------=---=-=--=--==-===---======---------+@#------:::--+%@%+=======--------------------#@+====------------------*@-              
-                                           -%@#*++++++++++++++++++++++++++*+******#@#---------------====%@=--===*@#---------------=--#@*:---------------===--=@%------------------====---============--======-------+@#------:-:----=#@%+======-----------------:-@@=====-------------------%%.             
-                                            :#@%**+*++++++++++++++++++++++*****+**@%----------------==--%@----=#@*-------------==--=#@*:-----------------=-==%@=----------------======--++*****+============--------#@+----------------*@%+====-------------:--::#@*======-===----:--:------+@#           
-                                             .=@%#***++++++++**++****+++++++****+@@=----------------==--@%==-=%@+-------------==-=-+@%------------------==--=@#-------:-------========+@@#****#%@@#*+============-=-%@=------------------*@%+=====-=-----------:*@*======----=--------:------%@:            
-                                               :#@%++++++***++******+*+++++++***%@*--------------=---===@%=-=%@=-------------======@%-----------------======+@#-------------=========#@*---------=+#%@%*+===+***+=-+@#-------::------------*@%+=-==------------#@*======---------------------+@+           
-                                                 :#@%++***************+++++*****@#-------------------==-#@#*@@=-----:--------====-#@=------------------======@%:------------=======+@@=------------:--+*%@%@%****%@@@=----------------------=#@#====----------#@*======-=--=------------------@%           
-                                                   -#@%#***********************@@--------------=----=====+#@@=------:---::---====*@*----------------=-=======%@-----------=--======@%-------------------=@@+------=*%@#==---=------:----------+@%+====-------%@+=====-------------------------#@.       
-                                                   .=#@@@@@@@@@@@@@@@%%%####**#@*---------------=---==-===%@-:----:----------====@@------------------======-==@%=----------======+@%-------------------+@#-----------=#@#+-==------------------=%@+===-----+@@%@+===--------------------------+@-.          
-                                                   .+@@%#*+++++++++****###%%@@@@-------------------=-=-==%@=---------------=====#@=-------------------========+@@+:-------======*@%-------------------#@*--------------=#@%+==-------------:-----#@*====--*@*-=%@+===-------------------------=@=           
-                                         .:-=++*#%%%%%@@@@#*++++=++++++++++++#@#-----------------=--====#@+-------::-------=====@%------------------=======-====#@#----===-====*@#-----------==--====%@=----------------==#@#===---------------:::#@+===+@@=:--=%@====--==--------------------=@+         
-                                   .=+#%@@%%%###**++++**###++++++++++++++++++#@=----------------==--===+@*-----------------====#@=-------------------==========-%@%@*-----====#@*------------=---===%@=------------::----==*@%===----------------:=@%=+%@*------=@%======-=------:-------------@+           
-                                 =#@%#**++++++++++++++++++++++++++++++++++++=@%-----------------==-====@%------------------====@@--------------------==========%@+-+@%*---===#@*--=*##%%###**+====+@@=--------------------===@%==------------------@@%@#=:-------*@#===-==------------:--------@*      
-                                 +%@@%#*++++++++++++++++++++++++++++=++++++++@*----------------==-====%@=--------=---------====@%-------:------------=========#@+--==#@%=-===@%--#@#+=====+*#%@@%#%@+=-------------------===*@#===----------------=@@%=----------=@@+======-------------------=@+  
-                               .-+#@@%%#+=++++++++++++++++++++++++++++++=++=*@+-----------------=====*@#-----------------=====+@#---------------------=======*@*:--====#@#==+@%+%@=:--::::-----=+@@+=----:-----------=-===+%@*==------------------*@#===----------+@#====------------::-------+@=          
-                          .-+#@@%#**++++++++++++++++++++++++++++++++++++++++%@----------------=======%@-------------------====+@#----------:----------======+@#-----==-=+#@#+=@@#-:--:--:------=%@+-----------------====*%@#====-----------------=@%=====--=------=#@+====--------------------*@:           
-                       .=#@@%#*+++++++++++++++++++++++++++++++++++++++++++++@%-----------------====-*@*-:::----------------====@%-----:-:--:----------======@@=-:----=--=-+%@%@#--:-----:---=--*@*---------------=-===*@@*=--===-----------------%@+===------------=@%====--------:-:---------%@.           
-                    .+%@%#*++++++++++++++++++++++++++++++++++++++++++++++++*@%-----------------=====%@-:--:-------------=--===-*@*------:-------------====-#@+---------=====*@#---------------+@#-==-----------====*%@#+=======-----------------%@*====------------=#@+==--------:-----------=@#            
-                   +@%#+++++++++++++++++++++++++++++++++++++++=+++++++++++++%@---------------=--===*@#::::--------=--------=====#@*--------------------====@#------------===*@*------------=-=@%---=---=-====-==+#@%*======-=------------------#@*=====--=---------=+@%===------:------------*@=            
-                  .%@@%%*++++++++++++++++++++++++++++++++++++=++++****+**+++*@#--------------=--===#@+--::--------=--::----=====-#@#-------------------===%@=------------===-*@@%+----------=%@+---===========#@@#=-=======------------------:#@+======------------==@@===-------------------%@:.       
-                   :#@@%#++++++++++++++++++++++++++++++++++++++++++********++#@*--------------=====@@=--::-:------------=----=-=--+@@*-------------------*@#---------------=====*%@%*+-----=*@#-=--=--====+#@@#+========--------------:------%@*======--------------=%@+==-===--------------=@%             
-                :+%@%*++++++++++++++++++++++++++++++++++++++++*%%%##**+*******@@=--------------====@@=------------==-:---===-=--=-+@#%@*-----------------@@=---:-----------=-======+*%@%*+=-@%------==+*%@%*=======-=-----------------------%@+=====----==----------=#@*==------------------*@=             
-              :#@%*++++++++++++++++++++++++++++++=++++++++-+++**##%%@@@@%%#****@%----------------==%@+---------------------===--=-#@--+%@#+-------------+@#----::------:-=----====-====+*%@@@*----=*#@@@#=========------------------------=@@=======--=-=------------*@#==------------------@%.  
-            .*@#+++++++++++++++++++++++++++++++++++++++++++++++++++++***#%%@@%##@%------------=====+@%=--------------------=====-=@%---:-+%@%*=---------#@=--:-:------::-=------===========+*%%@@@%#*==@%========-----------------:------+@@+======---====----------=+@#==----------------=%%.              
-            *@@@@%%%%%%#++++++++++++++++++++++++++++++++++++++++++++++++++++*##%@@@=-----------=====+@%=------------------=----==*@*--------=#@%#+=-----@%-----::-:--:----==----------=-===============+@#=====-----------------:-------*@#========------------------=@%===--------------+@%:               
-              ...:-*@@@#*+++++++++++++++++++++++++++=+++++++++++++++++++++=+++++*%@@=-----------======%@*----------------:---====#@+--------:--=*%@@#*+*@+-----:::.:--------===--==-----=========-======#@#====--------------------:--=%@*========-=--=--------------=@%===-------------#@+.           
-                 -%@%#***********+++++++++++++++++++++++++++++++++++++++++++++++++*%@+----------=======*@#=----------------:--=--%@=------------=-==+*#@@=--::--:-:-----------===----=--==-------=-=-====#@#=--=------------------::-+@%+=======----------------::---+@%===--=--------*@@@.     
-                 :+**#%%%@@@%%%###****++++++++++++++==++++++++=+++++++++++++++++++++#@*---------=========#@#=------------=----===@@=---------------====%@-----------------------===--==--------------=====*@#=---------:----------:-%@*========-----=-----------:----*@#===--------+#@#+=@+                 
-                          ..:-=+*#%@@%%#**++++++++++==+++++++++=++++++++=-+++++++++++#@*---------=-=======%@@#-:-:--------------=@@----------------====@@------------:----------==-------------------======#@#--------:----------=#@#=========------=----------------%@+===-----=#@@*===-%@.               
-                                   .:-=*#%@@%%%%#*++++=++++++++=++++++++++++++++++++++*@#-------------===%@+=#@%+---------------=@@----------:----=====@@-----:---:-----:---------=---------------------===%@@%=-:::--::----:---*@%+========----==------------------=@@=----=+#@@#+=====-*@+                
-                                      .-+#@@%**##*++++++++++++++++++++++++=+++++=++++++*@%------------==#@*=--=*%%*=-----------=-@@---------------=====%@=----------::-----------------------------------*@%==%@#::::--:---::-*@%+======-------===------------------*@*-=*#@@#+======-----@%.           
-                                      =%@@%*+*+**++++=+++++++++++++++++++++++==+-++++++++%@=----------=*@+:--===-+%@%+-----:----=@@----------------====+@#------:----:--:--:-------------------------:--%@*====*@@*----:---=#@%*=========----=----------------------%@%@@%*====-==--------%@:            
-                                        .-*%@%#***+=++++++++++++++++++++++++++-+=+++++++++%@*-------==*@#--:---===-=*%@#=-----=-=@@----------------=-===#@#----:-----:---------------:--:------------=#@%+=====-=*%@#*++*#%@#+======-------------------------------=@%+==-====------------*@=            
-                                            :=#@%#*+****+++++++++++==+++++++--+++++++++++++*@%=----==+@%----------====-*%@#+--=--@@------------------====*@%+=--------------------------::----=++*#%@%#+============*####*+-====----------=------------------------%@=-----===------------=@*            
-                                               .=%@%#*+*+**++++++++=-+++++++++++++++++++++++*@@+--===@@=-----------===-=-=*%@%*+-%@=-------------:----=====#%@@%#**+++===========++++**###%@@@@%#**+=========================----=--------------------------------+@#--==--==-------------=@*               
-                                                  :+#@%#*+*+++++++++==++++++++++++=+++++++++++#@#+==%@=---------------=======+#%@@@*--------------------=======+***###%%%%@@%%%%%#####***+++==================--==---------=======--=--==-------------------------%@========---------:----=@*               
-                                                     .-+#%@%##***+=++++=++++++++++++++++++++++++%@##@*--------------=--===========@%--------------------===--=====--======#@#-==-=====================----------------------=--------=-------:-------------------#@*-=======---------::---=@*           
-                                                          .-+#@@@@@@*++++++++++++++++++++++++++++*%@@-------:---------======-====-%@---------------------------====-==-===-#@*----==========--------------------------------------------------------------------#@*=-=====--=-------------=@+    
-                                                         .=#@@%##*+*++++++++++++++++++++++=++++++=#@*---------:-------========--=-+@+------------------------------==--=---=#@=::-----------------------------=-----------------=------------:-----------------#@#=====---------------:---*@+      
-                                                         -*#@@%#*+***+****+++++++++++++++*++*+++*+@@-------------------==========-=@%----------------------------------------#@*----------------:----:----------------------=------------:-------------------+%@*=====----=---------------*@-               
-                                                             .-+#@@%%##**************+****++***+++@*-------:--------------==-======#@+----------------------------=-----------*@*-------------:----------::-----------------------------:-----------------=*@@#=======---==---------------%@:               
-                                                                  :-=*#%@%%#########***###*#%%@@#%@-----------------------=-=-=====+@@-----------------------------------------+@#----::--:-------:--------------------------:---------::--------------=+%@#+=======----=--:-----:-------=@%    
-                                                                        .:-=+********#***+==-:. .%%:-----------------=-------=--====*@#-----------------------------------------=%@+:::---::----------------:---------:----------------:-----------=*#@%*%@+-----==-------------:--------*@=  
-                                                                                                :@#:-------------------------=-=-====+@%+-----------------------------------------#@*.:----:--:--------------------------------------------:.::=*%@%#*=--%@=--=====---------------------+@*      
-                                                                                                :@*:-------------------------=-========#%@#*=---------------------------------:----+@%=----:-----------------------------------------------=+#@%#*====---@@=====-----------------------#@*    
-                                                                                                .@%:----------------------------===--====+*#@@%*+=-------------------:---------------*@#-:::----::-------------------------------::-:-=*#@%#*+=-==------+@%-=------------------------=%@=.  
-                                                                                                 -@*-----------------------------==----=======*@@@@%#*=-------------:-:---------------=%@#------::-------:-----------------------+*#@@%#+=-=====--------#@+====---------------------*@#:         
-                                                                                                  +@#----------:-------------------==---===----%@==+*#%%@%#**+==--:::-----:------------:=%@*------------::-------::-:-----=+*#%@%##*=----==-==---------=@%--===--------:----------=%@+..                    
-                                                                                                   =@%----------::---------------------==-==-=-+@%----=-==+**##%%@@%##***+++++========+++*%@@#=--:-----:----------:-=+*#@@%#*+==========--------------=@%======-----:----------:-#@#.                     
-                                                                                                    .%@+---------------------------:----=---====*@#------===========++**####%%%%%%%%%%%%##*==#@%*=----------==+*#%@@%#*+=============----------------=@@======----------------:=@%-.                       
-                                                                                                     .#@*--------------------------::---===-====-*@=:::-------====-=============----==---=-====+#%@#####%%@@%%#**+===============------------::-----*@#======----------------+%@+..                         
-                                                                                                       -%%+-------------------------------===-====#@+-------------=-=----==-==--===-=====-=--======++++++==-================-------------:-:::----#@%+=====--------:---:-=*#@#-.                          
-                                                                                                        .*@#----------------------------------=====%@+---------------------------=-=-----------==================-===-=--------------------:----*@@#*++++==---------=+*%@@*=.                               
-                                                                                                          :#@*----------------------------------=-==#@*--------------------==----------------------=-=-==========-----------------------------+%%==+**####%%%%%%%%%##*+-.. .          
-                                                                                                            =%%+----------------------------------===*@%=-------:--------------------=--=-----------------=--=------------------------------*@%=                                                        
-                                                                                                            ..+@%=:-----------------:--------------====#@#=-----------------------------------------=------------------------------:-----=#@#:                                                              
-                                                                                                               .+@%+--------------:-----------------====+%@#+----------------------------------------------------------=---------------+#@*:                                                              
-                                                                                                                 .=#@*---------------:---------------======*%@#=---------------------------------------------------------------------*%%=.                                                                  
-                                                                                                                    -#@*-::---------:---------------::--======#@@#+=-----------------------------------:-------:------------------=#@%-                                                                   
-                                                                                                                      :*@#=:-:----------------------:::----=-===+*#@%#*+=----------------------------------------::-------------*%@+:                                                                    
-                                                                                                                        .-#@#+-::-----------------------------=======*@@%@%#*=----------------------------------------------=*%@*-.                                                                         
-                                                                                                                           .-*@@#+=-:::---------------------------==#@#.  :=+%@%#*+=------------------------------------=*#@@*-                                                                             
-                                                                                                                             .:=+*#%%%%%########*****###########%@%*:        .:-+*#%@%##**+===------------:::::---+*#%@#*=:                                                                                
-                                                                                                                                      ...:::::-----------------::.                    .:-=++*##%%%%%%%%%%%%%%@@@%%#*+=:.                                                                                  
-                                                                                                                                                                                              ..  .      . ...                                                                                         
-
-       
-                                                                                                                                  ..  .      . ...                                                                                         
-      </div>
-      <div class="quote-text"></div>
+        <a href="#" class="button button--pen">
+            <div class="button__wrapper">
+                <span class="button__text">ENTRY</span>
+            </div>
+            <div class="characterBox">
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                </div>
+                <div class="character wakeup">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                </div>
+                <div class="character">
+                    <div class="character__face"></div>
+                    <div class="charactor__face2"></div>
+                </div>
+            </div>
+        </a>
     </div>
-  </div>
-  <div></div>
-  <p></p>
-  <div></div>
- <a href="https://www.youtube.com/channel/UCN8Mg4unCSOLhwszOKZelSg/?sub_confirmation=1" target="_blank">
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="https://i.imgur.com/qZ3WuCk.png" alt="YouTube Profile Image" style="width: 160px; height: 160px; border-radius: 50%;">
-  </a>
-     <button class="glow-on-hover" type="button" onclick="window.location.href='QOTD.html';"><b style="font-size: 18px;">Previous QOTD's</b></button>
-
-</div>
-   <div></div>
-<!-- Envelope -->
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSf9VHEnQFACdNr9MfN4Uxr6vXa8PzaxHFMXnmhqefH7xq-XoA/viewform?usp=sf_link" target="_blank">
-  <div class="letter-image">
-    <div class="animated-mail">
-      <div class="back-fold"></div>
-      <div class="letter">
-        <div class="letter-border"></div>
-        <div class="letter-title"></div>
-        <div class="letter-context"></div>
-        <div class="letter-stamp">
-          <div class="letter-stamp-inner"></div>
-        </div>
-      </div>
-      <div class="top-fold"></div>
-      <div class="body"></div>
-      <div class="left-fold"></div>
-    </div>
-  </div>
-</a>
-  <script>
-    // Function to get the week number
-   function getWeekNumber(date) {
-      var d = new Date(date);
-      d.setHours(0, 0, 0, 0);
-      d.setDate(d.getDate() - (d.getDay() || 7));
-      var yearStart = new Date(d.getFullYear(), 0, 1);
-      var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-      return weekNo;
-    }
-
-    // Function to get the current day of the week (0-6, Sunday-Saturday)
-    function getCurrentDay() {
-      var d = new Date();
-      return d.getDay();
-    }
-
-    // Function to get the current time in HH:MM format
-    function getCurrentTime() {
-      var d = new Date();
-      var hours = d.getHours();
-      var minutes = d.getMinutes();
-      return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
-    }
-
-    // Function to update the timetable based on the current day and week
-    function updateTimetable() {
-        var currentWeek = getWeekNumber(new Date()) % 2 === 0 ? 'A' : 'B'; // Assuming week A is the starting week
-       var currentDay = (getCurrentDay()) % 7; 
-       var currentTime = getCurrentTime();
-      if (getCurrentTime() > '17:00') {
-           if (getCurrentTime() < '24:00'){
-             var currentWeek = getWeekNumber(new Date()+1) % 2 === 0 ? 'A' : 'B'; // Assuming week A is the starting week
-             var currentDay = (getCurrentDay() +1 ) % 7; 
-             var currentTime = getCurrentTime();
-           }
-      }
-      // Generate the timetable HTML
-       // Generate the timetable HTML
-    var timetableData = [
-      {
-        week: 'Week A',
-        day: 1,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'your own classroom' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Art', location: 'F05'},
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'M05' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 2,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'M05' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S04' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport (REMEMBER SPORTS BAG) ', location: 'Your own Location' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 3,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'M06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'S06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'L06' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 4,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'F05' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S02' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱 ', location: 'K01' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 5,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'D02' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'P02' }
-        ]
-      },
-               {
-      week: 'Week A',
-      day: 6,
-      title: 'Saturday',
-      schedule: [
-        {period: 'Period 0', time:'Have a good weekend :)',subject:'Saturday',location:'have a good rest'}
-        // Periods for Saturday
-      ]
-    },
-    {
-      week: 'Week A',
-      day: 0,
-      title: 'Sunday',
-      schedule: [
-        {period: 'Period 0', time:'Have a good weekend :)',subject:'Sunday',location:'have a good rest'}
-        // Periods for Sunday
-      ]
-    },
-      {
-        week: 'Week B',
-        day: 1,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: '7.8 classroom' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'L06' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 2,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'S06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Your own location' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 3,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO5' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Plus+', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'M06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'S03' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 4,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'L06' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'S02' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱', location: 'K01' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day:5,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'L09' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'F05' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'English', location: 'Library' }
-        ]
-      },
-          {
-      week: 'Week B',
-      day: 6,
-      title: 'Saturday',
-      schedule: [
-        {period: 'Period 0', time:'Have a good weekend :)',subject:'Saturday',location:'have a good rest'}
-        // Periods for Saturday
-      ]
-    },
-    {
-      week: 'Week B',
-      day: 0,
-      title: 'Sunday',
-      schedule: [
-        {period: 'Period 0', time:'Have a good weekend (:',subject:'Sunday',location:'have a good rest '}
-        // Periods for Sunday
-      ]
-    },
-
-
-    ];
-      var timetableHTML = '';
-    var perioditisnow = 9;
-    if (getCurrentTime() > '08:00'){
-      var perioditisnow = 0;
-    }
-    if (getCurrentTime() > '08:45'){
-      var perioditisnow = 1;
-    }
-    if (getCurrentTime() > '09:50'){
-      var perioditisnow = 2;
-    }
-    if (getCurrentTime() > '10:55'){
-      var perioditisnow = 3;
-    }
-    if (getCurrentTime() > '12:25'){
-      var perioditisnow = 4; 
-    }
-    if (getCurrentTime() > '13:30'){
-      var perioditisnow = 5;
-    }
-    if (getCurrentTime() > '15:30'){
-      var perioditisnow = 6;
-    }
-  
-      
-      for (var i = 0; i < timetableData.length; i++) {
-        var weekData = timetableData[i];
-        var currentWeek = getWeekNumber(new Date()) % 3 === 0 ? 'A' : 'B';
-        if (weekData.week === 'Week ' + currentWeek && weekData.day === currentDay) {
-          timetableHTML += '<div class="day">';
-          timetableHTML += '<div class="day-heading">';
-        if (weekData.day ===  6){
-         timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
-        }else{
-         if (weekData.day ===  0){
-           timetableHTML += '<div class="day-heading"> Weekend' + '</div>';
-         }else{
-           if (currentWeek === 'A'){          
-             timetableHTML += '<div class="day-heading">Day ' + weekData.day + '</div>';
-           }
-           else
-           {
-            timetableHTML += '<div class="day-heading">Day ' + (weekData.day + 5) + '</div>';
-           }
-         }
-        }
-          for (var j = 0; j < weekData.schedule.length; j++) {
-            var periodData = weekData.schedule[j];
-            if (j === perioditisnow){
-              timetableHTML += '<div class="period-now">';
-            }else{
-              timetableHTML += '<div class="period">';
-            }
-            timetableHTML += '<div class="period-time">' + periodData.time + '</div>';
-            timetableHTML += '<div class="period-subject">' + periodData.subject + '</div>';
-            timetableHTML += '<div class="period-location">' + periodData.location + '</div>';
-            timetableHTML += '</div>';
-          }
-          timetableHTML += '</div>';
-
-          // Set the poem based on the current day
-          var poem = '';
-          switch (currentDay) {
-            case 1:
-              poem = 'Roses are red, Violets are blue, Like a celestial fire, Your radiance shines through.';
-              break;
-            case 2:
-              poem = 'Roses are red, Violets are blue, I love you so much, I hope you love me too';
-              break;
-            case 3:
-              poem = 'Roses are red, Violets are blue, With every twinkle, every gleam, You illuminate my world, like stars do.';
-              break;
-            case 4:
-              poem = 'Roses are red, violets are blue, You\'re like sugar, cause you\'re sweet too.';
-              break;
-            case 5:
-              poem = 'The rose is red, the violet is blue, the honey is sweet, and so are you.';
-              break;
-            default:
-              poem = 'Roses are red, Violets are blue my love for you, it\'s just so out of the blue';
-              break;
-          }
-
-          // Insert the poem into the .quote-text div
-          document.querySelector('.quote-text').textContent = poem;
-
-          break;
-        }
-      }
-      // Insert the generated timetable HTML into the .timetable div
-      document.querySelector('.timetable').innerHTML = timetableHTML;
-    }
-      
-          
-  
-  function getCurrentAESTTime() {
-      const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      return currentTime.toLocaleTimeString('en-AU', options);
-    }
-
-    function displayCurrentTime() {
-      const timeElement = document.getElementById('timeElement');
-      timeElement.innerHTML = `${getCurrentAESTTime()}`;
-    }
-
-  updateTimetable();
-  setInterval(displayCurrentTime,1000);
-  setInterval(updateTimetable,1000);
-  function autoRefresh() {
-            window.location = window.location.href;
-        }
-  setInterval('autoRefresh()', 60000);
-  </script>
- <script>
-       const scheduleData1 = [
-      {
-        week: 'Week A',
-        day: 1,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'your own classroom' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Art', location: 'F05'},
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'M05' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 2,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'M05' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S04' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport (REMEMBER SPORTS BAG) ', location: 'Your own Location' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 3,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'M06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'S06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'L06' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 4,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'F05' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S02' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱 ', location: 'K01' }
-        ]
-      },
-      {
-        week: 'Week A',
-        day: 5,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'D02' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'P02' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 1,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: '7.8 classroom' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'L06' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 2,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'S06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Your own location' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 3,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO5' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Language', location: 'Your own location' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Plus+', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'M06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'S03' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day: 4,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'L06' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'S02' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'L06' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱', location: 'K01' }
-        ]
-      },
-      {
-        week: 'Week B',
-        day:5,
-        schedule: [
-          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
-          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'L09' },
-          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'F05' },
-          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
-          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
-          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'English', location: 'Library' }
-
-      ]
-    },
-    ];
-
- let timetableVisible = false;
-
-    function toggleTimetable() {
-      const button = document.getElementById("toggleButton");
-      const timetableContainer = document.getElementById("timetableContainer1");
-
-      if (timetableVisible) {
-        timetableContainer.innerHTML = ""; // Clear the table when hiding
-        timetableContainer.style.display = "none";
-        button.textContent = "Show Timetable";
-      } else {
-        timetableContainer.style.display = "flex";
-        button.textContent = "Hide Timetable";
-        renderTimetable(scheduleData1, timetableContainer);
-      }
-
-      timetableVisible = !timetableVisible;
-    }
-
-    function renderTimetable(data, container) {
-      container.innerHTML = ""; // Clear the existing content
-
-      data.forEach(day => {
-        const dayColumn = document.createElement("div");
-        dayColumn.classList.add("day-column1");
-
-        const dayHeading = document.createElement("div");
-        dayHeading.classList.add("day-heading1");
-        dayHeading.textContent = `${day.week}, Day ${day.day}`;
-        dayColumn.appendChild(dayHeading);
-
-        day.schedule.forEach(period => {
-          const periodElement = document.createElement("div");
-          periodElement.classList.add("period1");
-
-          const periodTime = document.createElement("div");
-          periodTime.classList.add("period-time1");
-          periodTime.textContent = period.time;
-          periodElement.appendChild(periodTime);
-
-          const periodSubject = document.createElement("div");
-          periodSubject.classList.add("period-subject1");
-          periodSubject.textContent = period.subject;
-          periodElement.appendChild(periodSubject);
-
-          const periodLocation = document.createElement("div");
-          periodLocation.classList.add("period-location1");
-          periodLocation.textContent = period.location;
-          periodElement.appendChild(periodLocation);
-
-          dayColumn.appendChild(periodElement);
-        });
-
-        container.appendChild(dayColumn);
-      });
-    }
-  </script>
 </body>
 </html>
