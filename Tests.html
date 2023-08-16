@@ -189,7 +189,7 @@
     },
     ];
 
-    let timetableVisible = false;
+ let timetableVisible = false;
 
     function toggleTimetable() {
       const button = document.getElementById("toggleButton");
@@ -198,11 +198,11 @@
       if (timetableVisible) {
         timetableContainer.innerHTML = ""; // Clear the table when hiding
         timetableContainer.style.display = "none";
-        button.textContent = "Show Timetable1";
+        button.textContent = "Show Timetable";
       } else {
         timetableContainer.style.display = "flex";
-        button.textContent = "Hide Timetable1";
-        renderTimetable(scheduleData, timetableContainer1);
+        button.textContent = "Hide Timetable";
+        renderTimetable(scheduleData1, timetableContainer);
       }
 
       timetableVisible = !timetableVisible;
@@ -213,36 +213,36 @@
 
       data.forEach(day => {
         const dayColumn = document.createElement("div");
-        dayColumn.classList.add("day-colum1n");
+        dayColumn.classList.add("day-column1");
 
         const dayHeading = document.createElement("div");
-        dayHeading.classList.add("day-heading");
+        dayHeading.classList.add("day-heading1");
         dayHeading.textContent = `${day.week}, Day ${day.day}`;
         dayColumn.appendChild(dayHeading);
 
         day.schedule.forEach(period => {
           const periodElement = document.createElement("div");
-          periodElement.classList.add("period");
+          periodElement.classList.add("period1");
 
           const periodTime = document.createElement("div");
           periodTime.classList.add("period-time1");
-          periodTime.textContent = period.time1;
-          periodElement.appendChild(periodTime1);
+          periodTime.textContent = period.time;
+          periodElement.appendChild(periodTime);
 
           const periodSubject = document.createElement("div");
-          periodSubject.classList.add("period-subject");
+          periodSubject.classList.add("period-subject1");
           periodSubject.textContent = period.subject;
           periodElement.appendChild(periodSubject);
 
           const periodLocation = document.createElement("div");
-          periodLocation1.classList.add("period-location1");
-          periodLocation1.textContent = period.location1;
-          periodElement.appendChild(periodLocation1);
+          periodLocation.classList.add("period-location1");
+          periodLocation.textContent = period.location;
+          periodElement.appendChild(periodLocation);
 
-          dayColumn.appendChild(periodElement1);
+          dayColumn.appendChild(periodElement);
         });
 
-        container.appendChild(dayColumn1);
+        container.appendChild(dayColumn);
       });
     }
   </script>
