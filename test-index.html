@@ -1,59 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>Opal in HTML, CSS, and JS</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #A48BBE; /* Set the background color here */
+      text-align: center;
     }
-
-    .opal-container {
-      width: 300px;
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 1000px;
-    }
-
     .opal {
       width: 200px;
       height: 200px;
-      background-image: radial-gradient(circle, #C4DEF6 10%, #90CAF9 20%, #A48BBE 30%, transparent 70%);
-      border-radius: 50%;
-      border: 5px solid #ccc;
-      animation: rotateOpal 10s linear infinite, tiltOpal 10s ease-in-out infinite, colorChange 4s infinite;
-      transform-style: preserve-3d;
+      border: 1px solid black;
+      background-color: #ffffff;
     }
-
-    @keyframes rotateOpal {
-      0% { transform: rotateX(0deg) rotateY(0deg); }
-      100% { transform: rotateX(360deg) rotateY(360deg); }
-    }
-
-    @keyframes tiltOpal {
-      0%, 100% { transform: rotateX(0deg) rotateY(0deg); }
-      50% { transform: rotateX(15deg) rotateY(15deg); }
-    }
-
-    @keyframes colorChange {
-      0%, 100% { background-image: radial-gradient(circle, #C4DEF6 10%, #90CAF9 20%, #A48BBE 30%, transparent 70%); }
-      25% { background-image: radial-gradient(circle, #FFC107 10%, #FFC107 20%, #FF5733 30%, transparent 70%); }
-      50% { background-image: radial-gradient(circle, #FF5733 10%, #FF5733 20%, #FFC107 30%, transparent 70%); }
-      75% { background-image: radial-gradient(circle, #90CAF9 10%, #C4DEF6 20%, #90CAF9 30%, transparent 70%); }
+    .opal .play-of-color {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(45deg, #ffff00, #ff0000, #ffff00);
+      opacity: 0.5;
     }
   </style>
-  <title>Opal Stone</title>
 </head>
 <body>
-  <div class="opal-container">
-    <div class="opal" id="opal"></div>
+  <div class="opal">
+    <div class="play-of-color"></div>
   </div>
+  <script src="https://opalrb.com/opal/current/opal.min.js"></script>
+  <script type="text/ruby">
+    require 'opal'
+
+    document.querySelector('.opal').on :click do
+      puts 'You clicked the opal!'
+      @play_of_color.style.opacity = 0.0
+      setTimeout(->
+        @play_of_color.style.opacity = 0.5
+      , 200)
+    end
+  </script>
 </body>
 </html>
