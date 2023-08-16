@@ -9,23 +9,13 @@
       padding: 0;
     }
 
-    .container1 {
+    .timetable-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin-top: 20px;
-    }
-
-    .timetable-container1 {
-      display: none; /* Hide by default */
       overflow-x: auto;
       padding: 20px;
-      display: flex; /* Set to flex to create a horizontal layout */
     }
 
-    .day-column1 {
+    .day-column {
       flex: 0 0 auto;
       width: 200px;
       margin: 0 10px;
@@ -35,7 +25,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
-    .day-heading1 {
+    .day-heading {
       color: #333333;
       font-size: 20px;
       font-weight: bold;
@@ -43,40 +33,39 @@
       text-align: center;
     }
 
-    .period1 {
+    .period {
       margin-bottom: 10px;
       text-align: left;
     }
 
-    .period-time1 {
+    .period-time {
       color: #666666;
       font-size: 16px;
       font-weight: bold;
     }
 
-    .period-subject1 {
+    .period-subject {
       font-size: 18px;
       font-weight: bold;
       color: #333333;
     }
 
-    .period-location1 {
+    .period-location {
       font-size: 16px;
       color: #666666;
     }
   </style>
 </head>
 <body>
-  <div class="container1">
-    <h1>Timetable</h1>
+  <div id="buttonContainer">
     <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
-    <div id="timetableContainer1" class="timetable-container1">
-      <!-- Timetable will be dynamically generated here -->
-    </div>
+  </div>
+  <div id="timetableContainer" class="timetable-container">
+    <!-- Timetable will be dynamically generated here -->
   </div>
 
   <script>
-    const scheduleData = [
+       const scheduleData = [
       {
         week: 'Week A',
         day: 1,
@@ -204,7 +193,7 @@
 
     function toggleTimetable() {
       const button = document.getElementById("toggleButton");
-      const timetableContainer = document.getElementById("timetableContainer1");
+      const timetableContainer = document.getElementById("timetableContainer");
 
       if (timetableVisible) {
         timetableContainer.innerHTML = ""; // Clear the table when hiding
@@ -224,29 +213,29 @@
 
       data.forEach(day => {
         const dayColumn = document.createElement("div");
-        dayColumn.classList.add("day-column1");
+        dayColumn.classList.add("day-column");
 
         const dayHeading = document.createElement("div");
-        dayHeading.classList.add("day-heading1");
+        dayHeading.classList.add("day-heading");
         dayHeading.textContent = `${day.week}, Day ${day.day}`;
         dayColumn.appendChild(dayHeading);
 
         day.schedule.forEach(period => {
           const periodElement = document.createElement("div");
-          periodElement.classList.add("period1");
+          periodElement.classList.add("period");
 
           const periodTime = document.createElement("div");
-          periodTime.classList.add("period-time1");
+          periodTime.classList.add("period-time");
           periodTime.textContent = period.time;
           periodElement.appendChild(periodTime);
 
           const periodSubject = document.createElement("div");
-          periodSubject.classList.add("period-subject1");
+          periodSubject.classList.add("period-subject");
           periodSubject.textContent = period.subject;
           periodElement.appendChild(periodSubject);
 
           const periodLocation = document.createElement("div");
-          periodLocation.classList.add("period-location1");
+          periodLocation.classList.add("period-location");
           periodLocation.textContent = period.location;
           periodElement.appendChild(periodLocation);
 
