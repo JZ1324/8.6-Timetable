@@ -14,8 +14,8 @@
     }
 
     .opal-container {
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,26 +23,25 @@
     }
 
     .opal {
-      width: 160px;
-      height: 160px;
-      background-image: radial-gradient(circle, #fff 20%, transparent 70%);
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
+      background: radial-gradient(circle, #C4DEF6 10%, #90CAF9 20%, #A48BBE 30%, transparent 70%);
       border: 5px solid #ccc;
-      animation: rotateOpal 6s linear infinite, colorChange 3s infinite;
+      animation: rotateOpal 10s linear infinite, colorChange 4s infinite;
       transform-style: preserve-3d;
     }
 
     @keyframes rotateOpal {
-      0% { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
+      0% { transform: rotateX(0deg) rotateY(0deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
     }
 
     @keyframes colorChange {
-      0% { background-image: radial-gradient(circle, #fff 20%, transparent 70%); }
-      25% { background-image: radial-gradient(circle, #90CAF9 20%, transparent 70%); }
-      50% { background-image: radial-gradient(circle, #FFC107 20%, transparent 70%); }
-      75% { background-image: radial-gradient(circle, #FF5733 20%, transparent 70%); }
-      100% { background-image: radial-gradient(circle, #FFC107 20%, transparent 70%); }
+      0%, 100% { background: radial-gradient(circle, #C4DEF6 10%, #90CAF9 20%, #A48BBE 30%, transparent 70%); }
+      25% { background: radial-gradient(circle, #FFC107 10%, #FFC107 20%, #FF5733 30%, transparent 70%); }
+      50% { background: radial-gradient(circle, #FF5733 10%, #FF5733 20%, #FFC107 30%, transparent 70%); }
+      75% { background: radial-gradient(circle, #90CAF9 10%, #C4DEF6 20%, #90CAF9 30%, transparent 70%); }
     }
   </style>
   <title>Opal Stone</title>
