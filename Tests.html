@@ -75,7 +75,127 @@
 
   <script>
     const scheduleData = [
-      // Your schedule data here
+      {
+        week: 'Week A',
+        day: 1,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Assembly/Tute', location: '8.6/Cafe' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Languages', location: 'your own classroom' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Art', location: 'F05'},
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'M05' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 2,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Maths', location: 'M05' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S04' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Languages', location: 'your own classroom' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: '7/8 Sport (REMEMBER SPORTS BAG) ', location: 'Your own Location' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 3,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Food studies 🍱', location: 'K01' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'M06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'S06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Health', location: 'L06' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 4,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'F05' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Science', location: 'S02' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱 ', location: 'K01' }
+        ]
+      },
+      {
+        week: 'Week A',
+        day: 5,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Sport (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'D02' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'English', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Music', location: 'P02' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 1,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute/Assembly', location: '8.6/Cafe' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Sport Complex' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'English', location: '7.8 classroom' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Maths', location: 'L06' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 2,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Language', location: 'Your own location' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Maths', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Science', location: 'S06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Sports (REMEMBER SPORTS BAG)', location: 'Your own location' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 3,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Art', location: 'FO5' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Language', location: 'Your own location' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Plus+', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Maths', location: 'M06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Science', location: 'S03' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day: 4,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Humanaties', location: 'L06' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'English', location: 'L06' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Drama', location: 'S02' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Science', location: 'L06' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'Food studies 🍱', location: 'K01' }
+        ]
+      },
+      {
+        week: 'Week B',
+        day:5,
+        schedule: [
+          { period: 'Period 0', time: '8:35am–8:45am', subject: 'Tute', location: '8.6' },
+          { period: 'Period 1', time: '8:50am–9:50am', subject: 'Health', location: 'L09' },
+          { period: 'Period 2', time: '9:55am–10:55am', subject: 'Art', location: 'F05' },
+          { period: 'Period 3', time: '11:25am–12:25pm', subject: 'Humanities', location: 'L06' },
+          { period: 'Period 4', time: '12:30pm–1:30pm', subject: 'Food studies 🍱', location: 'K01' },
+          { period: 'Period 5', time: '2:25pm–3:25pm', subject: 'English', location: 'Library' }
+
+      ]
+    },
     ];
 
     let timetableVisible = false;
