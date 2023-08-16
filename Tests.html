@@ -9,6 +9,13 @@
       padding: 0;
     }
 
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
     .timetable-container {
       display: flex;
       overflow-x: auto;
@@ -57,7 +64,8 @@
   </style>
 </head>
 <body>
-  <div id="buttonContainer">
+  <div class="container">
+    <h1>Timetable</h1>
     <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
   </div>
   <div id="timetableContainer" class="timetable-container">
@@ -65,7 +73,7 @@
   </div>
 
   <script>
-       const scheduleData = [
+    const scheduleData = [
       {
         week: 'Week A',
         day: 1,
