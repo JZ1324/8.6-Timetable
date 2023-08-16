@@ -493,16 +493,21 @@
                     <div class="character__face"></div>
                     <div class="charactor__face2"></div>
                 </div>
-<body>
-  <div id="buttonContainer">
-    <button id="toggleButton" onclick="toggleTimetable()">Show Timetable</button>
+ <div id="buttonContainer">
+    <a href="#" class="button button--pen" id="showTimetableButton">
+      <div class="button__wrapper">
+        <span class="button__text">ENTRY</span>
+      </div>
+      <div class="characterBox">
+        <!-- Your character animations -->
+      </div>
+    </a>
   </div>
   <div id="timetableContainer1" class="timetable-container1">
     <!-- Timetable will be dynamically generated here -->
-  </div>
 
   <script>
-       const scheduleData1 = [
+      const scheduleData1 = [
       {
         week: 'Week A',
         day: 1,
@@ -626,24 +631,28 @@
     },
     ];
 
- let timetableVisible = false;
 
-    function toggleTimetable() {
-      const button = document.getElementById("toggleButton");
-      const timetableContainer = document.getElementById("timetableContainer1");
+    let timetableVisible = false;
+
+    // JavaScript to handle button behavior
+    const showTimetableButton = document.getElementById("showTimetableButton");
+    const timetableContainer = document.getElementById("timetableContainer1");
+
+    showTimetableButton.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default link behavior
 
       if (timetableVisible) {
         timetableContainer.innerHTML = ""; // Clear the table when hiding
         timetableContainer.style.display = "none";
-        button.textContent = "Show Timetable";
+        showTimetableButton.textContent = "ENTRY";
       } else {
         timetableContainer.style.display = "flex";
-        button.textContent = "Hide Timetable";
+        showTimetableButton.textContent = "Hide Timetable";
         renderTimetable(scheduleData1, timetableContainer);
       }
 
       timetableVisible = !timetableVisible;
-    }
+    });
 
     function renderTimetable(data, container) {
       container.innerHTML = ""; // Clear the existing content
