@@ -1,69 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-  }
-
-  .gemstone {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    perspective: 1000px;
-  }
-
-  .gem {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4);
-    border-radius: 50%;
-    position: absolute;
-    transform-style: preserve-3d;
-    animation: rotate 10s linear infinite;
-  }
-
-  .gem-facet {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: skewY(-45deg);
-  }
-
-  .gem-facet:nth-child(1) {
-    transform: rotate(45deg) skewY(-45deg);
-  }
-
-  .gem-facet:nth-child(2) {
-    transform: rotate(90deg) skewY(-45deg);
-  }
-
-  .gem-facet:nth-child(3) {
-    transform: rotate(135deg) skewY(-45deg);
-  }
-
-  .gem-facet:nth-child(4) {
-    transform: rotate(180deg) skewY(-45deg);
-  }
-
-  @keyframes rotate {
-    0% {
-      transform: rotateY(0);
-    }
-    100% {
-      transform: rotateY(360deg);
-    }
-  }
-  <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomorrow.io Weather Widget</title>
+    <script>
         (function(d, s, id) {
             if (d.getElementById(id)) {
                 if (window.__TOMORROW__) {
@@ -75,44 +16,28 @@
             const js = d.createElement(s);
             js.id = id;
             js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
-
+            
             fjs.parentNode.insertBefore(js, fjs);
         })(document, 'script', 'tomorrow-sdk');
-        </script>
-
-        <div class="tomorrow"
-           data-location-id="007015"
-           data-language="EN"
-           data-unit-system="METRIC"
-           data-skin="dark"
-           data-widget-type="upcoming"
-           style="padding-bottom:22px;position:relative;"
-        >
-          <a
-            href="https://www.tomorrow.io/weather-api/"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-            style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
-          >
-            <img
-              alt="Powered by the Tomorrow.io Weather API"
-              src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
-              width="250"
-              height="18"
-            />
-          </a>
-        </div>
-</style>
-<title>3D Gemstone Example</title>
+    </script>
 </head>
 <body>
-  <div class="gemstone">
-    <div class="gem">
-      <div class="gem-facet"></div>
-      <div class="gem-facet"></div>
-      <div class="gem-facet"></div>
-      <div class="gem-facet"></div>
+    <div class="tomorrow"
+       data-location-id="007015"
+       data-language="EN"
+       data-unit-system="METRIC"
+       data-skin="dark"
+       data-widget-type="upcoming"
+       style="padding-bottom: 22px; position: relative;">
+      <a href="https://www.tomorrow.io/weather-api/"
+         rel="nofollow noopener noreferrer"
+         target="_blank"
+         style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;">
+        <img alt="Powered by the Tomorrow.io Weather API"
+             src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+             width="250"
+             height="18">
+      </a>
     </div>
-  </div>
 </body>
 </html>
