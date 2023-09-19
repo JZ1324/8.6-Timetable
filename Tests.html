@@ -505,6 +505,7 @@ body {
     </style>
         <script>
  // Function to toggle dark mode
+// Function to toggle dark mode
 function toggleDarkMode() {
     const body = document.body;
     const currentMode = body.classList.contains("dark-mode");
@@ -515,11 +516,31 @@ function toggleDarkMode() {
         setDarkModePreference(false); // Store user preference
         button.textContent = "Dark Mode"; // Change button text
         body.style.backgroundColor = "#A48BBE"; // Set background color to light mode
+
+        // Set text and background colors for elements to light mode
+        document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+            element.style.color = "#FFFFFF";
+        });
+
+        document.querySelectorAll(".timetable, .period-now").forEach(element => {
+            element.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+            element.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
+        });
     } else {
         body.classList.add("dark-mode");
         setDarkModePreference(true); // Store user preference
         button.textContent = "Light Mode"; // Change button text
         body.style.backgroundColor = "#3a2c4d"; // Set background color to dark mode
+
+        // Set text and background colors for elements to dark mode
+        document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+            element.style.color = "#000000";
+        });
+
+        document.querySelectorAll(".timetable, .period-now").forEach(element => {
+            element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+        });
     }
 }
 
