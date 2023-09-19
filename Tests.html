@@ -544,7 +544,8 @@ function toggleDarkMode() {
 }
 
 
-             function applyDarkModePreference() {
+        // Check and apply user's dark mode preference from local storage
+        function applyDarkModePreference() {
             const isDarkMode = localStorage.getItem("darkMode") === "true";
             if (isDarkMode) {
                 toggleDarkMode(); // Activate dark mode if the preference is true
@@ -557,6 +558,7 @@ function toggleDarkMode() {
         // Add a click event listener to the dark mode button
         const darkModeButton = document.getElementById("darkModeButton");
         darkModeButton.addEventListener("click", toggleDarkMode);
+    
     </script>
    <script>
         (function(d, s, id) {
