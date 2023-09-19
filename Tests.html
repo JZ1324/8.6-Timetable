@@ -504,7 +504,6 @@ body {
         }
     </style>
         <script>
- // Function to toggle dark mode
 // Function to toggle dark mode
 function toggleDarkMode() {
     const body = document.body;
@@ -519,11 +518,11 @@ function toggleDarkMode() {
 
         // Set text and background colors for elements to light mode
         document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
-            element.style.color = "#FFFFFF";
+            element.style.color = "#333333"; // Text color
         });
 
         document.querySelectorAll(".timetable, .period-now").forEach(element => {
-            element.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+            element.style.backgroundColor = "rgba(255, 255, 255, 0.8)"; // Background color
             element.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
         });
     } else {
@@ -534,15 +533,16 @@ function toggleDarkMode() {
 
         // Set text and background colors for elements to dark mode
         document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
-            element.style.color = "#000000";
+            element.style.color = "#FFFFFF"; // Text color
         });
 
         document.querySelectorAll(".timetable, .period-now").forEach(element => {
-            element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            element.style.backgroundColor = "rgba(66, 55, 92, 0.8)"; // Background color
             element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
         });
     }
 }
+
 
         // Function to set dark mode preference in cookies
         function setDarkModePreference(isDarkMode) {
