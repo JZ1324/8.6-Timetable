@@ -544,29 +544,19 @@ function toggleDarkMode() {
 }
 
 
-        // Function to set dark mode preference in cookies
-        function setDarkModePreference(isDarkMode) {
-            const expiryDate = new Date();
-            expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
-            document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
-        }
-
-        // Function to check if dark mode preference is stored in cookies
-        function checkDarkModePreference() {
-            const cookies = document.cookie.split('; ');
-            for (const cookie of cookies) {
-                const [name, value] = cookie.split('=');
-                if (name === 'darkMode' && value === 'true') {
-                    document.body.classList.add("dark-mode");
-                    document.getElementById("darkModeButton").textContent = "Light Mode";
-                }
+             function applyDarkModePreference() {
+            const isDarkMode = localStorage.getItem("darkMode") === "true";
+            if (isDarkMode) {
+                toggleDarkMode(); // Activate dark mode if the preference is true
             }
         }
 
-        // Check dark mode preference when the page loads
-        window.onload = function () {
-            checkDarkModePreference();
-        };
+        // Call applyDarkModePreference on page load
+        window.addEventListener("load", applyDarkModePreference);
+
+        // Add a click event listener to the dark mode button
+        const darkModeButton = document.getElementById("darkModeButton");
+        darkModeButton.addEventListener("click", toggleDarkMode);
     </script>
    <script>
         (function(d, s, id) {
