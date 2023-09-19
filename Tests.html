@@ -511,6 +511,18 @@ function setDarkModePreference(isDarkMode) {
     document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
 }
 
+// Function to check if dark mode preference is stored in cookies and apply settings
+function checkDarkModePreference() {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'darkMode' && value === 'true') {
+            // Apply dark mode settings
+            applyDarkMode();
+        }
+    }
+}
+
 // Function to apply dark mode settings
 function applyDarkMode() {
     const body = document.body;
@@ -569,13 +581,6 @@ function toggleDarkMode() {
 // Check dark mode preference when the page loads
 window.onload = function () {
     checkDarkModePreference();
-    
-    // Apply initial styles based on the cookie value
-    if (document.body.classList.contains("dark-mode")) {
-        applyDarkMode();
-    } else {
-        applyLightMode();
-    }
 };
 
 
