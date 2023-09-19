@@ -504,7 +504,45 @@ body {
         }
     </style>
         <script>
- // Function to toggle dark mode
+// Function to set dark mode preference in cookies
+function setDarkModePreference(isDarkMode) {
+    const expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
+    document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
+}
+
+// Function to check if dark mode preference is stored in cookies and apply settings
+function checkDarkModePreference() {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'darkMode' && value === 'true') {
+            // Apply dark mode settings
+            applyDarkMode();
+        }
+    }
+}
+
+// Function to apply dark mode settings
+function applyDarkMode() {
+    const body = document.body;
+    const button = document.getElementById("darkModeButton");
+
+    body.classList.add("dark-mode");
+    button.textContent = "Light Mode"; // Change button text
+    body.style.backgroundColor = "#3a2c4d"; // Set background color to dark mode
+
+    // Set text and background colors for elements to dark mode
+    document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+        element.style.color = "#000000";
+    });
+
+    document.querySelectorAll(".timetable, .period-now").forEach(element => {
+        element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+    });
+}
+
 // Function to toggle dark mode
 function toggleDarkMode() {
     const body = document.body;
@@ -544,29 +582,11 @@ function toggleDarkMode() {
     }
 }
 
-        // Function to set dark mode preference in cookies
-        function setDarkModePreference(isDarkMode) {
-            const expiryDate = new Date();
-            expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
-            document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
-        }
+// Check dark mode preference when the page loads
+window.onload = function () {
+    checkDarkModePreference();
+};
 
-        // Function to check if dark mode preference is stored in cookies
-        function checkDarkModePreference() {
-            const cookies = document.cookie.split('; ');
-            for (const cookie of cookies) {
-                const [name, value] = cookie.split('=');
-                if (name === 'darkMode' && value === 'true') {
-                    document.body.classList.add("dark-mode");
-                    document.getElementById("darkModeButton").textContent = "Light Mode";
-                }
-            }
-        }
-
-        // Check dark mode preference when the page loads
-        window.onload = function () {
-            checkDarkModePreference();
-        };
     </script>
    <script>
         (function(d, s, id) {
