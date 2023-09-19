@@ -504,22 +504,24 @@ body {
         }
     </style>
         <script>
-        // Function to toggle dark mode
-        function toggleDarkMode() {
-            const body = document.body;
-            const currentMode = body.classList.contains("dark-mode");
-            const button = document.getElementById("darkModeButton");
-            
-            if (currentMode) {
-                body.classList.remove("dark-mode");
-                setDarkModePreference(false); // Store user preference
-                button.textContent = "Dark Mode"; // Change button text
-            } else {
-                body.classList.add("dark-mode");
-                setDarkModePreference(true); // Store user preference
-                button.textContent = "Light Mode"; // Change button text
-            }
-        }
+ // Function to toggle dark mode
+function toggleDarkMode() {
+    const body = document.body;
+    const currentMode = body.classList.contains("dark-mode");
+    const button = document.getElementById("darkModeButton");
+
+    if (currentMode) {
+        body.classList.remove("dark-mode");
+        setDarkModePreference(false); // Store user preference
+        button.textContent = "Dark Mode"; // Change button text
+        body.style.backgroundColor = "#A48BBE"; // Set background color to light mode
+    } else {
+        body.classList.add("dark-mode");
+        setDarkModePreference(true); // Store user preference
+        button.textContent = "Light Mode"; // Change button text
+        body.style.backgroundColor = "#3a2c4d"; // Set background color to dark mode
+    }
+}
 
         // Function to set dark mode preference in cookies
         function setDarkModePreference(isDarkMode) {
