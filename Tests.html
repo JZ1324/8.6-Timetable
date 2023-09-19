@@ -496,6 +496,48 @@ body {
     margin-top: 20px; /* Add some top margin for spacing */
   }
   </style>
+        <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const body = document.body;
+            const currentMode = body.classList.contains("dark-mode");
+            const button = document.getElementById("darkModeButton");
+            
+            if (currentMode) {
+                body.classList.remove("dark-mode");
+                setDarkModePreference(false); // Store user preference
+                button.textContent = "Dark Mode"; // Change button text
+            } else {
+                body.classList.add("dark-mode");
+                setDarkModePreference(true); // Store user preference
+                button.textContent = "Light Mode"; // Change button text
+            }
+        }
+
+        // Function to set dark mode preference in cookies
+        function setDarkModePreference(isDarkMode) {
+            const expiryDate = new Date();
+            expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
+            document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
+        }
+
+        // Function to check if dark mode preference is stored in cookies
+        function checkDarkModePreference() {
+            const cookies = document.cookie.split('; ');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.split('=');
+                if (name === 'darkMode' && value === 'true') {
+                    document.body.classList.add("dark-mode");
+                    document.getElementById("darkModeButton").textContent = "Light Mode";
+                }
+            }
+        }
+
+        // Check dark mode preference when the page loads
+        window.onload = function () {
+            checkDarkModePreference();
+        };
+    </script>
    <script>
         (function(d, s, id) {
             if (d.getElementById(id)) {
