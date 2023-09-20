@@ -531,15 +531,17 @@ function applyDarkMode() {
     body.classList.add("dark-mode");
     button.textContent = "Light Mode"; // Change button text
     body.style.backgroundColor = "#3a2c4d"; // Set background color to dark mode
-   // Set text and background colors for elements to dark mode
-document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
-    element.style.color = "#cfc8c8"; // Dark mode text color
-});
 
-document.querySelectorAll(".timetable, .period-now").forEach(element => {
-    element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-    element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
-});
+    // Set text and background colors for elements to dark mode
+    document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+        element.style.color = "#cfc8c8"; // Dark mode text color
+    });
+
+    document.querySelectorAll(".timetable, .period-now").forEach(element => {
+        element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+    });
+}
 
 // Function to apply light mode settings
 function applyLightMode() {
