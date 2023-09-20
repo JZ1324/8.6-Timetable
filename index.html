@@ -156,7 +156,7 @@ h1 span {
     }
 
     .quote .quote-text {
-      color: #333333;
+      color: #cfc8c8;
       font-size: 20px;
       margin-top: 10px;
     }
@@ -496,6 +496,94 @@ body {
     margin-top: 20px; /* Add some top margin for spacing */
   }
   </style>
+        <style>
+        #darkModeButtonContainer {
+            position: fixed;
+            top: 20px; /* Adjust the top distance as needed */
+            right: 20px; /* Adjust the right distance as needed */
+        }
+    </style>
+        <script>
+// Function to set dark mode preference in cookies
+function setDarkModePreference(isDarkMode) {
+    const expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
+    document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
+}
+
+// Function to check if dark mode preference is stored in cookies and apply settings
+function checkDarkModePreference() {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'darkMode' && value === 'true') {
+            // Apply dark mode settings
+            applyDarkMode();
+        }
+    }
+}
+
+// Function to apply dark mode settings
+function applyDarkMode() {
+    const body = document.body;
+    const button = document.getElementById("darkModeButton");
+
+    body.classList.add("dark-mode");
+    button.textContent = "Light Mode"; // Change button text
+    body.style.backgroundColor = "#3a2c4d"; // Set background color to dark mode
+   // Set text and background colors for elements to dark mode
+document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+    element.style.color = "#cfc8c8"; // Dark mode text color
+});
+
+document.querySelectorAll(".timetable, .period-now").forEach(element => {
+    element.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    element.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.3)";
+});
+
+// Function to apply light mode settings
+function applyLightMode() {
+    const body = document.body;
+    const button = document.getElementById("darkModeButton");
+
+    body.classList.remove("dark-mode");
+    button.textContent = "Dark Mode"; // Change button text
+    body.style.backgroundColor = "#A48BBE"; // Set background color to light mode
+
+    // Set text and background colors for elements to light mode
+    document.querySelectorAll(".week, .day-heading, .period-time, .period-subject, .period-location").forEach(element => {
+        element.style.color = "#FFFFFF"; // Light mode text color
+    });
+
+    document.querySelectorAll(".timetable, .period-now").forEach(element => {
+        element.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+        element.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
+    });
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    const body = document.body;
+    const currentMode = body.classList.contains("dark-mode");
+    const button = document.getElementById("darkModeButton");
+
+    if (currentMode) {
+        applyLightMode();
+        setDarkModePreference(false); // Store user preference
+    } else {
+        applyDarkMode();
+        setDarkModePreference(true); // Store user preference
+    }
+}
+
+// Check dark mode preference when the page loads
+window.onload = function () {
+    checkDarkModePreference();
+};
+
+
+
+    </script>
    <script>
         (function(d, s, id) {
             if (d.getElementById(id)) {
@@ -521,6 +609,9 @@ display: flex; justify-content: center; align-items: center;"></div>
   <div id="buttonContainer1">
     <button class="glow-on-hover1" id="toggleButton" onclick="toggleTimetable()"><b style="font-size: 9px;">Show Full Timetable</b></button>
   </div>
+     <div id="darkModeButtonContainer">
+        <button class="glow-on-hover1" id="darkModeButton" onclick="toggleDarkMode()">Dark Mode</button>
+    </div>
   <div id="timetableContainer1" class="timetable-container1">
     <!-- Timetable will be dynamically generated here -->
   </div>
