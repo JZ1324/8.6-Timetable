@@ -504,10 +504,10 @@ body {
         }
     </style>
   <script>
-// Function to set dark mode preference in cookies
 function setDarkModePreference(isDarkMode) {
     const expiryDate = new Date();
     expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Cookie expiration in 1 year
+    // Set the cookie at the root path ("/") to make it accessible across all pages
     document.cookie = `darkMode=${isDarkMode}; expires=${expiryDate.toUTCString()}; path=/`;
 }
 
