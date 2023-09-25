@@ -7,11 +7,7 @@
     <h1>Your Location Information</h1>
     <p>Latitude: <span id="latitude"></span></p>
     <p>Longitude: <span id="longitude"></span></p>
-    <p>Street Number: <span id="streetNumber"></span></p>
-    <p>Street: <span id="streetName"></span></p>
-    <p>Suburb: <span id="suburb"></span></p>
-    <p>City: <span id="city"></span></p>
-    <p>Country: <span id="country"></span></p>
+    <button id="getLocationButton">Get My Location</button>
 
     <script>
         // Function to update the location information
@@ -31,11 +27,6 @@
                             const results = data.features[0].properties;
                             document.getElementById('latitude').textContent = latitude.toFixed(6);
                             document.getElementById('longitude').textContent = longitude.toFixed(6);
-                            document.getElementById('streetNumber').textContent = results.street_number || '';
-                            document.getElementById('streetName').textContent = results.street || '';
-                            document.getElementById('suburb').textContent = results.suburb || '';
-                            document.getElementById('city').textContent = results.city || '';
-                            document.getElementById('country').textContent = results.country || '';
                         })
                         .catch(error => {
                             console.error('Error fetching location data:', error);
@@ -46,8 +37,9 @@
             }
         }
 
-        // Call the updateLocationInfo function to get and display location information
-        updateLocationInfo();
+        // Add an event listener to the button to request location when clicked
+        const getLocationButton = document.getElementById('getLocationButton');
+        getLocationButton.addEventListener('click', updateLocationInfo);
     </script>
 </body>
 </html>
