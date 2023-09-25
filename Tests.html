@@ -5,6 +5,8 @@
 </head>
 <body>
     <h1>Your Location Information</h1>
+    <p>Latitude: <span id="latitude"></span></p>
+    <p>Longitude: <span id="longitude"></span></p>
     <p>Street Number: <span id="streetNumber"></span></p>
     <p>Street: <span id="streetName"></span></p>
     <p>Suburb: <span id="suburb"></span></p>
@@ -27,6 +29,8 @@
                         .then(response => response.json())
                         .then(data => {
                             const results = data.features[0].properties;
+                            document.getElementById('latitude').textContent = latitude.toFixed(6);
+                            document.getElementById('longitude').textContent = longitude.toFixed(6);
                             document.getElementById('streetNumber').textContent = results.street_number || '';
                             document.getElementById('streetName').textContent = results.street || '';
                             document.getElementById('suburb').textContent = results.suburb || '';
