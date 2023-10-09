@@ -1090,7 +1090,8 @@ display: flex; justify-content: center; align-items: center;"></div>
 
     function displayCurrentTime() {
       const timeElement = document.getElementById('timeElement');
-      timeElement.innerHTML = `${getCurrentAESTTime()}`;
+      timeElement.innerHTML = `${getCurrentAEDTTime()}`;
+        //If not daylight savings than getCurrentAESTTime
     }
 
   updateTimetable();
