@@ -1081,16 +1081,18 @@ display: flex; justify-content: center; align-items: center;"></div>
     }
 
 
-  function getCurrentAEDTTime() {
-     const currentTime = new Date();
-      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      const isDaylightSavingTime = currentTime.getTimezoneOffset() < -600; // AEDT is UTC+11 during daylight saving time
+function getCurrentAEDTTime() {
+  const currentTime = new Date();
+  // Use 'Australia/Sydney' during daylight saving time (AEDT)
+  // 'Australia/Sydney' automatically switches between AEST and AEDT as needed
+  const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+  return currentTime.toLocaleTimeString('en-AU', options);
+}
 
-// Set the timeZone accordingly
-     options.timeZone = isDaylightSavingTime ? 'Australia/Sydney' : 'Australia/Melbourne';
-      return currentTime.toLocaleTimeString('en-AU', options);   
-      
-  }
+// Call the function to get the current AEDT time
+const currentAEDTTime = getCurrentAEDTTime();
+console.log(currentAEDTTime);
+      }
   
   function getCurrentAESTTime() {
       const currentTime = new Date();
