@@ -1079,8 +1079,13 @@ display: flex; justify-content: center; align-items: center;"></div>
       // Insert the generated timetable HTML into the .timetable div
       document.querySelector('.timetable').innerHTML = timetableHTML;
     }
-      
-          
+
+
+  function getCurrentAEDTTime() {
+     const currentTime = new Date();
+      const options = { timeZone: 'Australia/Sydney', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      return currentTime.toLocaleTimeString('en-AU', options);   
+  }
   
   function getCurrentAESTTime() {
       const currentTime = new Date();
