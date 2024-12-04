@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html xmlns:m="http://www.w3.org/1998/Math/MathML" lang="en">
+<!--  Copyright 2024 Schoolbox Pty Ltd -->
+<!--  Visit us at https://schoolbox.com.au/ -->
+<head>
+    <title>YVGS - Timetable</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-au" />
+    <meta name="author" content="Schoolbox Pty Ltd"/>
+                <link rel="manifest" href="/manifest">
+        <meta itemprop="user.externalId" content="65193" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="YVGS">
+    <meta name="theme-color" content="rgb(57, 57, 57)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-title" content="YVGS">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="/images/logo.php?logo=skin_favicon&size=favicon"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/logo.php?logo=skin_favicon&size=apple57">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/logo.php?logo=skin_favicon&size=apple60">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/logo.php?logo=skin_favicon&size=apple72">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/logo.php?logo=skin_favicon&size=apple76">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/logo.php?logo=skin_favicon&size=apple114">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/logo.php?logo=skin_favicon&size=apple120">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/logo.php?logo=skin_favicon&size=apple144">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/logo.php?logo=skin_favicon&size=apple152">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.php?logo=skin_favicon&size=apple180">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/core/core.css?v=24.0.10" />
+<link rel="stylesheet" type="text/css" href="/css/core/skin.css.php?v=24.0.10" />
+    <link rel="stylesheet" type="text/css" href="/static/css/vendors/fullcalendar/datepicker.css?v=24.0.10" />
+
+            <script>
+        window.tourData = [];
+    </script>
+        
+        <script src="https://cdn.iframe.ly/embed.js?cancel=0&key=1824167db8c94b042b966301b1e4ee0f"></script>
+
+        <script>
+        
+        // Date formats (global variable)
+        window.siteLocation = "YVGS";
+
+        window.dateDisplayFormats = {
+            dayjs:          "DD\/MM\/YYYY",
+            dayjsDatetime:  "DD\/MM\/YYYY\u0020h\u003Amma",
+            dayjsDateLong:  "dddd\u0020MMMM\u0020Do\u0020YYYY",
+            dayjsTime:      "h\u003Amma",
+            localDate:         "d\/m\/Y",
+            localDateTime:     "d\/m\/Y\u0020g\u003Aia",
+            calendarStartTime: "06\u003A00",
+            localTime:         "g\u003Aia",
+        };
+
+        // This schoolboxUser is here for custom scripts.
+        window.schoolboxUser            = {"id":1818,"externalId":"65193","title":null,"firstname":"Joshua","preferredName":null,"givenName":"Joshua","lastname":"Zheng","fullName":"Joshua Zheng"};
+        schoolboxUser.name           = "Joshua\u0020Zheng";
+        schoolboxUser.email          = "JZ18\u0040yvg.vic.edu.au";
+        schoolboxUser.year           = "9";
+        schoolboxUser.role           = {"id":5,"type":"student","name":"Secondary Students","student":true,"staff":false,"parent":false,"guest":false};
+        schoolboxUser.impersonated   = Boolean('');
+        schoolboxUser.communityLogin = Boolean('');
+
+        // Reluctantly add the CDN prefix and site version as global JS variables
+        window.cdnPrefix = "\/static";
+        window.siteVersion = "24.0.10";
+
+        // Ensure window.sbProps exists before we try to add to it
+        window.sbProps = window.sbProps || {};
+
+        window.sbProps.imageLightboxLicenseKey = "B3EFE861\u002D7F3F\u002D43AA\u002D9B2C\u002D98540F09D470";
+        window.sbProps.ckeditor5LicenseKey = "WXZOWVhuaGgvQ0czc0p4L240NkNDUUlQWVN0a0lzZzI3L0t0NU9tdFFFUlEvM3RrbWxYdGJSc2RhYitob29rSUszSkcvdz09LU1qQXlOREV4TURjPQ\u003D\u003D";
+        window.sbProps.iframelyLicenseKey = "1824167db8c94b042b966301b1e4ee0f";
+
+        window.sbProps.colourDefaults = {
+            "skin" : [
+                "rgb\u002857,\u002057,\u002057\u0029",
+                "rgb\u002862,\u002062,\u002062\u0029",
+                "rgb\u0028189,\u0020189,\u0020189\u0029",
+                "rgb\u0028219,\u0020219,\u0020219\u0029",
+                "rgb\u0028255,\u0020255,\u0020255\u0029",
+                "rgb\u0028255,\u0020255,\u0020255\u0029",
+                "rgb\u0028238,\u0020175,\u00200\u0029",
+            ],
+            "constant": [
+                "rgb(50, 114, 226)",
+                "rgb(101, 168, 101)",
+                "rgb(244, 213, 86)",
+                "rgb(248, 150, 30)",
+                "rgb(171, 148, 242)",
+                "rgb(211, 36, 132)",
+                "rgb(123, 0, 143)",
+                "rgb(0, 0, 0)",
+                "rgb(255, 255, 255)",
+            ]
+        }
+
+        // When showing colour swatches, we only want the first 3 unique colours from skin config as well as the constant colours,
+        // if there are less than 3 unique colours, we'll use the first 3 colours but bias towards the unique colours
+        const uniqueSkinColours = [...new Set(window.sbProps.colourDefaults["skin"])];
+        const chosenSkinColours =
+            uniqueSkinColours.length > 3
+                ? uniqueSkinColours.slice(0, 3)
+                : [...uniqueSkinColours, ...window.sbProps.colourDefaults["skin"]].slice(0, 3);
+
+        window.sbProps.colourDefaults["skinUnique"] = uniqueSkinColours;
+        window.sbProps.colourDefaults["swatches"] = [...chosenSkinColours, ...window.sbProps.colourDefaults["constant"]];
+
+        
+        window.sbProps.firebaseApps = [];
+                        window.sbProps.firebaseApps.push({
+            appIdentifier: '1\u003A305296266322\u003Aweb\u003A16f68e2f281b817f26bb8b',
+            publicConfiguration: {"apiKey":"AIzaSyCUv9ku8cbkDgwPH5FfJ8rfU2DVi6dtQK0","authDomain":"schoolbox-285a7.firebaseapp.com","projectId":"schoolbox-285a7","storageBucket":"schoolbox-285a7.appspot.com","messagingSenderId":"305296266322","appId":"1:305296266322:web:16f68e2f281b817f26bb8b","measurementId":"G-9HMXRYHBLX"},
+            webPushPublicKey: 'BCI00bNWIfBP0h3fh8UHBPdepFv\u002DmrvdOnEfKN5dWPxANWq34wfX4wv4rofl1XmNThOrRH9XPzvXGj6qjX3jeZI',
+        });
+            </script>
+    
+    <script src="/static/js/bundle/vendors.js?v=24.0.10"></script>
+    <script src="/static/js/bundle/main.js?v=24.0.10"></script>
+    <script src="/static/js/fullcalendar/schoolbox-fullcalendar.min.js?v=24.0.10"></script>
+    <script src="/service-worker.js?v=24.0.10"></script>
+    <script src="/static/js/browser/browser-redirect.js?v=24.0.10"></script>
+
+        
+</head>
+<body class="">
+<div class="off-canvas-wrap" id="off-canvas-wrap" data-offcanvas data-transition="overlap">
+    <div class="inner-wrap left-open right-open" id="inner-wrap" data-inner-offcanvas>
+                        <aside id="left-menu" class="left-off-canvas-menu hide-for-print" data-side-nav>
+            <a
+                href="#"
+                title="Unpin side menu"
+                class="left-menu-dock"
+                id="left-menu-dock"
+                data-dock-state="1"
+                data-title-dock="Pin side menu"
+                data-title-undock="Unpin side menu"
+            ></a>
+            <div class="logo-wrapper">
+                <a href="/" class="logo">
+                    <img src="/images/logo.php?logo=skin_logo_large&size=normal" srcset="/images/logo.php?logo=skin_logo_large&size=normal 1x,/images/logo.php?logo=skin_logo_large&size=hidpi 2x" alt="Yarra Valley Grammar"/>
+                </a>
+            </div>
+
+                                                <div class="row">
+                        <ul class="account-menu-mobile accordion" id="account-menu-mobile" data-accordion>
+                            <li class="accordion-navigation">
+                                <a href="#account-content-mobile" class="profile-drop" id="profile-accordion">
+                                    <img src="/portrait.php?id=1818&amp;size=square192"
+        
+                    height="72"
+        
+                    width="72"
+        
+                    alt="View Profile"
+            title="View Profile"
+            />                                    <span>Joshua Zheng</span>
+                                </a>
+                                <div id="account-content-mobile" class="content">
+                                        
+<ul id="profile-options-mobile" class="profile-options-mobile">
+            <li class="separator">Profile Options</li>
+    
+    <li><a class="icon-staff-students" href="/search/user/1818">Profile</a></li>
+    <li><a class="icon-settings" href="/settings/notifications">Notification Settings</a></li>
+    
+        
+    <li><a class="icon-logout" href="/logout.php">Logout</a></li>
+</ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                            
+                                                <nav class="row">
+                        <ul class="off-canvas-list second-nav" id="overflow-nav">
+                            <li data-sidenav-separator>
+                                <h3>Navigation</h3>
+                            </li>
+                            
+    <li data-id="1">         <a class="icon-teacher "
+                      href="/learning/classes"
+           title="Navigate to your classes"
+                   >
+            <span>Classes</span>
+        </a>
+    </li>
+    <li data-id="4">         <a class="icon-timetable navthis"
+                      href="/timetable"
+           title="View your timetable"
+                   >
+            <span>Timetable</span>
+        </a>
+    </li>
+    <li data-id="15">         <a class="icon-group "
+                      href="/groups"
+           title="Navigate to available groups"
+                   >
+            <span>Groups</span>
+        </a>
+    </li>
+    <li data-id="6">         <a class="icon-news "
+                      href="/news"
+           title="View your News Dashboard"
+                   >
+            <span>News</span>
+        </a>
+    </li>
+    <li data-id="5">         <a class="icon-calendar "
+                      href="/calendar/week"
+           title="View your calendar"
+                   >
+            <span>Calendar</span>
+        </a>
+    </li>
+                        </ul>
+                    </nav>
+                            
+                                                
+<nav id="nav">
+    <ul class="off-canvas-list">
+        <li id="side-menu"><h3>YVGS</h3><div class="nav-wrapper"><ul class="off-canvas-list"></ul></div></li><li id="side-menu-mygroups" ><h3 class="side-menu-heading-link"><a href="/groups#my-favourite-groups" class="icon-modify" title="Modify">My favourite groups</a></h3><div class="nav-wrapper"><ul class="off-canvas-list"><li><a href="/homepage/11047/">60 Second Film Competition</a></li><li><a href="/homepage/10639/">Chamber Strings</a></li><li><a href="/homepage/6992/">Choral</a></li><li><a href="/homepage/10643/">Kreisler Strings</a></li><li><a href="/homepage/27/">Middle School</a></li><li><a href="/homepage/4950/">Plummer</a></li><li><a href="/homepage/36/">Sport</a></li><li><a href="/homepage/10640/">String Quartet 1</a></li><li><a href="/homepage/10603/">Strings</a></li><li><a href="/homepage/10648/">Symphony Orchestra</a></li><li><a href="/homepage/2300/">Year 9 Communication</a></li></ul></div></li><li id="side-menu-mylinks"><h3 class="side-menu-heading-link"><a href="/cms/myLinks" class="icon-modify" title="Modify">My Links</a></h3><div class="nav-wrapper my-links"><ul class="off-canvas-list"></ul></div></li>    </ul>
+</nav>
+                                    </aside>
+
+        <!-- CONTAINER -->
+        <section class="main">
+            <div id="header">
+                                            </div>
+            <div class="hybrid-bar hide-for-print" id="hybrid-bar" >
+                <nav class="tab-bar">
+                    <section class="left-small" id="menu-toggle">
+                        <a class="left-off-canvas-toggle menu-icon" id="left-off-canvas-toggle">
+                            <svg width="18" height="14" viewBox="0 0 80 60">
+                                <rect width="100" height="10"></rect>
+                                <rect width="100" y="25" height="10"></rect>
+                                <rect width="100" y="50" height="10"></rect>
+                            </svg>
+                        </a>
+                    </section>
+
+                    <section class="tab-bar-section">
+                        <a href="/" class="logo">
+                            <img src="/images/logo.php?logo=skin_logo_square&size=normal" srcset="/images/logo.php?logo=skin_logo_square&size=normal 1x,/images/logo.php?logo=skin_logo_square&size=hidpi 2x" alt="Yarra Valley Grammar"/>
+                        </a>
+
+                                                                                    <ul id="top-menu" class="top-menu">
+                                    
+    <li data-id="1">         <a class="icon-teacher "
+                      href="/learning/classes"
+           title="Navigate to your classes"
+                   >
+            <span>Classes</span>
+        </a>
+    </li>
+    <li data-id="4">         <a class="icon-timetable navthis"
+                      href="/timetable"
+           title="View your timetable"
+                   >
+            <span>Timetable</span>
+        </a>
+    </li>
+    <li data-id="15">         <a class="icon-group "
+                      href="/groups"
+           title="Navigate to available groups"
+                   >
+            <span>Groups</span>
+        </a>
+    </li>
+    <li data-id="6">         <a class="icon-news "
+                      href="/news"
+           title="View your News Dashboard"
+                   >
+            <span>News</span>
+        </a>
+    </li>
+    <li data-id="5">         <a class="icon-calendar "
+                      href="/calendar/week"
+           title="View your calendar"
+                   >
+            <span>Calendar</span>
+        </a>
+    </li>
+                                </ul>
+                                                    
+                                                                                    <header-search></header-search>
+                                                    
+                                                                                    <a href="#" id="profile-drop" data-test="profile-drop" title="Joshua Zheng" class="account-menu">
+                                    <img src="/portrait.php?id=1818&amp;size=square192"
+        
+                    height="72"
+        
+                    width="72"
+        
+                    alt="View Profile"
+            title="View Profile"
+            />                                </a>
+                                <div id="account-content" class="account-drop" data-test="account-content">
+                                        
+<ul id="profile-options" class="profile-options">
+            <li class="separator">Joshua Zheng</li>
+    
+    <li><a class="icon-staff-students" href="/search/user/1818">Profile</a></li>
+    <li><a class="icon-settings" href="/settings/notifications">Notification Settings</a></li>
+    
+        
+    <li><a class="icon-logout" href="/logout.php">Logout</a></li>
+</ul>
+                                </div>
+                                                                        </section>
+
+                                                                        <section class="right-small" id="notifications">
+                                <a class="right-off-canvas-toggle icon-notifications" id="notification-toggle" data-unread="2">
+                                    <span data-unread-count>2</span>
+                                </a>
+                            </section>
+                                            
+                </nav>
+            </div>
+
+            <div id="container">
+                <div id="content">
+                    <script type="text/javascript" src="/static/js/timetable/jquery.timetable-resize.js?v=24.0.10"></script>
+<script type="text/javascript" src="/static/js/timetable/jquery.timetable-grid.js?v=24.0.10"></script>
+<script type="text/javascript">
+    $(function() {
+        $.fn.timetableStart();
+    });
+</script>
+
+
+<div class="row hide">
+    <div class="small-12 columns">
+        <dl class="sub-nav">
+            <dd><a data-timetable-selector="1818-1" title="Timetable for Joshua Zheng in Secondary">Joshua Zheng (Secondary)</a></dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row hide" data-timetable-wrapper="1818-1">
+    <div class="small-12 columns">
+        <h1 data-timetable-title>Timetable for Joshua Zheng, Year 9</h1>
+    </div>
+
+    <div class="small-12 columns">
+        <div class="scrollable show-for-medium-up">
+            <table class="timetable no-hover" data-timetable="1818-1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="">Day 1</th>
+                        <th class="">Day 2</th>
+                        <th class="">Day 3</th>
+                        <th class="">Day 4</th>
+                        <th class="">Day 5</th>
+                        <th class="">Day 6</th>
+                        <th class="">Day 7</th>
+                        <th class="timetable-day-active">Day 8</th>
+                        <th class="">Day 9</th>
+                        <th class="">Day 10</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="">
+                            Period 1
+                            <time class="meta">8:35am&ndash;9:35am</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="">
+                            Period 2
+                            <time class="meta">9:40am&ndash;10:40am</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="">
+                            Tutorial
+                            <time class="meta">10:45am&ndash;10:55am</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccccff;" data-timetable-subject>
+                                    <a href="/homepage/code/09TUT242007">09TUT24200</a>
+                                    <div>(09TUT242007)<br />
+                                    I 04 Mr Nick Kearney</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable-period-active">
+                            Period 3
+                            <time class="meta">11:25am&ndash;12:25pm</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffcce0;" data-timetable-subject>
+                                    <a href="/homepage/code/10AAA251109">10AAA25110</a>
+                                    <div>(10AAA251109)<br />
+                                    R 03 Mr James Beattie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffcce0;" data-timetable-subject>
+                                    <a href="/homepage/code/10AAA251109">10AAA25110</a>
+                                    <div>(10AAA251109)<br />
+                                    L 07 Mr James Beattie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffcce0;" data-timetable-subject>
+                                    <a href="/homepage/code/10AAA251109">10AAA25110</a>
+                                    <div>(10AAA251109)<br />
+                                    I 05 Mr James Beattie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="timetable-subject-active">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="">
+                            Period 4
+                            <time class="meta">12:30pm&ndash;1:30pm</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    M 08 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffcce0;" data-timetable-subject>
+                                    <a href="/homepage/code/10AAA251109">10AAA25110</a>
+                                    <div>(10AAA251109)<br />
+                                    L 06 Mr James Beattie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #f5ffcc;" data-timetable-subject>
+                                    10PST25100
+                                    <div>(10PST251009)<br/>
+                                    S 01 Mr Peter Warren</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffcce0;" data-timetable-subject>
+                                    <a href="/homepage/code/10AAA251109">10AAA25110</a>
+                                    <div>(10AAA251109)<br />
+                                    L 05 Mr James Beattie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffe0cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10SPE251101">Specialist Mathematics</a>
+                                    <div>(10SPE251101)<br />
+                                    L 04 Mr Paul Jefimenko</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="">
+                            Period 5
+                            <time class="meta">2:25pm&ndash;3:25pm</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffe0;" data-timetable-subject>
+                                    <a href="/homepage/code/10FRE251102">French</a>
+                                    <div>(10FRE251102)<br />
+                                    I 04 Mr Benoit Marden</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccfff5;" data-timetable-subject>
+                                    10yvolley0
+                                    <div>(10yvolley01)<br/>
+                                     Mrs Lindy Dowell</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccffcc;" data-timetable-subject>
+                                    <a href="/homepage/code/10MAA251105">Mathematics - Advanced</a>
+                                    <div>(10MAA251105)<br />
+                                    M 05 Mr Scott Kertes</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ffccf5;" data-timetable-subject>
+                                    <a href="/homepage/code/11BIO251101">Biology Units 1 &amp; 2</a>
+                                    <div>(11BIO251101)<br />
+                                    S 06 Mr Andrew Savage</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #fff5cc;" data-timetable-subject>
+                                    <a href="/homepage/code/10WBB251102">War Boom and Bust</a>
+                                    <div>(10WBB251102)<br />
+                                    I 02 Ms Dianne McKenzie</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #ccfff5;" data-timetable-subject>
+                                    10yvolley0
+                                    <div>(10yvolley01)<br/>
+                                     Mrs Lindy Dowell</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: #cce0ff;" data-timetable-subject>
+                                    <a href="/homepage/code/10ENG251106">English</a>
+                                    <div>(10ENG251106)<br />
+                                    A 03 Ms Rebecca Harvey</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="">
+                            After School
+                            <time class="meta">3:30pm&ndash;4:30pm</time>
+                        </th>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <div class='timetable-subject' style="background-color: ;" data-timetable-subject>
+                                    
+                                    <div><br/>
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row timetable-small show-for-small-only" data-smaller></div>
+
+
+                </div>
+            </div>
+
+                            <div id="footer" class="clearfix">
+                    <ul>
+                        <li>2024 &copy; Copyright <a href="https://www.yvg.vic.edu.au">Yarra Valley Grammar</a></li>
+                        <li><a href="/policy">Guidelines of Use and Privacy Policy</a></li>
+                        <li><a href="https://schoolbox.education" title="Schoolbox, Virtual Learning Environment, Learning Management System, LMS">Schoolbox</a>
+                            24.0.10</li>
+                                                    <li><a href="/feedback">Support and Feedback</a></li>
+                                            </ul>
+                </div>
+
+                                
+                <script type="text/javascript">
+                    Foundation.global.namespace = '';
+                    $(document).foundation();
+                </script>
+                                
+            
+                    </section>
+        <!-- END CONTAINER -->
+
+                                                                    <aside class="right-off-canvas-menu island no-pad hide-for-print" id="msgs" data-unread="2">
+                    <ul class="off-canvas-list" id="message-list">
+                        <li>
+                            <a
+                                href="#"
+                                title="Unpin notifications"
+                                class="right-menu-dock show-for-xlarge-up"
+                                id="right-menu-dock"
+                                data-dock-state="1"
+                                data-title-dock="Pin notifications"
+                                data-title-undock="Unpin notifications"
+                            ></a>
+                            <label id="notification-toggle-full">Notifications</label>
+                            <a class="icon-settings settings-button" href="/settings/notifications" aria-label="Modify notification settings" title="Modify notification settings"></a>
+                        </li>
+                                                                                                <li id="pwaPrompt" data-pwa="sidebarPrompt" class="content hide">
+                            <div class="l-flex-col l-gap-m f-no-margins" data-pwa-page="chrome">
+        <div class="l-flex-col l-gap-s f-no-margins hide" data-pwa="install">
+                        
+                    <p>To receive push notifications and enjoy a better experience, install the YVGS web app on your device.</p>
+        
+                                                                    <a data-pwa-action="installApple" class="button hide" href="https://apps.apple.com/au/app/yarra-valley-grammar-app/id1661056523">Install</a>
+                                                    <a data-pwa-action="installGoogle" class="button hide" href="https://play.google.com/store/apps/details?id=au.edu.vic.yvg.schoolbox&amp;hl=en_AU&amp;pli=1">Install</a>
+                                    
+                <a data-pwa-action="installPWA" class="button hide" href="#">Install</a>
+        <a data-pwa-action="installPWAiOS" data-reveal-id="PWAiOSAddToHomescreenReveal-chrome" class="button hide">Install</a>
+
+        <div data-reveal id="PWAiOSAddToHomescreenReveal-chrome" class="reveal-modal">
+            <h1>Add the YVGS web app to your home screen</h1>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            <p>To receive push notifications and enjoy a better experience, install the YVGS web app on your Apple device.<p>
+
+            <ol>
+                <li>
+                    Select the
+                    <strong>
+                        <sbx-icon>
+                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M 32.703 11.773 L 25 4.07 L 17.297 11.773 L 15.262 9.738 L 25 0 L 34.738 9.738 L 32.703 11.773 Z"
+                                    style="fill: rgb(6, 121, 254)"
+                                />
+                                <path
+                                    d="M 23.547 2.035 L 26.453 2.035 L 26.453 32.558 L 23.547 32.558 L 23.547 2.035 Z"
+                                    style="fill: rgb(6, 121, 254)"
+                                />
+                                <path
+                                    d="M 39.535 50 L 10.465 50 C 7.994 50 6.105 48.11 6.105 45.64 L 6.105 19.477 C 6.105 17.006 7.994 15.116 10.465 15.116 L 20.64 15.116 L 20.64 18.023 L 10.465 18.023 C 9.593 18.023 9.012 18.605 9.012 19.477 L 9.012 45.64 C 9.012 46.512 9.593 47.093 10.465 47.093 L 39.535 47.093 C 40.407 47.093 40.988 46.512 40.988 45.64 L 40.988 19.477 C 40.988 18.605 40.407 18.023 39.535 18.023 L 29.36 18.023 L 29.36 15.116 L 39.535 15.116 C 42.006 15.116 43.895 17.006 43.895 19.477 L 43.895 45.64 C 43.895 48.11 42.006 50 39.535 50 Z"
+                                    style="fill: rgb(6, 121, 254)"
+                                />
+                            </svg>
+                        </sbx-icon>
+                        Share
+                    </strong>
+                    button in the menu bar of your browser.
+                </li>
+                <li>
+                    From the list of options, select <strong>Add to Home Screen</strong>.
+                </li>
+            </ol>
+
+            <p>
+                If 'Add to Home Screen' option doesn't exist, you can scroll down the list and select <strong>Edit Actions</strong>
+                and then <strong>Add to Home Screen</strong>.
+            </p>
+
+            <p>Once you've added the YVGS web app to your home screen, you must then go to the web app on your home screen to enable notifications.</p>
+            <p>If you're still unable to add it to your home screen, please contact your support team.</p>
+        </div>
+            </div>
+        <div data-pwa-notif="iOSHomePrompt" class="alert-box warning hide">
+        To enable notifications on your iOS device, you must install the YVGS web app on your device and add it to your device's home screen.
+    </div>
+
+    <div data-pwa-notif="notifBlocked" class="alert-box warning hide">
+        You've blocked notifications on this device. To enable notifications, you must go to your device settings and set <b>Allow notifications</b>.
+        <a data-pwa-action="retryNotifPrompt" href="#">Try again</a>
+    </div>
+
+    <div data-pwa-notif="notifDisabledImpersonate" class="alert-box warning hide">
+        Device notifications are disabled while impersonating another user.
+    </div>
+
+    <div data-pwa-notif="notifEnabledMessage" class="alert-box success hide">
+        You have notifications enabled for this device
+    </div>
+
+    <div data-pwa-notif="enableNotifPrompt" class="l-flex-col l-gap-s f-no-margins hide">
+        <p>Enable notifications on your device:</p>
+        <a data-pwa-action="enableNotif" class="button" href="#">Enable Notifications</a>
+    </div>
+    </div>
+                            <a id="installDelayPrompt" data-pwa="sidebarPromptDelay" class="button load-more expand" href="#">Later</a>
+                        </li>
+                                                <li>
+                            <a id="msg-mar" class="mark-all-read button icon-approve" href="#">Mark all read</a>
+                        </li>
+                        <li>
+                            <section>
+                                <ul id="msg-content" class="action-list">
+                                    <li data-msgitem class="actions-small-1">
+                                        <div class="list-item">
+                                            <div class="compact card wrap-down small-12">
+                                                <a data-msgitem-href class="no-pad">
+                                                    <img data-msgitem-thumb />
+                                                    <p data-msgitem-title></p>
+                                                    <p class="meta spaced" data-msgitem-time></p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <nav>
+                                            <a data-msgitem-ack class="icon-approve no-pad" title="Mark as read"></a>
+                                        </nav>
+                                    </li>
+                                </ul>
+                            </section>
+                        </li>
+                        <li>
+                            <a href="/notifications" class="button" data-msgfooter-action>
+                                <span class="connecting"></span>&nbsp;Connecting&hellip;
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+                <div id="alert-dialog" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                    <h2 data-modal-title></h2>
+                    <ul id="alert-content" class="information-list no-pad">
+                        <li data-msgitem>
+                            <div class="card wrap-down small-12">
+                                <a data-msgitem-href>
+                                    <img data-msgitem-thumb />
+                                    <p data-msgitem-title></p>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                </div>
+
+                                <script type="text/javascript">
+                    $(function () {
+                        // launch the notifier
+                        $('#msgs').notifier({
+                            unread:   Number('2'),
+                            maxstack: Number('3'),
+                            itemTimeFormat: dateDisplayFormats.dayjsDatetime,
+                            debug: Boolean()
+                        });
+
+                        $('#alert-dialog').on('click', 'a.action', function (e) {
+                            e.preventDefault();
+                        });
+
+                        $('#profile-drop').on('click', function(e) {
+                            $(".c-header-search").removeClass( "focus" );
+                            e.preventDefault(); // Prevent '#' from being appended to the URL.  This can mess up interactions with the browser history API.
+                        });
+
+                        if ('serviceWorker' in navigator) {
+                            window.addEventListener('load', () => {
+                                navigator.serviceWorker.register('/service-worker.js')
+                                        .then((reg) => {
+                                            console.log('Service worker registered.', reg);
+                                        });
+                            });
+                        }
+                    });
+
+                    
+                                        function iOS() {
+                        return [
+                                'iPad Simulator',
+                                'iPhone Simulator',
+                                'iPod Simulator',
+                                'iPad',
+                                'iPhone',
+                                'iPod'
+                            ].includes(navigator.platform)
+                            // iPad on iOS 13 detection
+                            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+                    }
+
+                    /** define device ID */
+                    let deviceId = 'Browser';
+                    if (iOS()) {
+                        deviceId = 'iOS';
+                    } else if (/android/i.test(navigator.userAgent)) {
+                        deviceId = 'Android';
+                    }
+
+                                        function isPWAInstallPromptVisible(sectionWrapper) {
+                        // Check install section
+                        if (Array.from(sectionWrapper.querySelectorAll('[data-pwa="install"]')).some((installSectionElement) => {
+                            if (installSectionElement.classList.contains('hide')) {
+                                return false; // The install section is hidden
+                            }
+
+                            // If any install button is visible, return true
+                            return Array.from(installSectionElement.querySelectorAll('[data-pwa-action]')).some((installActionElement) => {
+                                return !installActionElement.classList.contains('hide');
+                            });
+                        })) {
+                            return true; // An install button is visible
+                        };
+
+                        return false; // No install button is visible
+                    }
+
+                                        function isPWANotifPromptVisible(sectionWrapper) {
+                        return Array.from(sectionWrapper.querySelectorAll('[data-pwa-notif]')).some((notifSectionElement) => {
+                            return !notifSectionElement.classList.contains('hide'); // If any of them don't have a "hide" class, return true
+                        });
+                    }
+
+                                        function isPromptSectionEmpty(promptId) {
+                        return Array.from(document.querySelectorAll(`[data-pwa="${promptId}"]`)).some((sidebarElement) => {
+                            // Check install section
+                            if (isPWAInstallPromptVisible(sidebarElement)) {
+                                return false; // An install button is visible, so the sidebar prompt is not empty
+                            };
+
+                            // Check notification section
+                            if (isPWANotifPromptVisible(sidebarElement)) {
+                                return false; // A notification button/message is visible, so the sidebar prompt is not empty
+                            };
+
+                            return true;
+                        });
+                    }
+
+                                        function hideShowPromptsIfEmpty() {
+                        ['sidebarPrompt', 'settingsPrompt'].forEach((promptId) => {
+                            document.querySelectorAll(`[data-pwa="${promptId}"]`).forEach((element) => {
+                                if (isPromptSectionEmpty(promptId)) {
+                                    element.classList.add('hide');
+                                } else {
+                                    element.classList.remove('hide');
+                                }
+                            });
+                        });
+                    }
+
+                                        function removeSidebarPrompt() {
+                        document.querySelectorAll('[data-pwa="sidebarPrompt"]').forEach((element) => {
+                            // We remove the element entirely so that later on it won't be unhidden unintentionally
+                            element.remove();
+                        });
+                    }
+
+                    if (window.sbProps.pwaConfig.user.hasClickedInstallLater) {
+                        removeSidebarPrompt();
+                    } else {
+                        document.querySelectorAll('[data-pwa="sidebarPromptDelay"]').forEach((element) => {
+                            element.addEventListener('click', () => {
+                                window.sbProps.pwaConfig.user.hasClickedInstallLater = true;
+                                removeSidebarPrompt();
+                            });
+                        });
+                    }
+
+                                        const isPWA = window.matchMedia('(display-mode: standalone)').matches;
+
+                                        if (
+                        iOS() &&
+                        Boolean(1) &&
+                        Boolean(1)
+                    ) {
+                        
+                        document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa="install"], [data-pwa-action="installApple"]').forEach((element) => {
+                            element.classList.remove('hide');
+                        });
+                        hideShowPromptsIfEmpty();
+                    }
+                                        else if (
+                        /android/i.test(navigator.userAgent) &&
+                        Boolean(1) &&
+                        Boolean(1)
+                    ) {
+                        
+                        document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa="install"], [data-pwa-action="installGoogle"]').forEach((element) => {
+                            element.classList.remove('hide');
+                        });
+                        hideShowPromptsIfEmpty();
+                    }
+                                        else if (!isPWA) {
+                        
+                        if (iOS()) {
+                            
+                                                        document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa="install"], [data-pwa-action="installPWAiOS"]').forEach((element) => {
+                                element.classList.remove('hide');
+                            });
+                            hideShowPromptsIfEmpty();
+                        } else {
+                            
+                            window.addEventListener('beforeinstallprompt', (event) => {
+                                
+                                                                event.preventDefault();
+
+                                                                window.deferredPrompt = event;
+
+                                                                document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa="install"], [data-pwa-action="installPWA"]').forEach((element) => {
+                                    element.classList.remove('hide');
+                                });
+                                hideShowPromptsIfEmpty();
+
+                                                                document.querySelectorAll('[data-pwa-action="installPWA"]').forEach((element) => {
+                                    element.addEventListener('click', async () => {
+                                                                                const promptEvent = window.deferredPrompt;
+                                        if (!promptEvent) return; // The deferred prompt isn't available.
+
+                                        // Show the install prompt.
+                                        promptEvent.prompt();
+
+                                        // Reset the deferred prompt variable, since
+                                        // prompt() can only be called once.
+                                        window.deferredPrompt = null;
+
+                                        // Hide the install button
+                                        document.querySelectorAll('[data-pwa="install"]').forEach((element) => {
+                                            element.classList.add('hide');
+                                        });
+
+                                        // Hide the sidebar/settings prompt if it's now empty
+                                        hideShowPromptsIfEmpty();
+
+                                        const result = await promptEvent.userChoice;
+
+                                                                            });
+                                });
+                            });
+
+                            window.addEventListener('appinstalled', (event) => {
+                                
+                                                                window.deferredPrompt = null;
+                            });
+                        }
+                    }
+
+                    if (window.schoolboxUser.impersonated) {
+                                                
+                        document.querySelectorAll('[data-pwa-page="settings"] [data-pwa-notif="notifDisabledImpersonate"]').forEach((element) => {
+                            element.classList.remove('hide');
+                        });
+                    } else if ("Notification" in window) {
+                                                for (const [userId, pwaUserConfig] of Object.entries(window.sbProps.pwaConfig.config.users)) {
+                            if (userId.toString() !== window.schoolboxUser.id.toString()) {
+                                pwaUserConfig.notificationState = null;
+                            }
+                        };
+
+                                                let currentPermission = Notification.permission;
+
+                        if (
+                            iOS() &&
+                            currentPermission === "default" &&
+                            ![null, "removing"].includes(window.sbProps.pwaConfig.user.notificationState)
+                        ) {
+                            currentPermission = "granted"; // Treat "default" as "granted" on iOS if the user has allowed notifications in the past
+                        }
+
+                        if (currentPermission === "granted") {
+                                                        document.querySelectorAll('[data-pwa-page="settings"] [data-pwa-notif="notifEnabledMessage"]').forEach((element) => {
+                                element.classList.remove('hide');
+                            });
+
+                                                        if (window.sbProps.pwaConfig.user.notificationState !== "registered") {
+                                window.sbProps.pwaConfig.user.notificationState = "registering";
+                            }
+                        } else if (currentPermission === "denied") {
+                                                        document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa-notif="notifBlocked"]').forEach( (element)=>{
+                                element.classList.remove('hide');
+                            });
+
+                                                        if (window.sbProps.pwaConfig.user.notificationState !== null) {
+                                window.sbProps.pwaConfig.user.notificationState = "removing";
+                            }
+                        } else {
+                                                        document.querySelectorAll('[data-pwa="sidebarPrompt"], [data-pwa-notif="enableNotifPrompt"]').forEach( (element)=>{
+                                element.classList.remove('hide');
+                            });
+
+                                                                                    if (iOS() && !isPWA) {
+                                document.querySelectorAll('[data-pwa-notif="iOSHomePrompt"]').forEach((element) => {
+                                    element.classList.remove('hide');
+                                });
+
+                                document.querySelectorAll('[data-pwa-action="enableNotif"]').forEach((element) => {
+                                    element.toggleAttribute('disabled', true);
+                                });
+                            }
+                                                    }
+
+                                                document.querySelectorAll('[data-pwa-action="retryNotifPrompt"]').forEach( (element) => {
+                            element?.addEventListener('click', async () => {
+                                await Notification.requestPermission();
+                                window.location.reload();
+                            });
+                        });
+
+                        let prompted = false;
+                        document.querySelectorAll('[data-pwa-action="enableNotif"]').forEach( (enableNotifElement)=> {
+                            enableNotifElement.addEventListener('click', async () => {
+                                if (prompted) {
+                                    return;                                 }
+                                prompted = true;
+
+                                                                const permission = await Notification.requestPermission();
+
+                                                                document.querySelectorAll('[data-pwa-notif="enableNotifPrompt"]').forEach( (element)=>{
+                                    element.classList.add('hide');
+                                });
+
+                                if (permission === 'granted') {
+                                    window.sbProps.pwaConfig.user.notificationState = "registering";
+                                    
+                                                                        document.querySelectorAll('[data-pwa-notif="notifEnabledMessage"]').forEach( (element)=>{
+                                        element.classList.remove('hide');
+                                    });
+
+                                                                        document.querySelectorAll('[data-pwa="sidebarPrompt"]').forEach((sidebarPromptElement) => {
+                                        if (!isPWAInstallPromptVisible(sidebarPromptElement)) {
+                                            sidebarPromptElement.querySelectorAll('[data-pwa="sidebarPromptDelay"]').forEach((element) => {
+                                                element.classList.add('hide');
+                                            });
+                                        };
+                                    });
+
+                                                                        document.dispatchEvent(
+                                        new CustomEvent("PWA_NOTIFICATION_ALLOW", {
+                                            detail: {
+                                                debug: Boolean(),
+                                                deviceId: deviceId,
+                                            },
+                                        }),
+                                    );
+
+                                                                        if ("serviceWorker" in navigator && navigator.serviceWorker.controller) {
+                                        navigator.serviceWorker.controller.postMessage({
+                                            type: 'SHOW_NOTIFICATION',
+                                            title: `YVGS`,
+                                            options: {
+                                                body: 'Welcome! Your notifications are powered by the YVGS web app',
+                                                icon: "/images/logo.php?logo=skin_logo_square&size=apple72",
+                                                image: "/images/logo.php?logo=skin_logo_square&size=apple72",
+                                                badge: "/images/logo.php?logo=skin_logo_square&size=apple72",
+                                                renotify: false,
+                                                data: {
+                                                    href: "/settings/notifications"
+                                                }
+                                            }
+                                        })
+                                    }
+                                } else {
+                                    // may be "denied" or "default", in the case of "default" - we should treat as "denied" as per
+                                    // https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission_static#return_value
+
+                                    
+                                                                        document.querySelectorAll('[data-pwa-notif="notifBlocked"]').forEach( (element)=> {
+                                        element.classList.remove('hide');
+                                    });
+
+                                                                        document.dispatchEvent(
+                                        new CustomEvent("PWA_NOTIFICATION_DENY", {
+                                            detail: {
+                                                debug: Boolean(),
+                                            },
+                                        }),
+                                    );
+                                }
+                                hideShowPromptsIfEmpty();
+                            });
+                        });
+
+                                                reAuthNotif = function () {
+                                                        if (window.sbProps.pwaConfig.user.notificationState === "registering") {
+                                document.dispatchEvent(
+                                    new CustomEvent("PWA_NOTIFICATION_ALLOW", {
+                                        detail: {
+                                            debug: Boolean(),
+                                            deviceId: deviceId,
+                                        },
+                                    }),
+                                );
+                            }
+
+                                                        if (window.sbProps.pwaConfig.user.notificationState === "removing") {
+                                document.dispatchEvent(
+                                    new CustomEvent("PWA_NOTIFICATION_DENY", {
+                                        detail: {
+                                            debug: Boolean(),
+                                        },
+                                    }),
+                                );
+                            }
+                        }
+
+                                                if (document.readyState !== 'loading') {
+                            reAuthNotif();
+                        } else {
+                            document.addEventListener('DOMContentLoaded', reAuthNotif);
+                        }
+                    } else {
+                                                                        if (iOS() && !isPWA) {
+                            document.querySelectorAll('[data-pwa-notif="iOSHomePrompt"]').forEach((element) => {
+                                element.classList.remove('hide');
+                            });
+
+                            document.querySelectorAll('[data-pwa-action="enableNotif"]').forEach((element) => {
+                                element.toggleAttribute('disabled', true);
+                            });
+                        }
+                                            }
+
+                    hideShowPromptsIfEmpty();
+                </script>
+                                            <a href="#" class="exit-off-canvas"></a>
+    </div>
+</div>
+<div id="toast-container">
+    <sbx-toast />
+</div>
+<script src="/static/js/bundle/headerSearch.js?v=24.0.10"></script>
+<script src="/static/js/bundle/sbxToast.js?v=24.0.10"></script>
+<script src="/static/js/bundle/firebaseInit.js?v=24.0.10"></script>
+</body>
+</html>
